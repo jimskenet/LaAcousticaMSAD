@@ -14,7 +14,7 @@ namespace LaAcoustica_Final
 {
     public partial class Sale : Form
     {
-        OleDbConnection myConn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source= C:\\Users\\Jofrel Jan Quijano\\source\\repos\\LaAcoustica Final\\LA\\Data.accdb");
+        OleDbConnection myConn = new OleDbConnection(StaticClass.connString);
         OleDbDataAdapter da;
         OleDbCommand cmd;
         DataSet ds;

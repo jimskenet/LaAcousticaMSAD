@@ -16,7 +16,7 @@ namespace LaAcoustica_Final
     {
         DataSet ds;
         OleDbDataAdapter da;
-        OleDbConnection myConn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source= C:\\Users\\Jofrel Jan Quijano\\source\\repos\\LaAcoustica Final\\LA\\Data.accdb");
+        OleDbConnection myConn = new OleDbConnection(StaticClass.connString);
         public Inventory()
         {
             InitializeComponent();
@@ -68,8 +68,6 @@ namespace LaAcoustica_Final
         {
             try
             {
-                OleDbConnection myConn = new OleDbConnection();
-                myConn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source= C:\\Users\\Jofrel Jan Quijano\\source\\repos\\LaAcoustica Final\\LA\\Data.accdb;Persist Security Info=False;";
                 string query = "INSERT INTO Storage (ProductName, BrandName, Category, SubCategory, Price, Quantity) VALUES (@prod,@brand,@category,@subcategory,@price,@quantity)";
                 OleDbCommand cmd = new OleDbCommand(query, myConn);
                 if (prod.Text == "" || brand.Text == "" || categoryT.Text == "" || Scategory.Text == "" || price.Text == "" || quantity.Text == "")

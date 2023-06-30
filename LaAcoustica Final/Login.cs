@@ -37,7 +37,7 @@ namespace LaAcoustica_Final
         //LOGIN USER AND ADMIN
         private void log_Click(object sender, EventArgs e)
         {
-            using (OleDbConnection myConn = StaticClass.myConn)
+            using (OleDbConnection myConn = new OleDbConnection(StaticClass.connString))
             {
                 myConn.Open();
                 OleDbCommand command = new OleDbCommand();

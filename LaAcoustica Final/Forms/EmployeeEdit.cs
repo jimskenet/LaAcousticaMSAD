@@ -21,7 +21,7 @@ namespace LaAcoustica_Final
         {
             InitializeComponent();
         }
-        OleDbConnection myConn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source= C:\\Users\\Jofrel Jan Quijano\\source\\repos\\LaAcoustica Final\\LA\\Data.accdb");
+        OleDbConnection myConn = new OleDbConnection(StaticClass.connString);
         OleDbDataAdapter da;
         OleDbCommand cmd;
         DataSet ds;
@@ -32,8 +32,6 @@ namespace LaAcoustica_Final
         }
         private void load()
         {
-            OleDbConnection myConn = new OleDbConnection();
-            myConn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source= C:\\Users\\Jofrel Jan Quijano\\source\\repos\\LaAcoustica Final\\LA\\Data.accdb");
             myConn.Open();
             da = new OleDbDataAdapter("SELECT AccountNumber, [LastName], [FirstName], MI, [Username], [Password], AccType from Accounts", myConn);
             ds = new DataSet();
@@ -45,8 +43,6 @@ namespace LaAcoustica_Final
         {
             try
             {
-                OleDbConnection myConn = new OleDbConnection();
-                myConn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source= C:\\Users\\Jofrel Jan Quijano\\source\\repos\\LaAcoustica Final\\LA\\Data.accdb;Persist Security Info=False;";
                 string query = "INSERT INTO Accounts (AccountNumber, [LastName], [FirstName], MI, [Username], [Password], AccType) VALUES (@ac,@last,@first,@middle,@u,@p,@accT)";
                 cmd = new OleDbCommand(query, myConn);
                 if (accnum.Text == "" || ls.Text == "" || fs.Text == "" || mi.Text == "" || user.Text == "" || pass.Text == "" || at.Text == "")
@@ -99,7 +95,6 @@ namespace LaAcoustica_Final
             {
                 if (at.SelectedIndex != -1)
                 {
-                    OleDbConnection myConn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source= C:\\Users\\Jofrel Jan Quijano\\source\\repos\\LaAcoustica Final\\LA\\Data.accdb");
                     string query = "Delete From Accounts Where AccountNumber = @an";
                     cmd = new OleDbCommand(query, myConn);
                     cmd.Parameters.AddWithValue("@pr", employeeData.CurrentRow.Cells[0].Value);

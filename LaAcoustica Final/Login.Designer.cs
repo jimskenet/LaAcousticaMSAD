@@ -232,7 +232,7 @@
             // 
             this.register_btn.BackColor = System.Drawing.Color.Transparent;
             this.register_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.register_btn.BorderColor = System.Drawing.Color.Transparent;
+            this.register_btn.BorderColor = System.Drawing.Color.White;
             this.register_btn.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.register_btn.DefaultText = "No Account? Sign up here";
             this.register_btn.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
