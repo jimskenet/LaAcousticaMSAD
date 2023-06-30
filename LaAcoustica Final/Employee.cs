@@ -23,7 +23,7 @@ namespace LaAcoustica_Final
 {
     public partial class Employee : Form
     {
-        OleDbConnection myConn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source= C:\\Users\\Jofrel Jan Quijano\\source\\repos\\LaAcoustica Final\\LA\\Data.accdb");
+        OleDbConnection myConn = new OleDbConnection(StaticClass.connString);
         OleDbDataAdapter da;
         OleDbCommand cmd;
         DataSet ds;
@@ -40,7 +40,7 @@ namespace LaAcoustica_Final
         {
             InitializeComponent();
             cashier.Text = Login.lname + ", " + Login.fname;
-            if(Login.acc == "Admin" || Login.acc == "Main")
+            if (Login.acc == "Admin" || Login.acc == "Main")
             {
                 Acc.Text = "Admin User";
             }
@@ -109,7 +109,7 @@ namespace LaAcoustica_Final
             {
                 MessageBox.Show("Error: " + ex);
             }
-            
+
         }
         //SELECT ROW IN BILL
         private void SelectRow2(object sender, DataGridViewCellEventArgs e)
@@ -140,7 +140,7 @@ namespace LaAcoustica_Final
                 }
                 else
                 {
-                    if (quanI>=Q.Value)
+                    if (quanI >= Q.Value)
                     {
                         string query = "INSERT INTO Bill ([Product], [Price], [Quantity]) VALUES (@prod,@price,@quan)";
                         cmd = new OleDbCommand(query, myConn);
@@ -155,14 +155,14 @@ namespace LaAcoustica_Final
                         loadBill();
                         Total();
                     }
-                    else { MessageBox.Show("Insufficient Stock");}
+                    else { MessageBox.Show("Insufficient Stock"); }
                     refresh.PerformClick();
-                }            
+                }
             }
             catch
             {
                 MessageBox.Show("Product Already Added!"); myConn.Close(); ;
-            } 
+            }
         }
         //TOTAL PRICE OF ALL PRODUCTS IN BILL
         private void Total()
@@ -173,7 +173,7 @@ namespace LaAcoustica_Final
             {
                 decimal price = Convert.ToDecimal(row.Cells["Price"].Value);
                 int quantity = Convert.ToInt32(row.Cells["Quantity"].Value);
-                totalPrice = totalPrice + (price*quantity);
+                totalPrice = totalPrice + (price * quantity);
                 qty += quantity;
             }
             totPrice.Text = totalPrice.ToString("C");
@@ -209,7 +209,7 @@ namespace LaAcoustica_Final
         }
         //RESET METHOD
         private void Reset()
-        { 
+        {
             string query = "DELETE * FROM Bill";
             OleDbCommand command = new OleDbCommand(query, myConn);
             myConn.Open();
@@ -257,13 +257,13 @@ namespace LaAcoustica_Final
         //UPDATES QUANTITY IN INVENTORY
         private void UpInventory(int tot, string prod)
         {
-                cmd = new OleDbCommand("UPDATE Storage SET [Quantity] = [Quantity] + @qt  WHERE ProductName = @pr", myConn);
-                myConn.Open();
-                cmd.Parameters.AddWithValue("@qt", tot);
-                cmd.Parameters.AddWithValue("@pr", prod);
-                cmd.ExecuteNonQuery();
-                myConn.Close();
-                loadInventory();            
+            cmd = new OleDbCommand("UPDATE Storage SET [Quantity] = [Quantity] + @qt  WHERE ProductName = @pr", myConn);
+            myConn.Open();
+            cmd.Parameters.AddWithValue("@qt", tot);
+            cmd.Parameters.AddWithValue("@pr", prod);
+            cmd.ExecuteNonQuery();
+            myConn.Close();
+            loadInventory();
         }
         //EDIT QUANTITY OF PRODUCTS
         private void edit_Click(object sender, EventArgs e)
@@ -282,28 +282,28 @@ namespace LaAcoustica_Final
                     cmd.Parameters.AddWithValue("@pc", priceN.Text);
                     cmd.Parameters.AddWithValue("@qt", Q);
                     cmd.ExecuteNonQuery();
-                    myConn.Close();  
+                    myConn.Close();
                 }
                 catch { MessageBox.Show("Insufficient Stock!"); myConn.Close(); }
                 loadBill();
             }
-            
+
         }
         //FILTER METHODS
         private void Filter()
         {
-            if(brandN.SelectedIndex != -1 && category.SelectedIndex == -1 && subcategory.SelectedIndex == -1) { da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity FROM Storage WHERE BrandName = '" + brandN.SelectedItem.ToString() + "'", myConn); }
-            else if(brandN.SelectedIndex == -1 && category.SelectedIndex != -1 && subcategory.SelectedIndex == -1) { da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity FROM Storage WHERE Category = '" + category.SelectedItem.ToString() + "'", myConn); }
-            else if(brandN.SelectedIndex == -1 && category.SelectedIndex == -1 && subcategory.SelectedIndex != -1) { da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity FROM Storage WHERE SubCategory = '" + subcategory.SelectedItem.ToString() + "'", myConn); }
-            else if(brandN.SelectedIndex != -1 && category.SelectedIndex != -1 && subcategory.SelectedIndex == -1)
+            if (brandN.SelectedIndex != -1 && category.SelectedIndex == -1 && subcategory.SelectedIndex == -1) { da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity FROM Storage WHERE BrandName = '" + brandN.SelectedItem.ToString() + "'", myConn); }
+            else if (brandN.SelectedIndex == -1 && category.SelectedIndex != -1 && subcategory.SelectedIndex == -1) { da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity FROM Storage WHERE Category = '" + category.SelectedItem.ToString() + "'", myConn); }
+            else if (brandN.SelectedIndex == -1 && category.SelectedIndex == -1 && subcategory.SelectedIndex != -1) { da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity FROM Storage WHERE SubCategory = '" + subcategory.SelectedItem.ToString() + "'", myConn); }
+            else if (brandN.SelectedIndex != -1 && category.SelectedIndex != -1 && subcategory.SelectedIndex == -1)
             {
-                da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity FROM Storage WHERE BrandName = '" + brandN.SelectedItem.ToString() + "' and Category = '"+ category.SelectedItem.ToString() + "'", myConn);
+                da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity FROM Storage WHERE BrandName = '" + brandN.SelectedItem.ToString() + "' and Category = '" + category.SelectedItem.ToString() + "'", myConn);
             }
-            else if(brandN.SelectedIndex != -1 && category.SelectedIndex == -1 && subcategory.SelectedIndex != -1)
+            else if (brandN.SelectedIndex != -1 && category.SelectedIndex == -1 && subcategory.SelectedIndex != -1)
             {
                 da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity FROM Storage WHERE BrandName = '" + brandN.SelectedItem.ToString() + "' and SubCategory = '" + subcategory.SelectedItem.ToString() + "'", myConn);
             }
-            else if(brandN.SelectedIndex == -1 && category.SelectedIndex != -1 && subcategory.SelectedIndex != -1)
+            else if (brandN.SelectedIndex == -1 && category.SelectedIndex != -1 && subcategory.SelectedIndex != -1)
             {
                 da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity FROM Storage WHERE Category = '" + category.SelectedItem.ToString() + "' and SubCategory = '" + subcategory.SelectedItem.ToString() + "'", myConn);
             }
@@ -329,7 +329,7 @@ namespace LaAcoustica_Final
 
         private void printR_Click(object sender, EventArgs e)
         {
-            
+
             try
             {
                 invoiceNumber = Guid.NewGuid().ToString();
@@ -354,7 +354,7 @@ namespace LaAcoustica_Final
                 PrintProperties();
                 Reset();
                 MessageBox.Show("Sale Purchased!");
-                
+
             }
             catch { MessageBox.Show("No Items in Bill!"); }
         }
@@ -381,7 +381,7 @@ namespace LaAcoustica_Final
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
             pfc = new PrivateFontCollection();
-            pfc.AddFontFile(@"C:\\Users\\Jofrel Jan Quijano\\source\\repos\\LaAcoustica Final\\LA\\Receipt Font\\Merchant Copy.ttf");
+            pfc.AddFontFile(@"Merchant Copy.ttf");
             System.Drawing.Font font = new System.Drawing.Font("Merchant Copy", 10, FontStyle.Regular);
             SolidBrush brush = new SolidBrush(System.Drawing.Color.Black);
             StringFormat format = new StringFormat();
@@ -458,10 +458,10 @@ namespace LaAcoustica_Final
             }
             e.Graphics.DrawString("----------------------------------------------------------------------------------------", font, brush, e.PageBounds.Width / 2, y, format);
             e.Graphics.DrawString(qty.ToString(), font, brush, 0, y + 15);
-            e.Graphics.DrawString("Total: ", font, brush, 145, y+15);
+            e.Graphics.DrawString("Total: ", font, brush, 145, y + 15);
             e.Graphics.DrawString(totalPrice.ToString("C"), font, brush, 180, y + 15);
-            e.Graphics.DrawString("----------------------------------------------------------------------------------------", font, brush, e.PageBounds.Width / 2, y+30, format);
-            e.Graphics.DrawString("THANK YOU FOR YOUR PURCHASE!", new System.Drawing.Font("Merchant Copy", 11, FontStyle.Bold), brush, e.PageBounds.Width / 2, y+60, format);
+            e.Graphics.DrawString("----------------------------------------------------------------------------------------", font, brush, e.PageBounds.Width / 2, y + 30, format);
+            e.Graphics.DrawString("THANK YOU FOR YOUR PURCHASE!", new System.Drawing.Font("Merchant Copy", 11, FontStyle.Bold), brush, e.PageBounds.Width / 2, y + 60, format);
         }
 
         private void PrintProperties()

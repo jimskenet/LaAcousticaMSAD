@@ -34,51 +34,47 @@ namespace LaAcoustica_Final
         {
             this.WindowState = FormWindowState.Minimized;
         }
-        OleDbConnection myConn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source= C:\\Users\\Jofrel Jan Quijano\\source\\repos\\LaAcoustica Final\\LA\\Data.accdb");
         //LOGIN USER AND ADMIN
         private void log_Click(object sender, EventArgs e)
         {
-            myConn.Open();
-            OleDbCommand command = new OleDbCommand();
-            command.Connection = myConn;
-            command.CommandText = "Select * FROM Accounts where Username = '" + user.Text + "' and Password = '" + pass.Text + "'";
-            OleDbDataReader read = command.ExecuteReader();
-            if (read.HasRows)
+            using (OleDbConnection myConn = StaticClass.myConn)
             {
-                read.Read();
-                idNum = read["AccountNumber"].ToString();
-                string user = read["AccType"].ToString();
-                lname = read["LastName"].ToString();
-                fname = read["FirstName"].ToString();
-                acc = user;
-
-
-                if (user == "Admin" || user == "Main")
+                myConn.Open();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = myConn;
+                command.CommandText = "Select * FROM Accounts where Username = '" + user.Text + "' and Password = '" + pass.Text + "'";
+                OleDbDataReader read = command.ExecuteReader();
+                if (read.HasRows)
                 {
-                    Menu mn = new Menu();
-                    this.Hide();
-                    mn.Show();
+                    read.Read();
+                    idNum = read["AccountNumber"].ToString();
+                    string user = read["AccType"].ToString();
+                    lname = read["LastName"].ToString();
+                    fname = read["FirstName"].ToString();
+                    myConn.Close();
+                    acc = user;
+                    if (user == "Admin" || user == "Main")
+                    {
+                        Menu mn = new Menu();
+                        this.Hide();
+                        mn.Show();
+                    }
+                    else
+                    {
+                        this.Hide(); myConn.Close();
+                        Employee emp = new Employee();
+                        emp.Show();
+                    }
                 }
+
                 else
                 {
-                    this.Hide();
-                    Employee emp = new Employee();
-                    emp.Show();
+                    MessageBox.Show("Invalid Account!");
+                    user.Text = "";
+                    pass.Text = "";
                 }
             }
-            else
-            {
-                MessageBox.Show("Invalid Account!");
-                user.Text = "";
-                pass.Text = "";
-            }
-            myConn.Close();
         }
-        private void clear_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void Login_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)

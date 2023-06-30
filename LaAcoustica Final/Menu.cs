@@ -16,7 +16,7 @@ namespace LaAcoustica_Final
 {
     public partial class Menu : Form
     {
-        string imagePath = "C:\\Users\\Jofrel Jan Quijano\\source\\repos\\LaAcoustica Final\\LA\\jpg(3).jpg";
+        string imagePath = "jpg(3).jpg";
         public Menu()
         {
             
@@ -114,7 +114,7 @@ namespace LaAcoustica_Final
         }
         private void Profile()
         {
-            OleDbConnection myConn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source= C:\\Users\\Jofrel Jan Quijano\\source\\repos\\LaAcoustica Final\\LA\\Data.accdb");
+            OleDbConnection myConn = StaticClass.myConn;
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             openFileDialog1.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -130,7 +130,7 @@ namespace LaAcoustica_Final
         }
         private void ShowProfile()
         {
-            OleDbConnection myConn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source= C:\\Users\\Jofrel Jan Quijano\\source\\repos\\LaAcoustica Final\\LA\\Data.accdb");
+            OleDbConnection myConn = StaticClass.myConn;
             myConn.Open();
             OleDbCommand command = new OleDbCommand();
             command.Connection = myConn;
