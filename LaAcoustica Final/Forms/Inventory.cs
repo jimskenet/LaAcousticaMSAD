@@ -19,7 +19,7 @@ namespace LaAcoustica_Final
         OleDbConnection myConn = new OleDbConnection(StaticClass.connString);
         bool mouseDown;
         Point lastLocation;
-
+        Menu menu = (Menu)Application.OpenForms["Menu"];
         //Moving the Form around
         private void Inventory_MouseDown(object sender, MouseEventArgs e)
         {
@@ -31,8 +31,8 @@ namespace LaAcoustica_Final
         {
             if (mouseDown)
             {
-                Location = new Point(
-                    (Location.X - lastLocation.X) + e.X, (Location.Y - lastLocation.Y) + e.Y);
+                menu.Location = new Point(
+                    (menu.Location.X - lastLocation.X) + e.X, (menu.Location.Y - lastLocation.Y) + e.Y);
                 Update();
             }
         }

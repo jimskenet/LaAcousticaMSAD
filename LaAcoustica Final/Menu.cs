@@ -21,13 +21,13 @@ namespace LaAcoustica_Final
         Point lastLocation;
 
         //Moving the Form around
-        private void Menu_MouseDown(object sender, MouseEventArgs e)
+        internal void Menu_MouseDown(object sender, MouseEventArgs e)
         {
             mouseDown = true;
             lastLocation = e.Location;
         }
 
-        private void Menu_MouseMove(object sender, MouseEventArgs e)
+        internal void Menu_MouseMove(object sender, MouseEventArgs e)
         {
             if (mouseDown)
             {
@@ -36,7 +36,7 @@ namespace LaAcoustica_Final
                 Update();
             }
         }
-        private void Menu_MouseUp(object sender, MouseEventArgs e)
+        internal void Menu_MouseUp(object sender, MouseEventArgs e)
         {
             mouseDown = false;
         }

@@ -18,6 +18,29 @@ namespace LaAcoustica_Final
         public static string lname;
         public static string fname;
         public static string acc;
+        bool mouseDown;
+        Point lastLocation;
+
+        //Moving the Form around
+        private void Login_MouseDown(object sender, MouseEventArgs e)
+        {
+            mouseDown = true;
+            lastLocation = e.Location;
+        }
+
+        private void Login_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (mouseDown)
+            {
+                Location = new Point(
+                    (Location.X - lastLocation.X) + e.X, (Location.Y - lastLocation.Y) + e.Y);
+                Update();
+            }
+        }
+        private void Login_MouseUp(object sender, MouseEventArgs e)
+        {
+            mouseDown = false;
+        }
         public Login()
         {
 

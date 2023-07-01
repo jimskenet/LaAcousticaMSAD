@@ -52,8 +52,8 @@
             this.home = new FontAwesome.Sharp.IconButton();
             this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panelChildform = new System.Windows.Forms.Panel();
             this.roundPicture1 = new LaAcoustica_Final.Forms.RoundPicture();
+            this.panelChildform = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.exit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.min)).BeginInit();
@@ -79,7 +79,7 @@
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(873, 2);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(28, 28);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -91,7 +91,7 @@
             this.exit.BackColor = System.Drawing.Color.Transparent;
             this.exit.Image = ((System.Drawing.Image)(resources.GetObject("exit.Image")));
             this.exit.Location = new System.Drawing.Point(905, 2);
-            this.exit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.exit.Margin = new System.Windows.Forms.Padding(2);
             this.exit.Name = "exit";
             this.exit.Size = new System.Drawing.Size(36, 28);
             this.exit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -104,7 +104,7 @@
             this.min.BackColor = System.Drawing.Color.Transparent;
             this.min.Image = ((System.Drawing.Image)(resources.GetObject("min.Image")));
             this.min.Location = new System.Drawing.Point(832, 2);
-            this.min.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.min.Margin = new System.Windows.Forms.Padding(2);
             this.min.Name = "min";
             this.min.Size = new System.Drawing.Size(37, 28);
             this.min.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -120,7 +120,7 @@
             this.panel3.Controls.Add(this.pictureBox1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(214, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(948, 40);
             this.panel3.TabIndex = 2;
@@ -200,7 +200,7 @@
             this.panel5.Controls.Add(this.inventory);
             this.panel5.Controls.Add(this.PnlSales);
             this.panel5.Location = new System.Drawing.Point(0, 329);
-            this.panel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel5.Margin = new System.Windows.Forms.Padding(2);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(217, 289);
             this.panel5.TabIndex = 12;
@@ -275,7 +275,7 @@
             this.PnlSales.Controls.Add(this.SalesRep);
             this.PnlSales.Controls.Add(this.sale);
             this.PnlSales.Location = new System.Drawing.Point(0, 140);
-            this.PnlSales.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PnlSales.Margin = new System.Windows.Forms.Padding(2);
             this.PnlSales.MaximumSize = new System.Drawing.Size(217, 140);
             this.PnlSales.MinimumSize = new System.Drawing.Size(217, 54);
             this.PnlSales.Name = "PnlSales";
@@ -421,13 +421,26 @@
             this.panel2.Controls.Add(this.roundPicture1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(214, 678);
             this.panel2.TabIndex = 1;
             this.panel2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Menu_MouseDown);
             this.panel2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Menu_MouseMove);
             this.panel2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Menu_MouseUp);
+            // 
+            // roundPicture1
+            // 
+            this.roundPicture1.Location = new System.Drawing.Point(44, 30);
+            this.roundPicture1.Margin = new System.Windows.Forms.Padding(2);
+            this.roundPicture1.Name = "roundPicture1";
+            this.roundPicture1.Size = new System.Drawing.Size(132, 137);
+            this.roundPicture1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.roundPicture1.TabIndex = 0;
+            this.roundPicture1.TabStop = false;
+            this.roundPicture1.Click += new System.EventHandler(this.profile_Click);
+            this.roundPicture1.MouseEnter += new System.EventHandler(this.enter);
+            this.roundPicture1.MouseLeave += new System.EventHandler(this.leave);
             // 
             // panelChildform
             // 
@@ -443,19 +456,6 @@
             this.panelChildform.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Menu_MouseMove);
             this.panelChildform.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Menu_MouseUp);
             // 
-            // roundPicture1
-            // 
-            this.roundPicture1.Location = new System.Drawing.Point(44, 30);
-            this.roundPicture1.Margin = new System.Windows.Forms.Padding(2);
-            this.roundPicture1.Name = "roundPicture1";
-            this.roundPicture1.Size = new System.Drawing.Size(132, 137);
-            this.roundPicture1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.roundPicture1.TabIndex = 0;
-            this.roundPicture1.TabStop = false;
-            this.roundPicture1.Click += new System.EventHandler(this.profile_Click);
-            this.roundPicture1.MouseEnter += new System.EventHandler(this.enter);
-            this.roundPicture1.MouseLeave += new System.EventHandler(this.leave);
-            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -467,7 +467,7 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximumSize = new System.Drawing.Size(1162, 678);
             this.MinimizeBox = false;
             this.Name = "Menu";

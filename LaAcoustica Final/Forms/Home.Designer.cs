@@ -41,7 +41,7 @@
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(41, -80);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(816, 644);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -91,7 +91,7 @@
             this.sell.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sell.ForeColor = System.Drawing.Color.White;
             this.sell.Location = new System.Drawing.Point(9, 581);
-            this.sell.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.sell.Margin = new System.Windows.Forms.Padding(2);
             this.sell.Name = "sell";
             this.sell.Size = new System.Drawing.Size(234, 47);
             this.sell.TabIndex = 3;
@@ -113,7 +113,7 @@
             this.Controls.Add(this.date);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Home";
             this.Text = "Home";
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Home_MouseDown);
