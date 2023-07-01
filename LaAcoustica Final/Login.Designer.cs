@@ -38,14 +38,14 @@
             this.exit = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.register_btn = new Guna.UI2.WinForms.Guna2TextBox();
             this.clear = new LaAcoustica_Final.CButton();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.log = new LaAcoustica_Final.CButton();
             this.cButton1 = new LaAcoustica_Final.CButton();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.min)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.exit)).BeginInit();
@@ -86,7 +86,7 @@
             this.user.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.user.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.user.Location = new System.Drawing.Point(22, 215);
-            this.user.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.user.Margin = new System.Windows.Forms.Padding(2);
             this.user.Multiline = true;
             this.user.Name = "user";
             this.user.Size = new System.Drawing.Size(192, 27);
@@ -97,7 +97,7 @@
             this.pass.BackColor = System.Drawing.Color.White;
             this.pass.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pass.Location = new System.Drawing.Point(22, 277);
-            this.pass.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pass.Margin = new System.Windows.Forms.Padding(2);
             this.pass.Multiline = true;
             this.pass.Name = "pass";
             this.pass.PasswordChar = '*';
@@ -110,12 +110,15 @@
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(288, 10);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(366, 375);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 12;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Login_MouseDown);
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Login_MouseMove);
+            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Login_MouseUp);
             // 
             // min
             // 
@@ -123,7 +126,7 @@
             this.min.BackColor = System.Drawing.Color.Transparent;
             this.min.Image = ((System.Drawing.Image)(resources.GetObject("min.Image")));
             this.min.Location = new System.Drawing.Point(603, 10);
-            this.min.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.min.Margin = new System.Windows.Forms.Padding(2);
             this.min.Name = "min";
             this.min.Size = new System.Drawing.Size(23, 24);
             this.min.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -137,7 +140,7 @@
             this.exit.BackColor = System.Drawing.Color.Transparent;
             this.exit.Image = ((System.Drawing.Image)(resources.GetObject("exit.Image")));
             this.exit.Location = new System.Drawing.Point(658, 10);
-            this.exit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.exit.Margin = new System.Windows.Forms.Padding(2);
             this.exit.Name = "exit";
             this.exit.Size = new System.Drawing.Size(23, 24);
             this.exit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -151,7 +154,7 @@
             this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
             this.pictureBox3.Location = new System.Drawing.Point(631, 10);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(23, 24);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -174,59 +177,13 @@
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(240, 477);
             this.panel1.TabIndex = 9;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(191, 285);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(15, 14);
-            this.checkBox1.TabIndex = 13;
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Century Gothic", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Maroon;
-            this.label3.Location = new System.Drawing.Point(69, 134);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(102, 37);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "Log in";
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(89, 81);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(59, 50);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 13;
-            this.pictureBox2.TabStop = false;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Century Gothic", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.SystemColors.Control;
-            this.label4.Location = new System.Drawing.Point(370, 453);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(247, 17);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "© La Acoustica. All rights reserved. ";
+            this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Login_MouseDown);
+            this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Login_MouseMove);
+            this.panel1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Login_MouseUp);
             // 
             // register_btn
             // 
@@ -270,6 +227,36 @@
             this.clear.TextColor = System.Drawing.Color.White;
             this.clear.UseVisualStyleBackColor = false;
             this.clear.Click += new System.EventHandler(this.clear_Click_1);
+            this.clear.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Login_MouseDown);
+            this.clear.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Login_MouseMove);
+            this.clear.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Login_MouseUp);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(191, 285);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(15, 14);
+            this.checkBox1.TabIndex = 13;
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Maroon;
+            this.label3.Location = new System.Drawing.Point(69, 134);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(102, 37);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Log in";
+            this.label3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Login_MouseDown);
+            this.label3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Login_MouseMove);
+            this.label3.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Login_MouseUp);
             // 
             // log
             // 
@@ -291,6 +278,9 @@
             this.log.TextColor = System.Drawing.Color.White;
             this.log.UseVisualStyleBackColor = false;
             this.log.Click += new System.EventHandler(this.log_Click);
+            this.log.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Login_MouseDown);
+            this.log.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Login_MouseMove);
+            this.log.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Login_MouseUp);
             // 
             // cButton1
             // 
@@ -311,6 +301,34 @@
             this.cButton1.TextColor = System.Drawing.Color.White;
             this.cButton1.UseVisualStyleBackColor = false;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(89, 81);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(59, 50);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 13;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Login_MouseDown);
+            this.pictureBox2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Login_MouseMove);
+            this.pictureBox2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Login_MouseUp);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Century Gothic", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.SystemColors.Control;
+            this.label4.Location = new System.Drawing.Point(370, 453);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(247, 17);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "© La Acoustica. All rights reserved. ";
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -327,11 +345,14 @@
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Login_KeyDown);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_Press);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Login_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Login_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Login_MouseUp);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.min)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.exit)).EndInit();

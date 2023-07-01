@@ -17,6 +17,29 @@ namespace LaAcoustica_Final
         DataSet ds;
         OleDbDataAdapter da;
         OleDbConnection myConn = new OleDbConnection(StaticClass.connString);
+        bool mouseDown;
+        Point lastLocation;
+
+        //Moving the Form around
+        private void Inventory_MouseDown(object sender, MouseEventArgs e)
+        {
+            mouseDown = true;
+            lastLocation = e.Location;
+        }
+
+        private void Inventory_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (mouseDown)
+            {
+                Location = new Point(
+                    (Location.X - lastLocation.X) + e.X, (Location.Y - lastLocation.Y) + e.Y);
+                Update();
+            }
+        }
+        private void Inventory_MouseUp(object sender, MouseEventArgs e)
+        {
+            mouseDown = false;
+        }
         public Inventory()
         {
             InitializeComponent();

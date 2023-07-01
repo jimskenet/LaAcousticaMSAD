@@ -32,10 +32,32 @@ namespace LaAcoustica_Final
         int quanI;
         decimal totalPrice;
         int qty;
+        bool mouseDown;
+        Point lastLocation;
         //For Receipt
         string invoiceNumber;
         int count, count2;
 
+        //Moving the Form around
+        private void Employee_MouseDown(object sender, MouseEventArgs e)
+        {
+            mouseDown = true;
+            lastLocation = e.Location;
+        }
+
+        private void Employee_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (mouseDown)
+            {
+                Location = new Point(
+                    (Location.X - lastLocation.X) + e.X, (Location.Y - lastLocation.Y) + e.Y);
+                Update();
+            }
+        }
+        private void Employee_MouseUp(object sender, MouseEventArgs e)
+        {
+            mouseDown = false;
+        }
         public Employee()
         {
             InitializeComponent();
@@ -43,6 +65,14 @@ namespace LaAcoustica_Final
             if (Login.acc == "Admin" || Login.acc == "Main")
             {
                 Acc.Text = "Admin User";
+            }
+            else if (Login.acc == "Customer")
+            {
+                Acc.Text = "Customer";
+                label4.Text = "My Cart";
+                label10.Text = "Customer: ";
+                cashier.Location = new Point(100, 2);
+                add.Text = "Add to Cart"; delete.Text = "Remove from Cart"; printR.Text = "Purchase Item/s";
             }
             else { Acc.Text = "Employee User"; }
         }
