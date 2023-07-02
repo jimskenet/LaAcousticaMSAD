@@ -52,22 +52,49 @@ namespace LaAcoustica_Final
         {
             load();
         }
+        //NOT SHOW PASS FOR CUSTOMERS
         private void load()
         {
             myConn.Open();
-            da = new OleDbDataAdapter("SELECT AccountNumber, [LastName], [FirstName], MI, [Username], [Password], AccType from Accounts", myConn);
+            da = new OleDbDataAdapter("SELECT AccountNumber, [LastName], [FirstName], MI, [Username], [Password], AccType, [Email] FROM Accounts", myConn);
+            ds = new DataSet();
+            da.Fill(ds, "Accounts");
+
+            if (ds.Tables["Accounts"] != null)
+            {
+                // Check if AccType is "Customer" and remove the "Password" column from the DataTable
+                if (ds.Tables["Accounts"].Columns.Contains("AccType"))
+                {
+                    foreach (DataRow row in ds.Tables["Accounts"].Rows)
+                    {
+                        if (row["AccType"].ToString().Equals("Customer", StringComparison.OrdinalIgnoreCase))
+                        {
+                            row["Password"] = string.Empty; // Replace the password value with an empty string
+                        }
+                    }
+                }
+            }
+
+            employeeData.DataSource = ds.Tables["Accounts"];
+            myConn.Close();
+        }
+        // SHOW PASS FOR CUSTOMERS
+        /*private void load()
+        {
+            myConn.Open();
+            da = new OleDbDataAdapter("SELECT AccountNumber, [LastName], [FirstName], MI, [Username], [Password], AccType, [Email] from Accounts", myConn);
             ds = new DataSet();
             da.Fill(ds, "Accounts");
             employeeData.DataSource = ds.Tables["Accounts"];
             myConn.Close();
-        }
+        }*/
         private void add_Click(object sender, EventArgs e)
         {
             try
             {
-                string query = "INSERT INTO Accounts (AccountNumber, [LastName], [FirstName], MI, [Username], [Password], AccType) VALUES (@ac,@last,@first,@middle,@u,@p,@accT)";
+                string query = "INSERT INTO Accounts (AccountNumber, [LastName], [FirstName], MI, [Username], [Password], AccType, [Email]) VALUES (@ac,@last,@first,@middle,@u,@p,@accT,@em)";
                 cmd = new OleDbCommand(query, myConn);
-                if (accnum.Text == "" || ls.Text == "" || fs.Text == "" || mi.Text == "" || user.Text == "" || pass.Text == "" || at.Text == "")
+                if (accnum.Text == "" || ls.Text == "" || fs.Text == "" || mi.Text == "" || user.Text == "" || pass.Text == "" || at.Text == "" || em.Text == "")
                 {
                     MessageBox.Show("Invalid Input!");
                     clear_Click(sender, e);
@@ -82,6 +109,7 @@ namespace LaAcoustica_Final
                     cmd.Parameters.AddWithValue("@u", user.Text);
                     cmd.Parameters.AddWithValue("@p", pass.Text);
                     cmd.Parameters.AddWithValue("@accT", at.Text);
+                    cmd.Parameters.AddWithValue("@em", em.Text);
                     cmd.ExecuteNonQuery();
                     myConn.Close();
                     MessageBox.Show("Employee Added!");
@@ -137,7 +165,7 @@ namespace LaAcoustica_Final
             try
             {
                 myConn.Open();
-                OleDbCommand cmd = new OleDbCommand("UPDATE Accounts SET AccountNumber = @an, [LastName] = @ls, [FirstName] = @fs, MI = @mi, [Username] = @user, [Password] = @pass, AccType = @ac  WHERE [LastName] = @ls", myConn);
+                OleDbCommand cmd = new OleDbCommand("UPDATE Accounts SET AccountNumber = @an, [LastName] = @ls, [FirstName] = @fs, MI = @mi, [Username] = @user, [Password] = @pass, AccType = @ac, [Email] = @em  WHERE [LastName] = @ls", myConn);
                 cmd.Parameters.AddWithValue("@an", accnum.Text);
                 cmd.Parameters.AddWithValue("@ls", ls.Text);
                 cmd.Parameters.AddWithValue("@fs", fs.Text);
@@ -145,6 +173,7 @@ namespace LaAcoustica_Final
                 cmd.Parameters.AddWithValue("@user", user.Text);
                 cmd.Parameters.AddWithValue("@pass", pass.Text);
                 cmd.Parameters.AddWithValue("@ac", at.Text);
+                cmd.Parameters.AddWithValue("@em", em.Text);
                 cmd.ExecuteNonQuery();
                 myConn.Close();
                 load();
@@ -163,7 +192,8 @@ namespace LaAcoustica_Final
             mi.Text = row.Cells[3].Value.ToString();
             user.Text = row.Cells[4].Value.ToString();
             pass.Text = row.Cells[5].Value.ToString();
-            if(Login.idNum == row.Cells[0].Value.ToString()) { deleteFlag = true; }
+            em.Text = row.Cells[7].Value.ToString();
+            if (Login.idNum == row.Cells[0].Value.ToString()) { deleteFlag = true; }
             else { deleteFlag = false; }
             if(at.Items.IndexOf(row.Cells[6].Value.ToString()) == -1)
             {
