@@ -78,10 +78,10 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(873, 2);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Location = new System.Drawing.Point(1164, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(28, 28);
+            this.pictureBox1.Size = new System.Drawing.Size(37, 34);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
@@ -90,10 +90,10 @@
             // 
             this.exit.BackColor = System.Drawing.Color.Transparent;
             this.exit.Image = ((System.Drawing.Image)(resources.GetObject("exit.Image")));
-            this.exit.Location = new System.Drawing.Point(905, 2);
-            this.exit.Margin = new System.Windows.Forms.Padding(2);
+            this.exit.Location = new System.Drawing.Point(1207, 2);
+            this.exit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.exit.Name = "exit";
-            this.exit.Size = new System.Drawing.Size(36, 28);
+            this.exit.Size = new System.Drawing.Size(48, 34);
             this.exit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.exit.TabIndex = 3;
             this.exit.TabStop = false;
@@ -103,10 +103,10 @@
             // 
             this.min.BackColor = System.Drawing.Color.Transparent;
             this.min.Image = ((System.Drawing.Image)(resources.GetObject("min.Image")));
-            this.min.Location = new System.Drawing.Point(832, 2);
-            this.min.Margin = new System.Windows.Forms.Padding(2);
+            this.min.Location = new System.Drawing.Point(1109, 2);
+            this.min.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.min.Name = "min";
-            this.min.Size = new System.Drawing.Size(37, 28);
+            this.min.Size = new System.Drawing.Size(49, 34);
             this.min.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.min.TabIndex = 5;
             this.min.TabStop = false;
@@ -119,10 +119,10 @@
             this.panel3.Controls.Add(this.exit);
             this.panel3.Controls.Add(this.pictureBox1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(214, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2);
+            this.panel3.Location = new System.Drawing.Point(285, 0);
+            this.panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(948, 40);
+            this.panel3.Size = new System.Drawing.Size(1264, 49);
             this.panel3.TabIndex = 2;
             this.panel3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Menu_MouseDown);
             this.panel3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Menu_MouseMove);
@@ -158,11 +158,11 @@
             this.logout.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.logout.IconSize = 40;
             this.logout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.logout.Location = new System.Drawing.Point(0, 621);
+            this.logout.Location = new System.Drawing.Point(0, 764);
             this.logout.Margin = new System.Windows.Forms.Padding(0);
             this.logout.Name = "logout";
-            this.logout.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
-            this.logout.Size = new System.Drawing.Size(214, 57);
+            this.logout.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
+            this.logout.Size = new System.Drawing.Size(285, 70);
             this.logout.TabIndex = 8;
             this.logout.Text = "Logout";
             this.logout.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -174,10 +174,9 @@
             // 
             this.name.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.name.ForeColor = System.Drawing.Color.Gold;
-            this.name.Location = new System.Drawing.Point(0, 202);
-            this.name.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.name.Location = new System.Drawing.Point(0, 249);
             this.name.Name = "name";
-            this.name.Size = new System.Drawing.Size(214, 29);
+            this.name.Size = new System.Drawing.Size(285, 36);
             this.name.TabIndex = 6;
             this.name.Text = ".";
             this.name.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -186,10 +185,9 @@
             // 
             this.label1.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(2, 170);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(3, 209);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(214, 32);
+            this.label1.Size = new System.Drawing.Size(285, 39);
             this.label1.TabIndex = 5;
             this.label1.Text = "Welcome!";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -199,10 +197,10 @@
             this.panel5.Controls.Add(this.employee);
             this.panel5.Controls.Add(this.inventory);
             this.panel5.Controls.Add(this.PnlSales);
-            this.panel5.Location = new System.Drawing.Point(0, 329);
-            this.panel5.Margin = new System.Windows.Forms.Padding(2);
+            this.panel5.Location = new System.Drawing.Point(0, 405);
+            this.panel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(217, 289);
+            this.panel5.Size = new System.Drawing.Size(289, 356);
             this.panel5.TabIndex = 12;
             this.panel5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Menu_MouseDown);
             this.panel5.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Menu_MouseMove);
@@ -223,13 +221,13 @@
             this.employee.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.employee.IconSize = 40;
             this.employee.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.employee.Location = new System.Drawing.Point(0, 69);
+            this.employee.Location = new System.Drawing.Point(0, 85);
             this.employee.Margin = new System.Windows.Forms.Padding(0);
             this.employee.Name = "employee";
-            this.employee.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
-            this.employee.Size = new System.Drawing.Size(217, 69);
+            this.employee.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
+            this.employee.Size = new System.Drawing.Size(289, 85);
             this.employee.TabIndex = 7;
-            this.employee.Text = "Employees";
+            this.employee.Text = "Accounts";
             this.employee.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.employee.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.employee.UseVisualStyleBackColor = false;
@@ -256,8 +254,8 @@
             this.inventory.Location = new System.Drawing.Point(0, 0);
             this.inventory.Margin = new System.Windows.Forms.Padding(0);
             this.inventory.Name = "inventory";
-            this.inventory.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
-            this.inventory.Size = new System.Drawing.Size(217, 69);
+            this.inventory.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
+            this.inventory.Size = new System.Drawing.Size(289, 85);
             this.inventory.TabIndex = 6;
             this.inventory.Text = "Inventory";
             this.inventory.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -274,12 +272,12 @@
             this.PnlSales.Controls.Add(this.SalesHis);
             this.PnlSales.Controls.Add(this.SalesRep);
             this.PnlSales.Controls.Add(this.sale);
-            this.PnlSales.Location = new System.Drawing.Point(0, 140);
-            this.PnlSales.Margin = new System.Windows.Forms.Padding(2);
-            this.PnlSales.MaximumSize = new System.Drawing.Size(217, 140);
-            this.PnlSales.MinimumSize = new System.Drawing.Size(217, 54);
+            this.PnlSales.Location = new System.Drawing.Point(0, 172);
+            this.PnlSales.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PnlSales.MaximumSize = new System.Drawing.Size(289, 172);
+            this.PnlSales.MinimumSize = new System.Drawing.Size(289, 66);
             this.PnlSales.Name = "PnlSales";
-            this.PnlSales.Size = new System.Drawing.Size(217, 54);
+            this.PnlSales.Size = new System.Drawing.Size(289, 66);
             this.PnlSales.TabIndex = 12;
             // 
             // SalesHis
@@ -297,11 +295,11 @@
             this.SalesHis.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.SalesHis.IconSize = 35;
             this.SalesHis.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.SalesHis.Location = new System.Drawing.Point(0, 94);
+            this.SalesHis.Location = new System.Drawing.Point(0, 115);
             this.SalesHis.Margin = new System.Windows.Forms.Padding(0);
             this.SalesHis.Name = "SalesHis";
-            this.SalesHis.Padding = new System.Windows.Forms.Padding(38, 0, 15, 0);
-            this.SalesHis.Size = new System.Drawing.Size(217, 40);
+            this.SalesHis.Padding = new System.Windows.Forms.Padding(51, 0, 20, 0);
+            this.SalesHis.Size = new System.Drawing.Size(289, 49);
             this.SalesHis.TabIndex = 12;
             this.SalesHis.Text = "Sales History";
             this.SalesHis.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -324,11 +322,11 @@
             this.SalesRep.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.SalesRep.IconSize = 35;
             this.SalesRep.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.SalesRep.Location = new System.Drawing.Point(0, 54);
+            this.SalesRep.Location = new System.Drawing.Point(0, 66);
             this.SalesRep.Margin = new System.Windows.Forms.Padding(0);
             this.SalesRep.Name = "SalesRep";
-            this.SalesRep.Padding = new System.Windows.Forms.Padding(38, 0, 15, 0);
-            this.SalesRep.Size = new System.Drawing.Size(217, 40);
+            this.SalesRep.Padding = new System.Windows.Forms.Padding(51, 0, 20, 0);
+            this.SalesRep.Size = new System.Drawing.Size(289, 49);
             this.SalesRep.TabIndex = 11;
             this.SalesRep.Text = "Sales Report";
             this.SalesRep.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -354,8 +352,8 @@
             this.sale.Location = new System.Drawing.Point(0, 0);
             this.sale.Margin = new System.Windows.Forms.Padding(0);
             this.sale.Name = "sale";
-            this.sale.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
-            this.sale.Size = new System.Drawing.Size(217, 54);
+            this.sale.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
+            this.sale.Size = new System.Drawing.Size(289, 66);
             this.sale.TabIndex = 9;
             this.sale.Text = "Sales";
             this.sale.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -380,11 +378,11 @@
             this.home.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.home.IconSize = 40;
             this.home.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.home.Location = new System.Drawing.Point(2, 257);
+            this.home.Location = new System.Drawing.Point(3, 316);
             this.home.Margin = new System.Windows.Forms.Padding(0);
             this.home.Name = "home";
-            this.home.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
-            this.home.Size = new System.Drawing.Size(214, 72);
+            this.home.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
+            this.home.Size = new System.Drawing.Size(285, 89);
             this.home.TabIndex = 3;
             this.home.Text = "Home";
             this.home.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -401,10 +399,9 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.RosyBrown;
-            this.label3.Location = new System.Drawing.Point(70, 133);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(93, 164);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(61, 12);
+            this.label3.Size = new System.Drawing.Size(78, 14);
             this.label3.TabIndex = 14;
             this.label3.Text = "Change Profile";
             this.label3.Visible = false;
@@ -421,23 +418,39 @@
             this.panel2.Controls.Add(this.roundPicture1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(214, 678);
+            this.panel2.Size = new System.Drawing.Size(285, 834);
             this.panel2.TabIndex = 1;
             this.panel2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Menu_MouseDown);
             this.panel2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Menu_MouseMove);
             this.panel2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Menu_MouseUp);
             // 
+<<<<<<< HEAD
+=======
+            // roundPicture1
+            // 
+            this.roundPicture1.Location = new System.Drawing.Point(59, 37);
+            this.roundPicture1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.roundPicture1.Name = "roundPicture1";
+            this.roundPicture1.Size = new System.Drawing.Size(176, 169);
+            this.roundPicture1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.roundPicture1.TabIndex = 0;
+            this.roundPicture1.TabStop = false;
+            this.roundPicture1.Click += new System.EventHandler(this.profile_Click);
+            this.roundPicture1.MouseEnter += new System.EventHandler(this.enter);
+            this.roundPicture1.MouseLeave += new System.EventHandler(this.leave);
+            // 
+>>>>>>> 8c1948337a5592faedd81a4deb52c8820b1874ce
             // panelChildform
             // 
             this.panelChildform.AutoSize = true;
             this.panelChildform.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelChildform.Location = new System.Drawing.Point(214, 40);
+            this.panelChildform.Location = new System.Drawing.Point(285, 49);
             this.panelChildform.Margin = new System.Windows.Forms.Padding(0);
-            this.panelChildform.MaximumSize = new System.Drawing.Size(948, 638);
+            this.panelChildform.MaximumSize = new System.Drawing.Size(1264, 785);
             this.panelChildform.Name = "panelChildform";
-            this.panelChildform.Size = new System.Drawing.Size(948, 638);
+            this.panelChildform.Size = new System.Drawing.Size(1264, 785);
             this.panelChildform.TabIndex = 3;
             this.panelChildform.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Menu_MouseDown);
             this.panelChildform.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Menu_MouseMove);
@@ -458,17 +471,17 @@
             // 
             // Menu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1162, 678);
+            this.ClientSize = new System.Drawing.Size(1549, 834);
             this.Controls.Add(this.panelChildform);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2);
-            this.MaximumSize = new System.Drawing.Size(1162, 678);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MaximumSize = new System.Drawing.Size(1549, 834);
             this.MinimizeBox = false;
             this.Name = "Menu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
