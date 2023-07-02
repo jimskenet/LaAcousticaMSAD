@@ -39,13 +39,13 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.register_btn = new Guna.UI2.WinForms.Guna2TextBox();
-            this.clear = new LaAcoustica_Final.CButton();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.log = new LaAcoustica_Final.CButton();
-            this.cButton1 = new LaAcoustica_Final.CButton();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.clear = new LaAcoustica_Final.CButton();
+            this.log = new LaAcoustica_Final.CButton();
+            this.cButton1 = new LaAcoustica_Final.CButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.min)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.exit)).BeginInit();
@@ -90,7 +90,7 @@
             this.user.Multiline = true;
             this.user.Name = "user";
             this.user.Size = new System.Drawing.Size(192, 27);
-            this.user.TabIndex = 3;
+            this.user.TabIndex = 0;
             // 
             // pass
             // 
@@ -102,7 +102,7 @@
             this.pass.Name = "pass";
             this.pass.PasswordChar = '*';
             this.pass.Size = new System.Drawing.Size(192, 27);
-            this.pass.TabIndex = 8;
+            this.pass.TabIndex = 1;
             this.pass.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Login_KeyDown);
             // 
             // pictureBox1
@@ -205,31 +205,7 @@
             this.register_btn.PlaceholderText = "";
             this.register_btn.SelectedText = "";
             this.register_btn.Size = new System.Drawing.Size(161, 36);
-            this.register_btn.TabIndex = 15;
-            // 
-            // clear
-            // 
-            this.clear.BackColor = System.Drawing.Color.DarkRed;
-            this.clear.BackgroundColor = System.Drawing.Color.DarkRed;
-            this.clear.BorderColor = System.Drawing.Color.DarkRed;
-            this.clear.BorderRadius = 20;
-            this.clear.BorderSize = 5;
-            this.clear.FlatAppearance.BorderSize = 0;
-            this.clear.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clear.ForeColor = System.Drawing.Color.White;
-            this.clear.Location = new System.Drawing.Point(128, 321);
-            this.clear.Margin = new System.Windows.Forms.Padding(2);
-            this.clear.Name = "clear";
-            this.clear.Size = new System.Drawing.Size(76, 46);
-            this.clear.TabIndex = 14;
-            this.clear.Text = "Clear";
-            this.clear.TextColor = System.Drawing.Color.White;
-            this.clear.UseVisualStyleBackColor = false;
-            this.clear.Click += new System.EventHandler(this.clear_Click_1);
-            this.clear.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Login_MouseDown);
-            this.clear.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Login_MouseMove);
-            this.clear.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Login_MouseUp);
+            this.register_btn.TabIndex = 4;
             // 
             // checkBox1
             // 
@@ -258,49 +234,6 @@
             this.label3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Login_MouseMove);
             this.label3.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Login_MouseUp);
             // 
-            // log
-            // 
-            this.log.BackColor = System.Drawing.Color.DarkRed;
-            this.log.BackgroundColor = System.Drawing.Color.DarkRed;
-            this.log.BorderColor = System.Drawing.Color.DarkRed;
-            this.log.BorderRadius = 20;
-            this.log.BorderSize = 5;
-            this.log.FlatAppearance.BorderSize = 0;
-            this.log.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.log.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.log.ForeColor = System.Drawing.Color.White;
-            this.log.Location = new System.Drawing.Point(33, 321);
-            this.log.Margin = new System.Windows.Forms.Padding(2);
-            this.log.Name = "log";
-            this.log.Size = new System.Drawing.Size(78, 46);
-            this.log.TabIndex = 10;
-            this.log.Text = "Login";
-            this.log.TextColor = System.Drawing.Color.White;
-            this.log.UseVisualStyleBackColor = false;
-            this.log.Click += new System.EventHandler(this.log_Click);
-            this.log.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Login_MouseDown);
-            this.log.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Login_MouseMove);
-            this.log.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Login_MouseUp);
-            // 
-            // cButton1
-            // 
-            this.cButton1.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.cButton1.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
-            this.cButton1.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.cButton1.BorderRadius = 6;
-            this.cButton1.BorderSize = 0;
-            this.cButton1.FlatAppearance.BorderSize = 0;
-            this.cButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cButton1.ForeColor = System.Drawing.Color.White;
-            this.cButton1.Location = new System.Drawing.Point(305, 15);
-            this.cButton1.Margin = new System.Windows.Forms.Padding(2);
-            this.cButton1.Name = "cButton1";
-            this.cButton1.Size = new System.Drawing.Size(6, 6);
-            this.cButton1.TabIndex = 8;
-            this.cButton1.Text = "cButton1";
-            this.cButton1.TextColor = System.Drawing.Color.White;
-            this.cButton1.UseVisualStyleBackColor = false;
-            // 
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
@@ -328,6 +261,73 @@
             this.label4.Size = new System.Drawing.Size(247, 17);
             this.label4.TabIndex = 13;
             this.label4.Text = "© La Acoustica. All rights reserved. ";
+            // 
+            // clear
+            // 
+            this.clear.BackColor = System.Drawing.Color.DarkRed;
+            this.clear.BackgroundColor = System.Drawing.Color.DarkRed;
+            this.clear.BorderColor = System.Drawing.Color.DarkRed;
+            this.clear.BorderRadius = 20;
+            this.clear.BorderSize = 5;
+            this.clear.FlatAppearance.BorderSize = 0;
+            this.clear.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clear.ForeColor = System.Drawing.Color.White;
+            this.clear.Location = new System.Drawing.Point(128, 321);
+            this.clear.Margin = new System.Windows.Forms.Padding(2);
+            this.clear.Name = "clear";
+            this.clear.Size = new System.Drawing.Size(76, 46);
+            this.clear.TabIndex = 3;
+            this.clear.Text = "Clear";
+            this.clear.TextColor = System.Drawing.Color.White;
+            this.clear.UseVisualStyleBackColor = false;
+            this.clear.Click += new System.EventHandler(this.clear_Click_1);
+            this.clear.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Login_MouseDown);
+            this.clear.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Login_MouseMove);
+            this.clear.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Login_MouseUp);
+            // 
+            // log
+            // 
+            this.log.BackColor = System.Drawing.Color.DarkRed;
+            this.log.BackgroundColor = System.Drawing.Color.DarkRed;
+            this.log.BorderColor = System.Drawing.Color.DarkRed;
+            this.log.BorderRadius = 20;
+            this.log.BorderSize = 5;
+            this.log.FlatAppearance.BorderSize = 0;
+            this.log.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.log.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.log.ForeColor = System.Drawing.Color.White;
+            this.log.Location = new System.Drawing.Point(33, 321);
+            this.log.Margin = new System.Windows.Forms.Padding(2);
+            this.log.Name = "log";
+            this.log.Size = new System.Drawing.Size(78, 46);
+            this.log.TabIndex = 2;
+            this.log.Text = "Login";
+            this.log.TextColor = System.Drawing.Color.White;
+            this.log.UseVisualStyleBackColor = false;
+            this.log.Click += new System.EventHandler(this.log_Click);
+            this.log.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Login_MouseDown);
+            this.log.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Login_MouseMove);
+            this.log.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Login_MouseUp);
+            // 
+            // cButton1
+            // 
+            this.cButton1.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.cButton1.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
+            this.cButton1.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.cButton1.BorderRadius = 6;
+            this.cButton1.BorderSize = 0;
+            this.cButton1.FlatAppearance.BorderSize = 0;
+            this.cButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cButton1.ForeColor = System.Drawing.Color.White;
+            this.cButton1.Location = new System.Drawing.Point(305, 15);
+            this.cButton1.Margin = new System.Windows.Forms.Padding(2);
+            this.cButton1.Name = "cButton1";
+            this.cButton1.Size = new System.Drawing.Size(6, 6);
+            this.cButton1.TabIndex = 8;
+            this.cButton1.Text = "cButton1";
+            this.cButton1.TextColor = System.Drawing.Color.White;
+            this.cButton1.UseVisualStyleBackColor = false;
             // 
             // Login
             // 

@@ -52,8 +52,8 @@
             this.home = new FontAwesome.Sharp.IconButton();
             this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.roundPicture1 = new LaAcoustica_Final.Forms.RoundPicture();
             this.panelChildform = new System.Windows.Forms.Panel();
+            this.roundPicture1 = new LaAcoustica_Final.Forms.RoundPicture();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.exit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.min)).BeginInit();
@@ -429,19 +429,6 @@
             this.panel2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Menu_MouseMove);
             this.panel2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Menu_MouseUp);
             // 
-            // roundPicture1
-            // 
-            this.roundPicture1.Location = new System.Drawing.Point(44, 30);
-            this.roundPicture1.Margin = new System.Windows.Forms.Padding(2);
-            this.roundPicture1.Name = "roundPicture1";
-            this.roundPicture1.Size = new System.Drawing.Size(132, 137);
-            this.roundPicture1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.roundPicture1.TabIndex = 0;
-            this.roundPicture1.TabStop = false;
-            this.roundPicture1.Click += new System.EventHandler(this.profile_Click);
-            this.roundPicture1.MouseEnter += new System.EventHandler(this.enter);
-            this.roundPicture1.MouseLeave += new System.EventHandler(this.leave);
-            // 
             // panelChildform
             // 
             this.panelChildform.AutoSize = true;
@@ -455,6 +442,19 @@
             this.panelChildform.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Menu_MouseDown);
             this.panelChildform.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Menu_MouseMove);
             this.panelChildform.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Menu_MouseUp);
+            // 
+            // roundPicture1
+            // 
+            this.roundPicture1.Location = new System.Drawing.Point(44, 30);
+            this.roundPicture1.Margin = new System.Windows.Forms.Padding(2);
+            this.roundPicture1.Name = "roundPicture1";
+            this.roundPicture1.Size = new System.Drawing.Size(132, 137);
+            this.roundPicture1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.roundPicture1.TabIndex = 0;
+            this.roundPicture1.TabStop = false;
+            this.roundPicture1.Click += new System.EventHandler(this.profile_Click);
+            this.roundPicture1.MouseEnter += new System.EventHandler(this.enter);
+            this.roundPicture1.MouseLeave += new System.EventHandler(this.leave);
             // 
             // Menu
             // 
@@ -473,6 +473,7 @@
             this.Name = "Menu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu";
+            this.Load += new System.EventHandler(this.Menu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.exit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.min)).EndInit();

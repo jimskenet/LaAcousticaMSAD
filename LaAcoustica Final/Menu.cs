@@ -42,12 +42,9 @@ namespace LaAcoustica_Final
         }
         public Menu()
         {
-            
             InitializeComponent();
             name.Text = Login.lname + " " + Login.fname;
-            OpenChildForm(new Home());
             ShowProfile();
-
         }
         private bool isCollapsed;
 
@@ -196,6 +193,11 @@ namespace LaAcoustica_Final
         {
             Profile();
             ShowProfile();
+        }
+
+        private void Menu_Load(object sender, EventArgs e)
+        {
+            home_Click(sender, e);
         }
     }
 }
