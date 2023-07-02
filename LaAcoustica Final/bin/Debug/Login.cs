@@ -131,5 +131,22 @@ namespace LaAcoustica_Final
                 pass.PasswordChar = '*'; // hide the password
             }
         }
+
+        private void register_btn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Register reg = new Register();
+            reg.Show();
+        }
+
+        private void hov(object sender, EventArgs e)
+        {
+            register_btn.ForeColor = System.Drawing.Color.RoyalBlue;
+        }
+
+        private void lev(object sender, EventArgs e)
+        {
+            register_btn.ForeColor = System.Drawing.Color.Navy;
+        }
     }
 }
