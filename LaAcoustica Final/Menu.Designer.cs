@@ -426,8 +426,6 @@
             this.panel2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Menu_MouseMove);
             this.panel2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Menu_MouseUp);
             // 
-<<<<<<< HEAD
-=======
             // roundPicture1
             // 
             this.roundPicture1.Location = new System.Drawing.Point(59, 37);
@@ -441,7 +439,6 @@
             this.roundPicture1.MouseEnter += new System.EventHandler(this.enter);
             this.roundPicture1.MouseLeave += new System.EventHandler(this.leave);
             // 
->>>>>>> 8c1948337a5592faedd81a4deb52c8820b1874ce
             // panelChildform
             // 
             this.panelChildform.AutoSize = true;
