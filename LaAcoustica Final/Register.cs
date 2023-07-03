@@ -15,6 +15,29 @@ namespace LaAcoustica_Final
     public partial class Register : Form
     {
         OleDbConnection myConn = new OleDbConnection(StaticClass.connString);
+        bool mouseDown;
+        Point lastLocation;
+
+        //Moving the Form around
+        internal void Register_MouseDown(object sender, MouseEventArgs e)
+        {
+            mouseDown = true;
+            lastLocation = e.Location;
+        }
+
+        internal void Register_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (mouseDown)
+            {
+                Location = new Point(
+                    (Location.X - lastLocation.X) + e.X, (Location.Y - lastLocation.Y) + e.Y);
+                Update();
+            }
+        }
+        internal void Register_MouseUp(object sender, MouseEventArgs e)
+        {
+            mouseDown = false;
+        }
         public Register()
         {
             InitializeComponent();
