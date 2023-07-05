@@ -31,6 +31,8 @@
             this.employeeData = new System.Windows.Forms.DataGridView();
             this.label9 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.em = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.accnum = new System.Windows.Forms.TextBox();
             this.at = new System.Windows.Forms.ComboBox();
@@ -51,8 +53,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.ls = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.em = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.employeeData)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -117,6 +117,27 @@
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.EmployeeEdit_MouseDown);
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.EmployeeEdit_MouseMove);
             this.panel1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.EmployeeEdit_MouseUp);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.Maroon;
+            this.label11.Location = new System.Drawing.Point(23, 577);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(67, 23);
+            this.label11.TabIndex = 42;
+            this.label11.Text = "Email:";
+            // 
+            // em
+            // 
+            this.em.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.em.Location = new System.Drawing.Point(27, 602);
+            this.em.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.em.Multiline = true;
+            this.em.Name = "em";
+            this.em.Size = new System.Drawing.Size(381, 35);
+            this.em.TabIndex = 41;
             // 
             // label10
             // 
@@ -375,27 +396,6 @@
             this.ls.Size = new System.Drawing.Size(381, 35);
             this.ls.TabIndex = 20;
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.Maroon;
-            this.label11.Location = new System.Drawing.Point(23, 577);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(67, 23);
-            this.label11.TabIndex = 42;
-            this.label11.Text = "Email:";
-            // 
-            // em
-            // 
-            this.em.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.em.Location = new System.Drawing.Point(27, 602);
-            this.em.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.em.Multiline = true;
-            this.em.Name = "em";
-            this.em.Size = new System.Drawing.Size(381, 35);
-            this.em.TabIndex = 41;
-            // 
             // EmployeeEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -408,6 +408,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "EmployeeEdit";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EmployeeEdit";
             this.Load += new System.EventHandler(this.EmployeeEdit_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.EmployeeEdit_MouseDown);
