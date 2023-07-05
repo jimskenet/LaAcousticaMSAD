@@ -142,7 +142,7 @@ namespace LaAcoustica_Final
                 imagePath = openFileDialog1.FileName;
             }
             myConn.Open();
-            OleDbCommand cmd = new OleDbCommand("UPDATE Accounts SET ProfPic = @pp  WHERE AccountNumber = @an", myConn);
+            OleDbCommand cmd = new OleDbCommand("UPDATE Accounts SET ProfPic = @pp  WHERE ID = @an", myConn);
             cmd.Parameters.AddWithValue("@pp", imagePath);
             cmd.Parameters.AddWithValue("@an", Login.idNum);
             cmd.ExecuteNonQuery();
@@ -154,7 +154,7 @@ namespace LaAcoustica_Final
             myConn.Open();
             OleDbCommand command = new OleDbCommand();
             command.Connection = myConn;
-            command.CommandText = "Select ProfPic FROM Accounts WHERE AccountNumber = @an";
+            command.CommandText = "Select ProfPic FROM Accounts WHERE ID = @an";
             command.Parameters.AddWithValue("@an", Login.idNum);
             OleDbDataReader read = command.ExecuteReader();
             if (read.HasRows)

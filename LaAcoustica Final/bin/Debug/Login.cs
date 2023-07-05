@@ -18,6 +18,7 @@ namespace LaAcoustica_Final
         public static string lname;
         public static string fname;
         public static string acc;
+        string accType;
         bool mouseDown;
         Point lastLocation;
 
@@ -65,18 +66,38 @@ namespace LaAcoustica_Final
                 myConn.Open();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = myConn;
-                command.CommandText = "Select * FROM Accounts where Username = '" + user.Text + "' and Password = '" + pass.Text + "'";
+                command.CommandText = "Select * FROM Accounts where Username = @user and Password = @pass";
+                command.Parameters.AddWithValue("@user", user.Text);
+                command.Parameters.AddWithValue("@pass", pass.Text);
                 OleDbDataReader read = command.ExecuteReader();
                 if (read.HasRows)
                 {
                     read.Read();
-                    idNum = read["AccountNumber"].ToString();
-                    string user = read["AccType"].ToString();
-                    lname = read["LastName"].ToString();
-                    fname = read["FirstName"].ToString();
+                    idNum = read["ID"].ToString();
+                    accType= read["AccType"].ToString();
+                    read.Close();
+                    command.Parameters.Clear();
                     myConn.Close();
-                    acc = user;
-                    if (user == "Admin" || user == "Main")
+
+                    myConn.Open();
+                    if (accType == "Customer")
+                        command.CommandText = "Select LastName,FirstName FROM Customer where ID = @id";
+                    else 
+                        command.CommandText = "Select LastName,FirstName,[Position] FROM Worker where ID = @id";
+                    command.Parameters.AddWithValue("@id", idNum);
+                    read = command.ExecuteReader();
+                    if (read.HasRows)
+                    {
+                        read.Read();
+                        lname = read["LastName"].ToString();
+                        fname = read["FirstName"].ToString();
+                        if (accType == "Worker")
+                            acc = read["Position"].ToString();
+                        else
+                            acc = accType;
+                    }
+                    myConn.Close();
+                    if (acc == "Admin" || acc == "Main")
                     {
                         Menu mn = new Menu();
                         this.Hide();

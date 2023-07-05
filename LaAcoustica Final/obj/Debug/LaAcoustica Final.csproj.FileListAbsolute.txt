@@ -275,3 +275,73 @@ C:\Users\Ipason\git_demo\Changes\LaAcoustica Final\obj\Debug\LaAcoustica Final.c
 C:\Users\Ipason\git_demo\Changes\LaAcoustica Final\obj\Debug\LaAcoustica Final.csproj.CopyComplete
 C:\Users\Ipason\git_demo\Changes\LaAcoustica Final\obj\Debug\LaAcoustica Final.exe
 C:\Users\Ipason\git_demo\Changes\LaAcoustica Final\obj\Debug\LaAcoustica Final.pdb
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\Properties\Settings.settings
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\SqlServerTypes\x64\msvcr120.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\SqlServerTypes\x64\SqlServerSpatial140.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\SqlServerTypes\x86\msvcr120.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\SqlServerTypes\x86\SqlServerSpatial140.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\Properties\Settings.Designer.cs
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\Login.resx
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\Login.cs
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\Login.Designer.cs
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\LaAcoustica Final.exe.config
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\LaAcoustica Final.exe
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\LaAcoustica Final.pdb
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\FontAwesome.Sharp.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\Guna.UI2.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\itextsharp.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\Microsoft.ReportViewer.Common.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\Microsoft.ReportViewer.DataVisualization.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\Microsoft.ReportViewer.Design.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\Microsoft.ReportViewer.ProcessingObjectModel.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\Microsoft.ReportViewer.WinForms.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\Microsoft.SqlServer.Types.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\PdfSharp.Charting.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\PdfSharp.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\EnvDTE.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\stdole.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\itextsharp.xml
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\PdfSharp.xml
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\PdfSharp.Charting.xml
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\de\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\es\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\fr\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\it\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\ja\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\ko\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\pt\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\ru\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\zh-CHS\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\zh-CHT\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\de\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\es\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\fr\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\it\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\ja\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\ko\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\pt\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\ru\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\zh-CHS\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\zh-CHT\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\de\PdfSharp.resources.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\bin\Debug\de\PdfSharp.Charting.resources.dll
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\obj\Debug\LaAcoustica Final.csproj.AssemblyReference.cache
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\obj\Debug\LaAcoustica Final.csproj.SuggestedBindingRedirects.cache
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\obj\Debug\LaAcoustica_Final.Employee.resources
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\obj\Debug\LaAcoustica_Final.EmployeeEdit.resources
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\obj\Debug\LaAcoustica_Final.Inventory.resources
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\obj\Debug\LaAcoustica_Final.Home.resources
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\obj\Debug\LaAcoustica_Final.Main.resources
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\obj\Debug\LaAcoustica_Final.Login.resources
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\obj\Debug\LaAcoustica_Final.Menu.resources
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\obj\Debug\LaAcoustica_Final.Properties.Resources.resources
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\obj\Debug\LaAcoustica_Final.RecieptPreview.resources
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\obj\Debug\LaAcoustica_Final.Register.resources
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\obj\Debug\LaAcoustica_Final.Sale.resources
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\obj\Debug\LaAcoustica_Final.SalesHistory.resources
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\obj\Debug\LaAcoustica Final.csproj.GenerateResource.cache
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\obj\Debug\LaAcoustica Final.csproj.CoreCompileInputs.cache
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\obj\Debug\LaAcoustica Final.csproj.CopyComplete
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\obj\Debug\LaAcoustica Final.exe
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\Test\LaAcoustica Final\LaAcoustica Final\obj\Debug\LaAcoustica Final.pdb
