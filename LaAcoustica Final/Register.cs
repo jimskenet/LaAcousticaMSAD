@@ -91,14 +91,15 @@ namespace LaAcoustica_Final
             }
             else
             {
+                var idGenerator = new ShortIdGenerator(StaticClass.connString);
                 //Automation of Customer ID based of how many existing IDs are there
                 query = "Select ID FROM Accounts where AccType = 'Customer'";
+
                 da = new OleDbDataAdapter(query, myConn);
                 myConn.Open();
                 ds = new DataSet();
                 da.Fill(ds,"Accounts");
-                int count = ds.Tables[0].Rows.Count + 1;
-                string id = "C" + count.ToString();
+                string id = idGenerator.GenerateShortId().ToString();
                 myConn.Close();
 
                 using (myConn = new OleDbConnection(StaticClass.connString))
@@ -156,4 +157,58 @@ namespace LaAcoustica_Final
             }
         }
     }
+    //THIS SECTION IS FOR THE ID GENERATOR
+    public class ShortIdGenerator
+    {
+        private const string Characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        private const int IdLength = 5;
+
+        private readonly Random random;
+        private readonly OleDbConnection connection;
+
+        public ShortIdGenerator(string connectionString)
+        {
+            random = new Random();
+            connection = new OleDbConnection(connectionString);
+        }
+
+        public string GenerateShortId()
+        {
+            string id;
+
+            do
+            {
+                id = GenerateRandomId();
+            }
+            while (IsIdExistsInDatabase(id));
+
+            return id;
+        }
+
+        private string GenerateRandomId()
+        {
+            var id = new char[IdLength];
+
+            for (int i = 0; i < IdLength; i++)
+            {
+                id[i] = Characters[random.Next(Characters.Length)];
+            }
+
+            return "C" + new string(id).Substring(1);
+        }
+
+        private bool IsIdExistsInDatabase(string id)
+        {
+            using (var command = new OleDbCommand("SELECT COUNT(*) FROM Customer WHERE ID = @Id", connection))
+            {
+                command.Parameters.AddWithValue("@Id", id);
+                connection.Open();
+                int count = (int)command.ExecuteScalar();
+                connection.Close();
+
+                return count > 0;
+            }
+        }
+    }
+
 }

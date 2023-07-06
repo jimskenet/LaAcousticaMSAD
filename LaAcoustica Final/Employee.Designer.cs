@@ -222,6 +222,7 @@
             this.storageData.Size = new System.Drawing.Size(475, 356);
             this.storageData.TabIndex = 19;
             this.storageData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SelectRow);
+            this.storageData.SelectionChanged += new System.EventHandler(this.storageData_SelectionChanged);
             // 
             // cart
             // 
@@ -502,6 +503,7 @@
             this.ItemPic.Location = new System.Drawing.Point(953, 231);
             this.ItemPic.Name = "ItemPic";
             this.ItemPic.Size = new System.Drawing.Size(291, 356);
+            this.ItemPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.ItemPic.TabIndex = 41;
             this.ItemPic.TabStop = false;
             // 

@@ -104,7 +104,7 @@ namespace LaAcoustica_Final
         //LOADS INVENTORY
         private void loadInventory()
         {
-            da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity FROM Storage", myConn);
+            da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity, ImageUrl FROM Storage", myConn);
             ds = new DataSet();
             myConn.Open();
             da.Fill(ds, "Storage");
@@ -492,6 +492,26 @@ namespace LaAcoustica_Final
             e.Graphics.DrawString(totalPrice.ToString("C"), font, brush, 180, y + 15);
             e.Graphics.DrawString("----------------------------------------------------------------------------------------", font, brush, e.PageBounds.Width / 2, y + 30, format);
             e.Graphics.DrawString("THANK YOU FOR YOUR PURCHASE!", new System.Drawing.Font("Merchant Copy", 11, FontStyle.Bold), brush, e.PageBounds.Width / 2, y + 60, format);
+        }
+
+        private void storageData_SelectionChanged(object sender, EventArgs e)
+        {
+            if (storageData.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = storageData.SelectedRows[0];
+                if (selectedRow.Cells["ImageUrl"].Value != null)
+                {
+                    string imageurl = selectedRow.Cells["ImageUrl"].Value.ToString();
+                    try
+                    {
+                        ItemPic.Load(imageurl);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error loading Image: " + ex.Message);
+                    }
+                }
+            }
         }
 
         private void PrintProperties()
