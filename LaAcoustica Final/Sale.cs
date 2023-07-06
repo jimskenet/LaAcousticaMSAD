@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FontAwesome.Sharp;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -51,6 +52,7 @@ namespace LaAcoustica_Final
             ShowMonthlySales();
             ShowWeeklyySales();
             ShowDailySales();
+            filter_report.SelectedIndex = 0;
         }
         private void loadWeekly()
         {
@@ -164,6 +166,31 @@ namespace LaAcoustica_Final
             cmd.ExecuteNonQuery();
             myConn.Close();
 
+        }
+
+        private void Sale_Load(object sender, EventArgs e)
+        {
+            using (myConn = new OleDbConnection(StaticClass.connString))
+            {
+                string query, filter = filter_report.Text;
+                if (filter == "Weekly")
+                    query = "Select * FROM Weekly";
+                else
+                    query = "Select * FROM Monthly";
+                da = new OleDbDataAdapter(query, myConn);
+                ds = new DataSet();
+                myConn.Open();
+                da.Fill(ds, "Sales");
+                SalesReport.DataSource = ds.Tables["Sales"]; //Puts the content in the dataGrid
+
+                if (filter == "Weekly")
+                    SalesReport.Series[0].XValueMember = "Week"; //Puts the content in the chart
+                else
+                    SalesReport.Series[0].XValueMember = "Month";
+                SalesReport.Series[0].YValueMembers = "TotalSales";
+                SalesReport.DataSource = ds;
+                SalesReport.DataBind();
+            }
         }
     }
 }

@@ -36,7 +36,7 @@ namespace LaAcoustica_Final
         Point lastLocation;
         //For Receipt
         string invoiceNumber;
-        int count, count2;
+        int count, count2,quantity;
 
         //Moving the Form around
         private void Employee_MouseDown(object sender, MouseEventArgs e)
@@ -111,6 +111,9 @@ namespace LaAcoustica_Final
             storageData.DataSource = ds.Tables["Storage"];
             storageData.Columns["Price"].DefaultCellStyle.Format = "C";
             myConn.Close();
+
+            storageData.Columns["ImageUrl"].Visible = false;
+            storageData.Columns["Quantity"].Visible = false;
         }
         //LOADS BILL
         private void loadBill()
@@ -134,6 +137,7 @@ namespace LaAcoustica_Final
                 double price = Convert.ToDouble(row.Cells[4].Value);
                 quanI = Convert.ToInt32(row.Cells[5].Value);
                 priceN.Text = price.ToString("C");
+                quantity = Convert.ToInt32(row.Cells["Quantity"].Value);
             }
             catch (Exception ex)
             {
@@ -164,9 +168,18 @@ namespace LaAcoustica_Final
         {
             try
             {
+
                 if (Q.Value == 0)
                 {
                     MessageBox.Show("No Quantity of Products Added");
+                }
+                else if (quantity <= 0)
+                {
+                    MessageBox.Show("No Stock Available", "Purchasing Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if(Q.Value > quantity)
+                {
+                    MessageBox.Show("Insufficient Stock for Quantity Order\nStock Available = "+quantity.ToString() +" units", "Purchasing Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
@@ -187,6 +200,7 @@ namespace LaAcoustica_Final
                     }
                     else { MessageBox.Show("Insufficient Stock"); }
                     refresh.PerformClick();
+                    Q.Value = 1;
                 }
             }
             catch
@@ -225,6 +239,7 @@ namespace LaAcoustica_Final
                     UpInventory(quantity, prodN.Text);
                     loadBill();
                     Total();
+                    Q.Value = 1;
                 }
                 else
                 {
@@ -278,6 +293,7 @@ namespace LaAcoustica_Final
                 cart.Rows.Clear();
                 loadBill();
                 Total();
+                Q.Value = 1;
             }
             catch (Exception exe)
             {

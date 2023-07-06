@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Sale));
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -43,9 +46,14 @@
             this.monthlySale = new System.Windows.Forms.DataGridView();
             this.weeklySale = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
+            this.SalesReport = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.label8 = new System.Windows.Forms.Label();
+            this.filter_report = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.monthlySale)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.weeklySale)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SalesReport)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -90,7 +98,7 @@
             this.wsales.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.wsales.ForeColor = System.Drawing.Color.Red;
             this.wsales.Location = new System.Drawing.Point(34, 157);
-            this.wsales.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.wsales.Margin = new System.Windows.Forms.Padding(2);
             this.wsales.Multiline = true;
             this.wsales.Name = "wsales";
             this.wsales.ReadOnly = true;
@@ -105,7 +113,7 @@
             this.dsales.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dsales.ForeColor = System.Drawing.Color.Red;
             this.dsales.Location = new System.Drawing.Point(34, 72);
-            this.dsales.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dsales.Margin = new System.Windows.Forms.Padding(2);
             this.dsales.Multiline = true;
             this.dsales.Name = "dsales";
             this.dsales.ReadOnly = true;
@@ -132,7 +140,7 @@
             this.revenue.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.revenue.ForeColor = System.Drawing.Color.DarkRed;
             this.revenue.Location = new System.Drawing.Point(494, 84);
-            this.revenue.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.revenue.Margin = new System.Windows.Forms.Padding(2);
             this.revenue.Multiline = true;
             this.revenue.Name = "revenue";
             this.revenue.ReadOnly = true;
@@ -147,7 +155,7 @@
             this.msales.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.msales.ForeColor = System.Drawing.Color.Red;
             this.msales.Location = new System.Drawing.Point(34, 254);
-            this.msales.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.msales.Margin = new System.Windows.Forms.Padding(2);
             this.msales.Multiline = true;
             this.msales.Name = "msales";
             this.msales.ReadOnly = true;
@@ -161,7 +169,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Gold;
-            this.label6.Location = new System.Drawing.Point(699, 191);
+            this.label6.Location = new System.Drawing.Point(699, 151);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(147, 21);
@@ -171,10 +179,10 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(9, 232);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Location = new System.Drawing.Point(25, 337);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(442, 372);
+            this.pictureBox1.Size = new System.Drawing.Size(379, 278);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 25;
             this.pictureBox1.TabStop = false;
@@ -187,7 +195,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Century Gothic", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label7.Location = new System.Drawing.Point(130, 493);
+            this.label7.Location = new System.Drawing.Point(137, 537);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(174, 32);
@@ -197,20 +205,20 @@
             // monthlySale
             // 
             this.monthlySale.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.monthlySale.Location = new System.Drawing.Point(702, 213);
-            this.monthlySale.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.monthlySale.Location = new System.Drawing.Point(702, 173);
+            this.monthlySale.Margin = new System.Windows.Forms.Padding(2);
             this.monthlySale.Name = "monthlySale";
             this.monthlySale.ReadOnly = true;
             this.monthlySale.RowHeadersWidth = 51;
             this.monthlySale.RowTemplate.Height = 24;
-            this.monthlySale.Size = new System.Drawing.Size(237, 356);
+            this.monthlySale.Size = new System.Drawing.Size(224, 176);
             this.monthlySale.TabIndex = 28;
             // 
             // weeklySale
             // 
             this.weeklySale.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.weeklySale.Location = new System.Drawing.Point(460, 213);
-            this.weeklySale.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.weeklySale.Location = new System.Drawing.Point(460, 173);
+            this.weeklySale.Margin = new System.Windows.Forms.Padding(2);
             this.weeklySale.Name = "weeklySale";
             this.weeklySale.ReadOnly = true;
             this.weeklySale.RowHeadersWidth = 51;
@@ -223,12 +231,65 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Gold;
-            this.label4.Location = new System.Drawing.Point(458, 191);
+            this.label4.Location = new System.Drawing.Point(458, 151);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(138, 21);
             this.label4.TabIndex = 29;
             this.label4.Text = "Weekly Revenue";
+            // 
+            // SalesReport
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.SalesReport.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.SalesReport.Legends.Add(legend1);
+            this.SalesReport.Location = new System.Drawing.Point(444, 385);
+            this.SalesReport.Name = "SalesReport";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Legend = "Legend1";
+            series1.Name = "Sales";
+            this.SalesReport.Series.Add(series1);
+            this.SalesReport.Size = new System.Drawing.Size(362, 238);
+            this.SalesReport.TabIndex = 30;
+            this.SalesReport.Text = "SalesChart";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.Gold;
+            this.label8.Location = new System.Drawing.Point(442, 359);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(98, 21);
+            this.label8.TabIndex = 31;
+            this.label8.Text = "Sales Chart";
+            // 
+            // filter_report
+            // 
+            this.filter_report.FormattingEnabled = true;
+            this.filter_report.Items.AddRange(new object[] {
+            "Weekly",
+            "Monthly"});
+            this.filter_report.Location = new System.Drawing.Point(827, 409);
+            this.filter_report.Name = "filter_report";
+            this.filter_report.Size = new System.Drawing.Size(99, 21);
+            this.filter_report.TabIndex = 32;
+            this.filter_report.SelectedIndexChanged += new System.EventHandler(this.Sale_Load);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.Gold;
+            this.label9.Location = new System.Drawing.Point(811, 385);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(115, 21);
+            this.label9.TabIndex = 33;
+            this.label9.Text = "Select Report";
             // 
             // Sale
             // 
@@ -236,6 +297,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DimGray;
             this.ClientSize = new System.Drawing.Size(948, 638);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.filter_report);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.SalesReport);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.monthlySale);
             this.Controls.Add(this.weeklySale);
@@ -251,15 +316,17 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Sale";
             this.Text = "Sale";
+            this.Load += new System.EventHandler(this.Sale_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Sale_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Sale_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Sale_MouseUp);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.monthlySale)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.weeklySale)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SalesReport)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -280,5 +347,9 @@
         private System.Windows.Forms.DataGridView monthlySale;
         private System.Windows.Forms.DataGridView weeklySale;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DataVisualization.Charting.Chart SalesReport;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox filter_report;
+        private System.Windows.Forms.Label label9;
     }
 }

@@ -56,7 +56,7 @@
             // 
             this.dailySale.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dailySale.Location = new System.Drawing.Point(26, 94);
-            this.dailySale.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dailySale.Margin = new System.Windows.Forms.Padding(2);
             this.dailySale.Name = "dailySale";
             this.dailySale.ReadOnly = true;
             this.dailySale.RowHeadersWidth = 51;
@@ -93,7 +93,7 @@
             this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Location = new System.Drawing.Point(546, 279);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(255, 24);
             this.dateTimePicker1.TabIndex = 26;
@@ -104,7 +104,7 @@
             this.invoice.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.AllSystemSources;
             this.invoice.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.invoice.Location = new System.Drawing.Point(443, 94);
-            this.invoice.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.invoice.Margin = new System.Windows.Forms.Padding(2);
             this.invoice.Multiline = true;
             this.invoice.Name = "invoice";
             this.invoice.Size = new System.Drawing.Size(464, 31);
@@ -151,7 +151,7 @@
             this.dateTimePicker2.CalendarFont = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker2.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker2.Location = new System.Drawing.Point(546, 325);
-            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(255, 24);
             this.dateTimePicker2.TabIndex = 32;
@@ -177,7 +177,7 @@
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Location = new System.Drawing.Point(384, 458);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(555, 80);
             this.panel1.TabIndex = 38;
@@ -255,7 +255,7 @@
             this.ref2.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ref2.ForeColor = System.Drawing.Color.DarkRed;
             this.ref2.Location = new System.Drawing.Point(712, 139);
-            this.ref2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ref2.Margin = new System.Windows.Forms.Padding(2);
             this.ref2.Name = "ref2";
             this.ref2.Size = new System.Drawing.Size(118, 59);
             this.ref2.TabIndex = 36;
@@ -276,11 +276,11 @@
             this.filterInv.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.filterInv.ForeColor = System.Drawing.Color.DarkRed;
             this.filterInv.Location = new System.Drawing.Point(546, 139);
-            this.filterInv.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.filterInv.Margin = new System.Windows.Forms.Padding(2);
             this.filterInv.Name = "filterInv";
             this.filterInv.Size = new System.Drawing.Size(118, 59);
             this.filterInv.TabIndex = 35;
-            this.filterInv.Text = "Filter";
+            this.filterInv.Text = "Search";
             this.filterInv.TextColor = System.Drawing.Color.DarkRed;
             this.filterInv.UseVisualStyleBackColor = false;
             this.filterInv.Click += new System.EventHandler(this.filterInv_Click);
@@ -297,7 +297,7 @@
             this.refresh.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.refresh.ForeColor = System.Drawing.Color.DarkRed;
             this.refresh.Location = new System.Drawing.Point(682, 363);
-            this.refresh.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.refresh.Margin = new System.Windows.Forms.Padding(2);
             this.refresh.Name = "refresh";
             this.refresh.Size = new System.Drawing.Size(118, 59);
             this.refresh.TabIndex = 34;
@@ -318,7 +318,7 @@
             this.filter.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.filter.ForeColor = System.Drawing.Color.DarkRed;
             this.filter.Location = new System.Drawing.Point(546, 363);
-            this.filter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.filter.Margin = new System.Windows.Forms.Padding(2);
             this.filter.Name = "filter";
             this.filter.Size = new System.Drawing.Size(118, 59);
             this.filter.TabIndex = 33;
@@ -348,7 +348,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.dailySale);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximumSize = new System.Drawing.Size(948, 638);
             this.Name = "SalesHistory";
             this.Text = "SalesHistory";
