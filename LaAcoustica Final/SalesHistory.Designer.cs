@@ -44,6 +44,8 @@
             this.invoiceNum = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.ref2 = new LaAcoustica_Final.CButton();
             this.filterInv = new LaAcoustica_Final.CButton();
             this.refresh = new LaAcoustica_Final.CButton();
@@ -61,8 +63,10 @@
             this.dailySale.ReadOnly = true;
             this.dailySale.RowHeadersWidth = 51;
             this.dailySale.RowTemplate.Height = 24;
+            this.dailySale.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dailySale.Size = new System.Drawing.Size(353, 522);
             this.dailySale.TabIndex = 21;
+            this.dailySale.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dailySale_CellClick);
             // 
             // label4
             // 
@@ -181,14 +185,13 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(555, 80);
             this.panel1.TabIndex = 38;
-            this.panel1.Visible = false;
             // 
             // saleS
             // 
             this.saleS.AutoSize = true;
             this.saleS.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saleS.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.saleS.Location = new System.Drawing.Point(92, 58);
+            this.saleS.Location = new System.Drawing.Point(76, 58);
             this.saleS.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.saleS.Name = "saleS";
             this.saleS.Size = new System.Drawing.Size(13, 19);
@@ -200,7 +203,7 @@
             this.dateS.AutoSize = true;
             this.dateS.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateS.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dateS.Location = new System.Drawing.Point(92, 30);
+            this.dateS.Location = new System.Drawing.Point(76, 30);
             this.dateS.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.dateS.Name = "dateS";
             this.dateS.Size = new System.Drawing.Size(13, 19);
@@ -212,7 +215,7 @@
             this.invoiceNum.AutoSize = true;
             this.invoiceNum.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.invoiceNum.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.invoiceNum.Location = new System.Drawing.Point(92, 0);
+            this.invoiceNum.Location = new System.Drawing.Point(76, 0);
             this.invoiceNum.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.invoiceNum.Name = "invoiceNum";
             this.invoiceNum.Size = new System.Drawing.Size(13, 19);
@@ -242,6 +245,30 @@
             this.label7.Size = new System.Drawing.Size(49, 19);
             this.label7.TabIndex = 38;
             this.label7.Text = "Date:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label9.Location = new System.Drawing.Point(439, 283);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(81, 19);
+            this.label9.TabIndex = 39;
+            this.label9.Text = "Start Date";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label10.Location = new System.Drawing.Point(439, 330);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(78, 19);
+            this.label10.TabIndex = 40;
+            this.label10.Text = "End Date";
             // 
             // ref2
             // 
@@ -333,6 +360,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gray;
             this.ClientSize = new System.Drawing.Size(948, 638);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.ref2);
             this.Controls.Add(this.filterInv);
@@ -352,6 +381,7 @@
             this.MaximumSize = new System.Drawing.Size(948, 638);
             this.Name = "SalesHistory";
             this.Text = "SalesHistory";
+            this.Load += new System.EventHandler(this.SalesHistory_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SaleHistory_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.SaleHistory_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.SaleHistory_MouseUp);
@@ -385,5 +415,7 @@
         private System.Windows.Forms.Label invoiceNum;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
     }
 }

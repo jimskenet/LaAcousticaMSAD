@@ -39,7 +39,8 @@ namespace LaAcoustica_Final
         public SalesHistory()
         {
             InitializeComponent();
-            loadDaily();            
+            loadDaily();
+            reset();
         }
         OleDbConnection myConn = new OleDbConnection(StaticClass.connString);
         OleDbDataAdapter da;
@@ -47,13 +48,16 @@ namespace LaAcoustica_Final
         DataSet ds;
         private void loadDaily()
         {
-            da = new OleDbDataAdapter("SELECT * FROM Daily", myConn);
+            da = new OleDbDataAdapter("SELECT * FROM Daily ORDER BY [Date] DESC ", myConn);
             ds = new DataSet();
             myConn.Open();
             da.Fill(ds, "Daily");
             dailySale.DataSource = ds.Tables["Daily"];
             dailySale.Columns["Sales"].DefaultCellStyle.Format = "C";
             myConn.Close();
+
+            dailySale.Columns["month_id"].Visible = false;
+            dailySale.Columns["year_id"].Visible = false;
         }
         private void FilterDate()
         {
@@ -71,10 +75,32 @@ namespace LaAcoustica_Final
         {
             FilterDate();
         }
+        private void reset()
+        {
+            string sql = "SELECT MIN([DATE]) AS Oldest, MAX([DATE]) AS Latest FROM Daily";
+            myConn.Open();
+            cmd = new OleDbCommand(sql, myConn);
+            OleDbDataReader read = cmd.ExecuteReader();
+            if (read.Read())
+            {
+                DateTime oldestDate = Convert.ToDateTime(read["Oldest"]);
+                DateTime latestDate = Convert.ToDateTime(read["Latest"]);
 
+                // Assuming you have a DateTimePicker control named 'dateTimePicker'
+                dateTimePicker1.Value = oldestDate;
+                dateTimePicker2.Value = latestDate;
+            }
+            read.Close();
+            myConn.Close();
+            dailySale.ClearSelection();
+            saleS.Text = "";
+            dateS.Text = "";
+            invoiceNum.Text = "";
+        }
         private void refresh_Click(object sender, EventArgs e)
         {
             loadDaily();
+            reset();
         }
         private void FilterInvoice()
         {
@@ -105,6 +131,23 @@ namespace LaAcoustica_Final
         private void ref2_Click(object sender, EventArgs e)
         {
             loadDaily();
+        }
+
+        private void dailySale_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int indexRow = e.RowIndex;
+            if (e.RowIndex == -1) return;
+
+            DataGridViewRow row = dailySale.Rows[indexRow];
+            invoiceNum.Text = row.Cells["InvoiceNumber"].Value.ToString();
+            dateS.Text = Convert.ToDateTime(row.Cells["Date"].Value).ToShortDateString();
+            string sale = string.Format("₱{0:N}", row.Cells["Sales"].Value);
+            saleS.Text = sale;
+        }
+
+        private void SalesHistory_Load(object sender, EventArgs e)
+        {
+            dailySale.ClearSelection();
         }
     }
 }

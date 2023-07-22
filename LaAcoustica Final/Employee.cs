@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
 using System.Diagnostics;
+using System.Diagnostics.Tracing;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Drawing.Text;
@@ -73,6 +74,7 @@ namespace LaAcoustica_Final
                 label10.Text = "Customer: ";
                 cashier.Location = new Point(100, 2);
                 add.Text = "Add to Cart"; delete.Text = "Remove from Cart"; printR.Text = "Purchase Item/s";
+                resetBill.Text = "Clear Cart";
             }
             else { Acc.Text = "Employee User"; }
         }
@@ -100,6 +102,7 @@ namespace LaAcoustica_Final
             loadInventory();
             loadBill();
             Total();
+            ItemPic.Image = null;
         }
         //LOADS INVENTORY
         private void loadInventory()
@@ -114,6 +117,8 @@ namespace LaAcoustica_Final
 
             storageData.Columns["ImageUrl"].Visible = false;
             storageData.Columns["Quantity"].Visible = false;
+            storageData.ClearSelection();
+            Q.Visible = false;
         }
         //LOADS BILL
         private void loadBill()
@@ -131,6 +136,8 @@ namespace LaAcoustica_Final
         {
             try
             {
+                if (e.RowIndex == -1) return;
+
                 int index = e.RowIndex;
                 row = storageData.Rows[index];
                 prodN.Text = row.Cells[0].Value.ToString();
@@ -138,18 +145,20 @@ namespace LaAcoustica_Final
                 quanI = Convert.ToInt32(row.Cells[5].Value);
                 priceN.Text = price.ToString("C");
                 quantity = Convert.ToInt32(row.Cells["Quantity"].Value);
+                Q.Visible = true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex);
             }
-
         }
         //SELECT ROW IN BILL
         private void SelectRow2(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
+                if (e.RowIndex == -1) return;
+
                 int index = e.RowIndex;
                 row = cart.Rows[index];
                 prodN.Text = row.Cells[0].Value.ToString();
@@ -168,7 +177,6 @@ namespace LaAcoustica_Final
         {
             try
             {
-
                 if (Q.Value == 0)
                 {
                     MessageBox.Show("No Quantity of Products Added");
@@ -197,10 +205,10 @@ namespace LaAcoustica_Final
                         UpInventory(totQuan, prodN.Text);
                         loadBill();
                         Total();
+                        Q.Value = 1;
                     }
                     else { MessageBox.Show("Insufficient Stock"); }
                     refresh.PerformClick();
-                    Q.Value = 1;
                 }
             }
             catch
@@ -239,7 +247,6 @@ namespace LaAcoustica_Final
                     UpInventory(quantity, prodN.Text);
                     loadBill();
                     Total();
-                    Q.Value = 1;
                 }
                 else
                 {
@@ -255,15 +262,19 @@ namespace LaAcoustica_Final
         //RESET METHOD
         private void Reset()
         {
-            string query = "DELETE * FROM Bill";
-            OleDbCommand command = new OleDbCommand(query, myConn);
-            myConn.Open();
-            command.ExecuteNonQuery();
-            myConn.Close();
-            loadBill();
-            decimal totalPrice = 0;
-            totPrice.Text = totalPrice.ToString("C");
-            items.Text = "0";
+            using (OleDbConnection myConn = new OleDbConnection(StaticClass.connString))
+            {
+                string query = "DELETE * FROM Bill";
+                OleDbCommand command = new OleDbCommand(query, myConn);
+                myConn.Open();
+                command.ExecuteNonQuery();
+                loadBill();
+                decimal totalPrice = 0;
+                totPrice.Text = totalPrice.ToString("C");
+                items.Text = "0";
+                prodN.Text = "";
+                priceN.Text = "";
+            }
         }
         private void compare()
         {
@@ -293,7 +304,9 @@ namespace LaAcoustica_Final
                 cart.Rows.Clear();
                 loadBill();
                 Total();
+                storageData.ClearSelection();
                 Q.Value = 1;
+
             }
             catch (Exception exe)
             {
@@ -338,24 +351,24 @@ namespace LaAcoustica_Final
         //FILTER METHODS
         private void Filter()
         {
-            if (brandN.SelectedIndex != -1 && category.SelectedIndex == -1 && subcategory.SelectedIndex == -1) { da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity FROM Storage WHERE BrandName = '" + brandN.SelectedItem.ToString() + "'", myConn); }
-            else if (brandN.SelectedIndex == -1 && category.SelectedIndex != -1 && subcategory.SelectedIndex == -1) { da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity FROM Storage WHERE Category = '" + category.SelectedItem.ToString() + "'", myConn); }
-            else if (brandN.SelectedIndex == -1 && category.SelectedIndex == -1 && subcategory.SelectedIndex != -1) { da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity FROM Storage WHERE SubCategory = '" + subcategory.SelectedItem.ToString() + "'", myConn); }
+            if (brandN.SelectedIndex != -1 && category.SelectedIndex == -1 && subcategory.SelectedIndex == -1) { da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity,ImageUrl FROM Storage WHERE BrandName = '" + brandN.SelectedItem.ToString() + "'", myConn); }
+            else if (brandN.SelectedIndex == -1 && category.SelectedIndex != -1 && subcategory.SelectedIndex == -1) { da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity,ImageUrl FROM Storage WHERE Category = '" + category.SelectedItem.ToString() + "'", myConn); }
+            else if (brandN.SelectedIndex == -1 && category.SelectedIndex == -1 && subcategory.SelectedIndex != -1) { da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity,ImageUrl FROM Storage WHERE SubCategory = '" + subcategory.SelectedItem.ToString() + "'", myConn); }
             else if (brandN.SelectedIndex != -1 && category.SelectedIndex != -1 && subcategory.SelectedIndex == -1)
             {
-                da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity FROM Storage WHERE BrandName = '" + brandN.SelectedItem.ToString() + "' and Category = '" + category.SelectedItem.ToString() + "'", myConn);
+                da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity,ImageUrl FROM Storage WHERE BrandName = '" + brandN.SelectedItem.ToString() + "' and Category = '" + category.SelectedItem.ToString() + "'", myConn);
             }
             else if (brandN.SelectedIndex != -1 && category.SelectedIndex == -1 && subcategory.SelectedIndex != -1)
             {
-                da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity FROM Storage WHERE BrandName = '" + brandN.SelectedItem.ToString() + "' and SubCategory = '" + subcategory.SelectedItem.ToString() + "'", myConn);
+                da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity,ImageUrl FROM Storage WHERE BrandName = '" + brandN.SelectedItem.ToString() + "' and SubCategory = '" + subcategory.SelectedItem.ToString() + "'", myConn);
             }
             else if (brandN.SelectedIndex == -1 && category.SelectedIndex != -1 && subcategory.SelectedIndex != -1)
             {
-                da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity FROM Storage WHERE Category = '" + category.SelectedItem.ToString() + "' and SubCategory = '" + subcategory.SelectedItem.ToString() + "'", myConn);
+                da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity,ImageUrl FROM Storage WHERE Category = '" + category.SelectedItem.ToString() + "' and SubCategory = '" + subcategory.SelectedItem.ToString() + "'", myConn);
             }
             else
             {
-                da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity FROM Storage WHERE BrandName = '" + brandN.SelectedItem.ToString() + "' and Category = '" + category.SelectedItem.ToString() + "' and SubCategory = '" + subcategory.SelectedItem.ToString() + "'", myConn);
+                da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity,ImageUrl FROM Storage WHERE BrandName = '" + brandN.SelectedItem.ToString() + "' and Category = '" + category.SelectedItem.ToString() + "' and SubCategory = '" + subcategory.SelectedItem.ToString() + "'", myConn);
             }
             ds = new DataSet();
             myConn.Open();
@@ -370,58 +383,100 @@ namespace LaAcoustica_Final
             brandN.SelectedIndex = -1;
             category.SelectedIndex = -1;
             subcategory.SelectedIndex = -1;
+            Q.Value = 1;
             loadInventory();
         }
 
         private void printR_Click(object sender, EventArgs e)
         {
-
             try
             {
                 invoiceNumber = Guid.NewGuid().ToString();
                 string dateTime = DateTime.Now.ToShortDateString();
-                string query = "INSERT INTO Daily (InvoiceNumber, Sales, [Date]) VALUES (@in,@sale,@dt)";
+                string query = "INSERT INTO Daily (InvoiceNumber, Sales, [Date],month_id,year_id) VALUES (@in,@sale,@dt,@mnth,@yr)";
                 cmd = new OleDbCommand(query, myConn);
                 cmd.Parameters.AddWithValue("@in", invoiceNumber);
                 cmd.Parameters.AddWithValue("@sale", totPrice.Text);
                 cmd.Parameters.AddWithValue("@dt", dateTime);
+                cmd.Parameters.AddWithValue("@mnth", DateTime.Now.Month);
+                cmd.Parameters.AddWithValue("@yr", DateTime.Now.Year);
                 myConn.Open();
                 cmd.ExecuteNonQuery();
                 myConn.Close();
-                //For Bill Sum
+                //For Bill Sums
                 string sql = "SELECT SUM(Price) FROM Bill";
                 myConn.Open();
                 OleDbCommand cmd2 = new OleDbCommand(sql, myConn);
                 object result = cmd2.ExecuteScalar();
-                decimal toweekly = Convert.ToDecimal(result);
-                UpdateWeekly(toweekly);
+                decimal tomonthly = Convert.ToDecimal(result);
                 myConn.Close();
+                UpdateSales(tomonthly);
                 //For Reciept
                 PrintProperties();
-                Reset();
                 MessageBox.Show("Sale Purchased!");
-
+                resetBill_Click(sender,e);
             }
-            catch { MessageBox.Show("No Items in Bill!"); }
+            catch(Exception ex) { MessageBox.Show("No Items in Bill! "+ex); }
         }
-        private void UpdateWeekly(decimal daily)
+        
+        private void UpdateSales(decimal monthly)
         {
-            DateTime currentDate = DateTime.Now;
-            CultureInfo culture = CultureInfo.CurrentCulture;
-            Calendar calendar = culture.Calendar;
-            int weekNumber = calendar.GetWeekOfYear(currentDate, culture.DateTimeFormat.CalendarWeekRule, culture.DateTimeFormat.FirstDayOfWeek);
-            int dayOfMonth = currentDate.Day;
-            int weekOfMonth = (int)Math.Ceiling((double)dayOfMonth / 7);
-            string weekNow = "Week" + weekOfMonth;
-            if (myConn.State != ConnectionState.Open)
+            using (OleDbConnection myConn = new OleDbConnection(StaticClass.connString))
             {
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = myConn;
+                command.CommandText = "Select * FROM Monthly where month_id =@mnth and year_id = @yr";
+                command.Parameters.AddWithValue("@mnth", DateTime.Now.Month);
+                command.Parameters.AddWithValue("@yr", DateTime.Now.Year);
                 myConn.Open();
+                OleDbDataReader read = command.ExecuteReader();
+                if (!read.HasRows)
+                {
+                    string query = "INSERT INTO Monthly (TotalSales, month_id,year_id) VALUES (@sale,@mnth,@yr)";
+                    cmd = new OleDbCommand(query, myConn);
+                    cmd.Parameters.AddWithValue("@sale", monthly);
+                    cmd.Parameters.AddWithValue("@mnth", DateTime.Now.Month);
+                    cmd.Parameters.AddWithValue("@yr", DateTime.Now.Year);
+                    cmd.ExecuteNonQuery();
+                }
+                else
+                {
+                    string query = "UPDATE Monthly SET [TotalSales] = [TotalSales] + @ds  WHERE month_id = @mnth AND year_id = @yr";
+                    cmd = new OleDbCommand(query, myConn);
+                    cmd.Parameters.AddWithValue("@ds", monthly);
+                    cmd.Parameters.AddWithValue("@mnth", DateTime.Now.Month);
+                    cmd.Parameters.AddWithValue("@yr", DateTime.Now.Year);
+                    cmd.ExecuteNonQuery();
+                }
+                myConn.Close();
             }
-            cmd = new OleDbCommand("UPDATE Weekly SET [TotalSales] = [TotalSales] + @ds  WHERE Week = @week", myConn);
-            cmd.Parameters.AddWithValue("@ds", daily);
-            cmd.Parameters.AddWithValue("@week", weekNow);
-            cmd.ExecuteNonQuery();
-            myConn.Close();
+
+            using (OleDbConnection myConn = new OleDbConnection(StaticClass.connString))
+            {
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = myConn;
+                command.CommandText = "Select * FROM Yearly where year_id = @yr";
+                command.Parameters.AddWithValue("@yr", DateTime.Now.Year);
+                myConn.Open();
+                OleDbDataReader read = command.ExecuteReader();
+                if (!read.HasRows)
+                {
+                    string query = "INSERT INTO Yearly (TotalSales,year_id) VALUES (@sale,@yr)";
+                    cmd = new OleDbCommand(query, myConn);
+                    cmd.Parameters.AddWithValue("@sale", monthly);
+                    cmd.Parameters.AddWithValue("@yr", DateTime.Now.Year);
+                    cmd.ExecuteNonQuery();
+                }
+                else
+                {
+                    string query = "UPDATE Yearly SET [TotalSales] = [TotalSales] + @ds  WHERE year_id = @yr";
+                    cmd = new OleDbCommand(query, myConn);
+                    cmd.Parameters.AddWithValue("@ds", monthly);
+                    cmd.Parameters.AddWithValue("@yr", DateTime.Now.Year);
+                    cmd.ExecuteNonQuery();
+                }
+                myConn.Close();
+            }
         }
 
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)

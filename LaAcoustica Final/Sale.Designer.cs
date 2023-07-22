@@ -44,7 +44,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label7 = new System.Windows.Forms.Label();
             this.monthlySale = new System.Windows.Forms.DataGridView();
-            this.weeklySale = new System.Windows.Forms.DataGridView();
+            this.YearlySale = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
             this.SalesReport = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label8 = new System.Windows.Forms.Label();
@@ -52,7 +52,7 @@
             this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.monthlySale)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.weeklySale)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.YearlySale)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SalesReport)).BeginInit();
             this.SuspendLayout();
             // 
@@ -211,20 +211,22 @@
             this.monthlySale.ReadOnly = true;
             this.monthlySale.RowHeadersWidth = 51;
             this.monthlySale.RowTemplate.Height = 24;
+            this.monthlySale.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.monthlySale.Size = new System.Drawing.Size(224, 176);
             this.monthlySale.TabIndex = 28;
             // 
-            // weeklySale
+            // YearlySale
             // 
-            this.weeklySale.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.weeklySale.Location = new System.Drawing.Point(460, 173);
-            this.weeklySale.Margin = new System.Windows.Forms.Padding(2);
-            this.weeklySale.Name = "weeklySale";
-            this.weeklySale.ReadOnly = true;
-            this.weeklySale.RowHeadersWidth = 51;
-            this.weeklySale.RowTemplate.Height = 24;
-            this.weeklySale.Size = new System.Drawing.Size(237, 176);
-            this.weeklySale.TabIndex = 27;
+            this.YearlySale.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.YearlySale.Location = new System.Drawing.Point(460, 173);
+            this.YearlySale.Margin = new System.Windows.Forms.Padding(2);
+            this.YearlySale.Name = "YearlySale";
+            this.YearlySale.ReadOnly = true;
+            this.YearlySale.RowHeadersWidth = 51;
+            this.YearlySale.RowTemplate.Height = 24;
+            this.YearlySale.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.YearlySale.Size = new System.Drawing.Size(237, 176);
+            this.YearlySale.TabIndex = 27;
             // 
             // label4
             // 
@@ -234,9 +236,9 @@
             this.label4.Location = new System.Drawing.Point(458, 151);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(138, 21);
+            this.label4.Size = new System.Drawing.Size(132, 21);
             this.label4.TabIndex = 29;
-            this.label4.Text = "Weekly Revenue";
+            this.label4.Text = "Yearly Revenue";
             // 
             // SalesReport
             // 
@@ -271,8 +273,8 @@
             // 
             this.filter_report.FormattingEnabled = true;
             this.filter_report.Items.AddRange(new object[] {
-            "Weekly",
-            "Monthly"});
+            "Monthly",
+            "Yearly"});
             this.filter_report.Location = new System.Drawing.Point(827, 409);
             this.filter_report.Name = "filter_report";
             this.filter_report.Size = new System.Drawing.Size(99, 21);
@@ -303,7 +305,7 @@
             this.Controls.Add(this.SalesReport);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.monthlySale);
-            this.Controls.Add(this.weeklySale);
+            this.Controls.Add(this.YearlySale);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.dsales);
@@ -325,7 +327,7 @@
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Sale_MouseUp);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.monthlySale)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.weeklySale)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.YearlySale)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SalesReport)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -345,7 +347,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataGridView monthlySale;
-        private System.Windows.Forms.DataGridView weeklySale;
+        private System.Windows.Forms.DataGridView YearlySale;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataVisualization.Charting.Chart SalesReport;
         private System.Windows.Forms.Label label8;

@@ -78,6 +78,8 @@ namespace LaAcoustica_Final
             employeeData.Columns[2].Visible = false; //Hide password column
             employeeData.Sort(employeeData.Columns[0], ListSortDirection.Ascending);
             myConn.Close();
+
+            employeeData.ClearSelection();
         }
 
         private void Customer_load()
@@ -92,6 +94,8 @@ namespace LaAcoustica_Final
             employeeData.Columns[2].Visible = false; //Hide password column
             employeeData.Sort(employeeData.Columns[0], ListSortDirection.Ascending);
             myConn.Close();
+
+            employeeData.ClearSelection();
         }
 
         private void add_Click(object sender, EventArgs e)
@@ -152,6 +156,7 @@ namespace LaAcoustica_Final
             pass.Text = "";
             at.SelectedIndex = -1;
             em.Text = "";
+            employeeData.ClearSelection();
         }
 
         private void delete_Click(object sender, EventArgs e)
@@ -254,6 +259,8 @@ namespace LaAcoustica_Final
             try
             {
                 DataGridViewRow row = employeeData.Rows[index];
+                if (e.RowIndex == -1) return;
+
                 accnum.Text = row.Cells[0].Value.ToString();
                 ls.Text = row.Cells["LastName"].Value.ToString();
                 fs.Text = row.Cells["FirstName"].Value.ToString();

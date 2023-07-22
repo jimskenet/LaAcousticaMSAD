@@ -1,4 +1,6 @@
 ﻿using FontAwesome.Sharp;
+using Org.BouncyCastle.Asn1.X500;
+using Org.BouncyCastle.Math;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,8 +21,6 @@ namespace LaAcoustica_Final
         OleDbDataAdapter da;
         OleDbCommand cmd;
         DataSet ds;
-        OleDbDataReader reader;
-        String weekNow;
         Menu menu = (Menu)Application.OpenForms["Menu"];
         bool mouseDown;
         Point lastLocation;
@@ -46,73 +46,65 @@ namespace LaAcoustica_Final
         public Sale()
         {
             InitializeComponent();
-            loadWeekly();
+            loadYearly();
             loadMonthly();
-            ShowTotalSales();
-            ShowMonthlySales();
-            ShowWeeklyySales();
             ShowDailySales();
+            TotalRevenue();
             filter_report.SelectedIndex = 0;
         }
-        private void loadWeekly()
+        private void loadYearly()
         {
-            da = new OleDbDataAdapter("SELECT * FROM Weekly", myConn);
+            da = new OleDbDataAdapter("SELECT * FROM Yearly", myConn);
             ds = new DataSet();
             myConn.Open();
-            da.Fill(ds, "Weekly");
-            weeklySale.DataSource = ds.Tables["Weekly"];
-            weeklySale.Columns["TotalSales"].DefaultCellStyle.Format = "C";
+            da.Fill(ds, "Yearly");
+            YearlySale.DataSource = ds.Tables["Yearly"];
+            YearlySale.Columns["TotalSales"].DefaultCellStyle.Format = "C";
             myConn.Close();
         }
         private void loadMonthly()
         {
-            da = new OleDbDataAdapter("SELECT * FROM Monthly", myConn);
+            da = new OleDbDataAdapter("SELECT Monthly.year_id, months.Month, Monthly.TotalSales\r\nFROM months INNER JOIN Monthly ON months.month_id = Monthly.month_id\r\nORDER BY Monthly.year_id DESC;\r\n", myConn);
             ds = new DataSet();
             myConn.Open();
             da.Fill(ds, "Monthly");
             monthlySale.DataSource = ds.Tables["Monthly"];
             monthlySale.Columns["TotalSales"].DefaultCellStyle.Format = "C";
             myConn.Close();
+
+            myConn.Open();
+            OleDbCommand command = new OleDbCommand();
+            command.Connection = myConn;
+            command.CommandText = "Select * FROM Monthly where month_id=@mnth and year_id=@yr";
+            command.Parameters.AddWithValue("@mnth", DateTime.Now.Month);
+            command.Parameters.AddWithValue("@yr", DateTime.Now.Year);
+            OleDbDataReader read = command.ExecuteReader();
+            if (read.HasRows)
+            {
+                read.Read();
+                msales.Text = string.Format("₱{0:N}", read["TotalSales"]);
+            }
+            else
+                msales.Text = "₱0.00";
+            myConn.Close();
         }
-        private void ShowTotalSales()
+        private void TotalRevenue()
         {
-            string sql = "SELECT SUM(TotalSales) FROM Monthly";
+            string sql = "SELECT SUM(TotalSales) FROM Yearly";
             myConn.Open();
             cmd = new OleDbCommand(sql, myConn);
             object result = cmd.ExecuteScalar();
-            string totalSales = string.Format("{0:C}", result);
+            myConn.Close();
+            string totalSales;
+            if (result == null || result == DBNull.Value)
+            {
+                totalSales = "₱0.00";
+            }
+            else
+            {
+                totalSales = string.Format("₱{0:N}", result);
+            }
             revenue.Text = totalSales;
-            myConn.Close();
-        }
-        private void ShowMonthlySales()
-        {
-            string sql = "SELECT SUM(TotalSales) FROM Weekly";
-            myConn.Open();
-            cmd = new OleDbCommand(sql, myConn);
-            object result = cmd.ExecuteScalar();
-            string totalSales = string.Format("{0:C}", result);
-            msales.Text = totalSales;
-            decimal tomonthly = Convert.ToDecimal(result);
-            UpdateMonthly(tomonthly);
-            myConn.Close();
-        }
-        private void ShowWeeklyySales()
-        {
-            DateTime currentDate = DateTime.Now;
-            CultureInfo culture = CultureInfo.CurrentCulture;
-            Calendar calendar = culture.Calendar;
-            int weekNumber = calendar.GetWeekOfYear(currentDate, culture.DateTimeFormat.CalendarWeekRule, culture.DateTimeFormat.FirstDayOfWeek);
-            int dayOfMonth = currentDate.Day;
-            int weekOfMonth = (int)Math.Ceiling((double)dayOfMonth / 7);
-            weekNow = "Week" + weekOfMonth;
-            string sql = "SELECT SUM(TotalSales) FROM Weekly WHERE Week = @week";
-            myConn.Open();
-            cmd = new OleDbCommand(sql, myConn);
-            cmd.Parameters.AddWithValue("@week", weekNow);
-            object result = cmd.ExecuteScalar();
-            string totalSales = string.Format("{0:C}", result);
-            wsales.Text = totalSales;
-            myConn.Close();
         }
         private void ShowDailySales()
         {
@@ -129,68 +121,35 @@ namespace LaAcoustica_Final
             }
             else
             {
-                totalSales = string.Format("{0:C}", result);
+                totalSales = string.Format("₱{0:N}", result);
             }
             dsales.Text = totalSales;
         }
-        private void UpdateWeekly(decimal daily)
-        {
-            DateTime currentDate = DateTime.Now;
-            CultureInfo culture = CultureInfo.CurrentCulture;
-            Calendar calendar = culture.Calendar;
-            int weekNumber = calendar.GetWeekOfYear(currentDate, culture.DateTimeFormat.CalendarWeekRule, culture.DateTimeFormat.FirstDayOfWeek);
-            int dayOfMonth = currentDate.Day;
-            int weekOfMonth = (int)Math.Ceiling((double)dayOfMonth / 7);
-            string weekNow = "Week" + weekOfMonth;
-            if (myConn.State != ConnectionState.Open)
-            {
-                myConn.Open();
-            }
-            cmd = new OleDbCommand("UPDATE Weekly SET [TotalSales] = [TotalSales] + @ds  WHERE Week = @week", myConn);
-            cmd.Parameters.AddWithValue("@ds", daily);
-            cmd.Parameters.AddWithValue("@week", weekNow);
-            cmd.ExecuteNonQuery();
-            myConn.Close();
-        }
-
-        private void UpdateMonthly(decimal weekly)
-        {
-            string currentMonth = DateTime.Now.ToString("MMMM");
-            if (myConn.State != ConnectionState.Open)
-            {
-                myConn.Open();
-            }
-            cmd = new OleDbCommand("UPDATE Monthly SET [TotalSales] = @ws  WHERE Month = @month", myConn);
-            cmd.Parameters.AddWithValue("@ds", weekly);
-            cmd.Parameters.AddWithValue("@month", currentMonth);
-            cmd.ExecuteNonQuery();
-            myConn.Close();
-
-        }
-
         private void Sale_Load(object sender, EventArgs e)
         {
             using (myConn = new OleDbConnection(StaticClass.connString))
             {
                 string query, filter = filter_report.Text;
-                if (filter == "Weekly")
-                    query = "Select * FROM Weekly";
+                if (filter == "Yearly")
+                    query = "Select * FROM Yearly";
                 else
-                    query = "Select * FROM Monthly";
+                    query = "SELECT Monthly.year_id, months.Month, Monthly.TotalSales\r\nFROM months INNER JOIN Monthly ON months.month_id = Monthly.month_id\r\nORDER BY Monthly.year_id DESC;\r\n";
                 da = new OleDbDataAdapter(query, myConn);
                 ds = new DataSet();
                 myConn.Open();
                 da.Fill(ds, "Sales");
                 SalesReport.DataSource = ds.Tables["Sales"]; //Puts the content in the dataGrid
 
-                if (filter == "Weekly")
-                    SalesReport.Series[0].XValueMember = "Week"; //Puts the content in the chart
+                if (filter == "Yearly")
+                    SalesReport.Series[0].XValueMember = "year_id"; //Puts the content in the chart
                 else
                     SalesReport.Series[0].XValueMember = "Month";
                 SalesReport.Series[0].YValueMembers = "TotalSales";
                 SalesReport.DataSource = ds;
                 SalesReport.DataBind();
             }
+            monthlySale.ClearSelection();
+            YearlySale.ClearSelection();
         }
     }
 }
