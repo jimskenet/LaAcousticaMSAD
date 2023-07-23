@@ -60,6 +60,18 @@ namespace LaAcoustica_Final
             da.Fill(ds, "Yearly");
             YearlySale.DataSource = ds.Tables["Yearly"];
             YearlySale.Columns["TotalSales"].DefaultCellStyle.Format = "C";
+            OleDbCommand command = new OleDbCommand();
+            command.Connection = myConn;
+            command.CommandText = "Select * FROM Yearly where year_id=@yr";
+            command.Parameters.AddWithValue("@yr", DateTime.Now.Year);
+            OleDbDataReader read = command.ExecuteReader();
+            if (read.HasRows)
+            {
+                read.Read();
+                ysales.Text = string.Format("₱{0:N}", read["TotalSales"]);
+            }
+            else
+                ysales.Text = "₱0.00";
             myConn.Close();
         }
         private void loadMonthly()

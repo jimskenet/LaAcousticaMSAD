@@ -136,6 +136,7 @@ namespace LaAcoustica_Final
         private void SelectRow(object sender, DataGridViewCellEventArgs e)
         {
             int index;
+            if (e.RowIndex == -1) return;
             index = e.RowIndex;
             DataGridViewRow row = storageData.Rows[index];
             prod.Text = row.Cells[0].Value.ToString();

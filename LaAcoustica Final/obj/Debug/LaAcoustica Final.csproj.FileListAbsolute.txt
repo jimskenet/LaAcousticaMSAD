@@ -415,3 +415,4 @@ C:\Users\Jofrel Jan Quijano\LA\LaAcoustica Final\obj\Debug\LaAcoustica Final.csp
 C:\Users\Jofrel Jan Quijano\LA\LaAcoustica Final\obj\Debug\LaAcoustica Final.exe
 C:\Users\Jofrel Jan Quijano\LA\LaAcoustica Final\obj\Debug\LaAcoustica Final.pdb
 C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\LaAcoustica Final\LaAcoustica Final\obj\Debug\LaAcoustica_Final.Form1.resources
+C:\Users\Jofrel Jan Quijano\LA\LaAcoustica Final\obj\Debug\LaAcoustica_Final.Form1.resources
