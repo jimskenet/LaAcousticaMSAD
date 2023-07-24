@@ -114,7 +114,6 @@ namespace LaAcoustica_Final
                 else
                 {
                     MessageBox.Show("Invalid Account!");
-                    user.Text = "";
                     pass.Text = "";
                 }
             }

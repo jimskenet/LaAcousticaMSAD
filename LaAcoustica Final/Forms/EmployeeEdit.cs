@@ -46,6 +46,7 @@ namespace LaAcoustica_Final
         {
             InitializeComponent();
         }
+
         OleDbConnection myConn = new OleDbConnection(StaticClass.connString);
         OleDbDataAdapter da;
         OleDbCommand cmd;
@@ -54,7 +55,7 @@ namespace LaAcoustica_Final
         private void EmployeeEdit_Load(object sender, EventArgs e)
         {
             filter_combo.SelectedIndex = 0;
-            filter_table();
+            Worker_load();
         }
 
         private void filter_table()
@@ -73,13 +74,16 @@ namespace LaAcoustica_Final
             da.Fill(ds, "Accounts");
 
             employeeData.DataSource = ds.Tables["Accounts"];
-            employeeData.Columns[1].HeaderText = "Username"; //From Accounts.Username -> Username
-            employeeData.Columns[7].HeaderText = "Position"; //From Worker.Position -> Position
-            employeeData.Columns[2].Visible = false; //Hide password column
+            employeeData.Columns[1].HeaderText = "Username";
+            employeeData.Columns[7].HeaderText = "Position";
+            employeeData.Columns[2].Visible = false;
             employeeData.Sort(employeeData.Columns[0], ListSortDirection.Ascending);
             myConn.Close();
 
-            employeeData.ClearSelection();
+            BeginInvoke((Action)(() => //Makes the dgv load first then begins to execute ClearSelection()
+            {
+                employeeData.ClearSelection(); // Clear selection after data is loaded
+            }));
         }
 
         private void Customer_load()
@@ -161,50 +165,51 @@ namespace LaAcoustica_Final
 
         private void delete_Click(object sender, EventArgs e)
         {
-            if (deleteFlag == true)
+            if (deleteFlag != true && accnum.Text!="")
             {
-                MessageBox.Show("Logged In Account can't be Deleted");
-                clear.PerformClick();
-            }
-            else
-            {
-                if (at.SelectedIndex != 2)
+                string query = "Delete From Accounts Where ID = @an";
+                cmd = new OleDbCommand(query, myConn);
+                cmd.Parameters.AddWithValue("@an", employeeData.CurrentRow.Cells[0].Value);
+                myConn.Open();
+                cmd.ExecuteNonQuery();
+                myConn.Close();
+
+                if (filter_combo.SelectedIndex == 1)
                 {
-                    string query = "Delete From Accounts Where ID = @an";
+                    query = "Delete From Customer Where ID = @an";
                     cmd = new OleDbCommand(query, myConn);
                     cmd.Parameters.AddWithValue("@an", employeeData.CurrentRow.Cells[0].Value);
                     myConn.Open();
                     cmd.ExecuteNonQuery();
                     myConn.Close();
-
-                    if (filter_combo.SelectedIndex == 1)
-                    {
-                        query = "Delete From Customer Where ID = @an";
-                        cmd = new OleDbCommand(query, myConn);
-                        cmd.Parameters.AddWithValue("@an", employeeData.CurrentRow.Cells[0].Value);
-                        myConn.Open();
-                        cmd.ExecuteNonQuery();
-                        myConn.Close();
-                    }
-                    else
-                    {
-                        query = "Delete From Worker Where ID = @an";
-                        cmd = new OleDbCommand(query, myConn);
-                        cmd.Parameters.AddWithValue("@an", employeeData.CurrentRow.Cells[0].Value);
-                        myConn.Open();
-                        cmd.ExecuteNonQuery();
-                        myConn.Close();
-                    }
-
-                    filter_table();
-                    clear_Click(sender, e);
-
-                    if(at.SelectedItem.ToString()=="Employee")
-                        MessageBox.Show("Employee Removed!");
-                    else
-                        MessageBox.Show("Customer Removed!");
                 }
-                else { MessageBox.Show("Main Admin Account is Restricted!"); }
+                else
+                {
+                    query = "Delete From Worker Where ID = @an";
+                    cmd = new OleDbCommand(query, myConn);
+                    cmd.Parameters.AddWithValue("@an", employeeData.CurrentRow.Cells[0].Value);
+                    myConn.Open();
+                    cmd.ExecuteNonQuery();
+                    myConn.Close();
+                }
+
+                filter_table();
+                clear_Click(sender, e);
+
+                if (at.SelectedItem.ToString() == "Employee")
+                    MessageBox.Show("Employee Removed!");
+                else
+                    MessageBox.Show("Customer Removed!");
+            }
+            else if (accnum.Text == "" && at.Text != "Main")
+                MessageBox.Show("No account is selected", "Deletion Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                if(at.SelectedIndex == 2) 
+                    MessageBox.Show("Main Admin Account is Restricted!", "Deletion Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else
+                    MessageBox.Show("Logged In Account can't be Deleted", "Deletion Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                clear.PerformClick();
             }
         }
 
