@@ -55,9 +55,9 @@ namespace LaAcoustica_Final
                 da.Fill(ds, "Storage");
                 storageData.DataSource = ds.Tables["Storage"];
             }
-            catch
+            catch (Exception e)
             {
-                MessageBox.Show("An Error Occurred!");
+                MessageBox.Show("An Error Occurred! " + e.Message);
             }
             finally
             {
@@ -85,6 +85,7 @@ namespace LaAcoustica_Final
             Scategory.Text = "";
             price.Text = "";
             quantity.Text = "";
+            storageData.ClearSelection();
         }
 
         private void add_Click(object sender, EventArgs e)
@@ -122,14 +123,22 @@ namespace LaAcoustica_Final
         {
             try
             {
-                string query = "Delete From Storage Where ProductName = @pr";
-                OleDbCommand cmd = new OleDbCommand(query, myConn);
-                cmd.Parameters.AddWithValue("@pr", storageData.CurrentRow.Cells[0].Value);
-                myConn.Open();
-                cmd.ExecuteNonQuery();
-                myConn.Close();
-                load();
+                if (brand.Text != "")
+                {
+                    string query = "Delete From Storage Where ProductName = @pr";
+                    OleDbCommand cmd = new OleDbCommand(query, myConn);
+                    cmd.Parameters.AddWithValue("@pr", storageData.CurrentRow.Cells[0].Value);
+                    myConn.Open();
+                    cmd.ExecuteNonQuery();
+                    myConn.Close();
+                    load();
+                }
+                else
+                {
+                    MessageBox.Show("No Product is Selected!", "Deletion Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 clear_Click(sender, e);
+
             }
             catch { MessageBox.Show("An Error Occurred!"); } 
         }
@@ -191,6 +200,8 @@ namespace LaAcoustica_Final
             storageData.DataSource = ds.Tables["Storage"];
             storageData.Columns["Price"].DefaultCellStyle.Format = "C";
             myConn.Close();
+
+            storageData.ClearSelection(); // Clear selection after data is loaded
         }
         private void FilterData(object sender, EventArgs e) { Filter(); }
         private void refresh_Click(object sender, EventArgs e)

@@ -68,6 +68,7 @@
             this.employeeData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.employeeData.Location = new System.Drawing.Point(456, 80);
             this.employeeData.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.employeeData.MultiSelect = false;
             this.employeeData.Name = "employeeData";
             this.employeeData.ReadOnly = true;
             this.employeeData.RowHeadersWidth = 51;

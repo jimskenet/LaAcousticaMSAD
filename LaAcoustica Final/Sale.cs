@@ -76,7 +76,7 @@ namespace LaAcoustica_Final
         }
         private void loadMonthly()
         {
-            da = new OleDbDataAdapter("SELECT Monthly.year_id, months.Month, Monthly.TotalSales\r\nFROM months INNER JOIN Monthly ON months.month_id = Monthly.month_id\r\nORDER BY Monthly.year_id DESC;\r\n", myConn);
+            da = new OleDbDataAdapter("SELECT Monthly.year_id, months.Month, Monthly.TotalSales\r\nFROM months INNER JOIN Monthly ON months.month_id = Monthly.month_id\r\nORDER BY Monthly.year_id DESC , Monthly.month_id;\r\n", myConn);
             ds = new DataSet();
             myConn.Open();
             da.Fill(ds, "Monthly");
@@ -145,7 +145,7 @@ namespace LaAcoustica_Final
                 if (filter == "Yearly")
                     query = "Select * FROM Yearly";
                 else
-                    query = "SELECT Monthly.year_id, months.Month, Monthly.TotalSales\r\nFROM months INNER JOIN Monthly ON months.month_id = Monthly.month_id\r\nORDER BY Monthly.year_id DESC;\r\n";
+                    query = "SELECT Monthly.year_id, months.Month, Monthly.TotalSales\r\nFROM months INNER JOIN Monthly ON months.month_id = Monthly.month_id\r\nORDER BY Monthly.year_id DESC , Monthly.month_id;";
                 da = new OleDbDataAdapter(query, myConn);
                 ds = new DataSet();
                 myConn.Open();

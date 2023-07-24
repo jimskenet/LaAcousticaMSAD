@@ -144,6 +144,7 @@ namespace LaAcoustica_Final
                 double price = Convert.ToDouble(row.Cells[4].Value);
                 quanI = Convert.ToInt32(row.Cells[5].Value);
                 priceN.Text = price.ToString("C");
+                stockQ.Text = row.Cells["Quantity"].Value.ToString() + "  items left";
                 quantity = Convert.ToInt32(row.Cells["Quantity"].Value);
                 Q.Visible = true;
             }
@@ -179,11 +180,14 @@ namespace LaAcoustica_Final
             {
                 if (Q.Value == 0)
                 {
-                    MessageBox.Show("No Quantity of Products Added");
+                    MessageBox.Show("Quantity of order must be more than 0", "Purchasing Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else if (quantity <= 0)
                 {
-                    MessageBox.Show("No Stock Available", "Purchasing Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (prodN.Text == "")
+                        MessageBox.Show("No product selected", "Purchasing Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    else
+                        MessageBox.Show("No Stock Available", "Purchasing Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else if(Q.Value > quantity)
                 {
@@ -228,7 +232,7 @@ namespace LaAcoustica_Final
                 totalPrice = totalPrice + (price * quantity);
                 qty += quantity;
             }
-            totPrice.Text = totalPrice.ToString("C");
+            totPrice.Text = string.Format("₱{0:N}", totalPrice);
             items.Text = qty.ToString();
         }
         //DELETES FROM BILL DATABASE AND RETURNS DELETED PRODUCTS BACK TO INVENTORY
@@ -250,7 +254,7 @@ namespace LaAcoustica_Final
                 }
                 else
                 {
-                    MessageBox.Show("NO Products to be Deleted!");
+                    MessageBox.Show("No Products to be Deleted!", "Cart Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
@@ -270,7 +274,7 @@ namespace LaAcoustica_Final
                 command.ExecuteNonQuery();
                 loadBill();
                 decimal totalPrice = 0;
-                totPrice.Text = totalPrice.ToString("C");
+                totPrice.Text = string.Format("₱{0:N}", totalPrice);
                 items.Text = "0";
                 prodN.Text = "";
                 priceN.Text = "";
@@ -391,32 +395,39 @@ namespace LaAcoustica_Final
         {
             try
             {
-                invoiceNumber = Guid.NewGuid().ToString();
-                string dateTime = DateTime.Now.ToShortDateString();
-                string query = "INSERT INTO Daily (InvoiceNumber, Sales, [Date],month_id,year_id) VALUES (@in,@sale,@dt,@mnth,@yr)";
-                cmd = new OleDbCommand(query, myConn);
-                cmd.Parameters.AddWithValue("@in", invoiceNumber);
-                cmd.Parameters.AddWithValue("@sale", totPrice.Text);
-                cmd.Parameters.AddWithValue("@dt", dateTime);
-                cmd.Parameters.AddWithValue("@mnth", DateTime.Now.Month);
-                cmd.Parameters.AddWithValue("@yr", DateTime.Now.Year);
-                myConn.Open();
-                cmd.ExecuteNonQuery();
-                myConn.Close();
-                //For Bill Sums
-                string sql = "SELECT SUM(Price) FROM Bill";
-                myConn.Open();
-                OleDbCommand cmd2 = new OleDbCommand(sql, myConn);
-                object result = cmd2.ExecuteScalar();
-                decimal tomonthly = Convert.ToDecimal(result);
-                myConn.Close();
-                UpdateSales(tomonthly);
-                //For Reciept
-                PrintProperties();
-                MessageBox.Show("Sale Purchased!");
-                resetBill_Click(sender,e);
+                string numericString = totPrice.Text.Replace("₱", "").Replace(",", "");
+                if (numericString != "0.00")
+                {
+                    string total = totalPrice.ToString("C");
+                    invoiceNumber = Guid.NewGuid().ToString();
+                    string dateTime = DateTime.Now.ToShortDateString();
+                    string query = "INSERT INTO Daily (InvoiceNumber, Sales, [Date],month_id,year_id) VALUES (@in,@sale,@dt,@mnth,@yr)";
+                    cmd = new OleDbCommand(query, myConn);
+                    cmd.Parameters.AddWithValue("@in", invoiceNumber);
+                    cmd.Parameters.AddWithValue("@sale", total);
+                    cmd.Parameters.AddWithValue("@dt", dateTime);
+                    cmd.Parameters.AddWithValue("@mnth", DateTime.Now.Month);
+                    cmd.Parameters.AddWithValue("@yr", DateTime.Now.Year);
+                    myConn.Open();
+                    cmd.ExecuteNonQuery();
+                    myConn.Close();
+                    //For Bill Sums
+                    string sql = "SELECT SUM(Price) FROM Bill";
+                    myConn.Open();
+                    OleDbCommand cmd2 = new OleDbCommand(sql, myConn);
+                    object result = cmd2.ExecuteScalar();
+                    decimal tomonthly = Convert.ToDecimal(result);
+                    myConn.Close();
+                    UpdateSales(tomonthly);
+                    //For Reciept
+                    PrintProperties();
+                    MessageBox.Show("Sale Purchased!");
+                    resetBill_Click(sender, e);
+                }
+                else { MessageBox.Show("Cart is empty!", "Purchasing Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             }
-            catch(Exception ex) { MessageBox.Show("No Items in Bill! "+ex); }
+            catch (Exception ex) { MessageBox.Show("An error has occured. You may contact your developer or try again. "+ex.Message, "Purchasing Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            finally { myConn.Close(); }
         }
         
         private void UpdateSales(decimal monthly)
