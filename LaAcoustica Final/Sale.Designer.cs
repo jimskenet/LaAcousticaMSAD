@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Sale));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -190,7 +190,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Century Gothic", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label7.Location = new System.Drawing.Point(183, 661);
+            this.label7.Location = new System.Drawing.Point(12, 9);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(213, 39);
             this.label7.TabIndex = 26;
@@ -235,18 +235,18 @@
             // 
             // SalesReport
             // 
-            chartArea1.Name = "ChartArea1";
-            this.SalesReport.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.SalesReport.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.SalesReport.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.SalesReport.Legends.Add(legend2);
             this.SalesReport.Location = new System.Drawing.Point(592, 474);
-            this.SalesReport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SalesReport.Margin = new System.Windows.Forms.Padding(4);
             this.SalesReport.Name = "SalesReport";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Legend = "Legend1";
-            series1.Name = "Sales";
-            this.SalesReport.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Legend = "Legend1";
+            series2.Name = "Sales";
+            this.SalesReport.Series.Add(series2);
             this.SalesReport.Size = new System.Drawing.Size(483, 293);
             this.SalesReport.TabIndex = 30;
             this.SalesReport.Text = "SalesChart";
@@ -269,7 +269,7 @@
             "Monthly",
             "Yearly"});
             this.filter_report.Location = new System.Drawing.Point(1103, 503);
-            this.filter_report.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.filter_report.Margin = new System.Windows.Forms.Padding(4);
             this.filter_report.Name = "filter_report";
             this.filter_report.Size = new System.Drawing.Size(131, 24);
             this.filter_report.TabIndex = 32;
@@ -290,7 +290,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.DimGray;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(20)))), ((int)(((byte)(18)))));
             this.ClientSize = new System.Drawing.Size(1264, 785);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.filter_report);

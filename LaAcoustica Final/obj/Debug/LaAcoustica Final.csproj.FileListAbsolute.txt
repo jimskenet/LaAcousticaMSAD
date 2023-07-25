@@ -420,3 +420,7 @@ C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\LaAcoustica Final\LaAcoustic
 C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\LaAcoustica Final\LaAcoustica Final\obj\Debug\LaAcoustica_Final.EditEmployee.resources
 C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\LaAcoustica Final\LaAcoustica Final\obj\Debug\LaAcoustica_Final.AddInventory.resources
 C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\LaAcoustica Final\LaAcoustica Final\obj\Debug\LaAcoustica_Final.EditInventory.resources
+C:\Users\Jofrel Jan Quijano\LA\LaAcoustica Final\obj\Debug\LaAcoustica_Final.AddEmployee.resources
+C:\Users\Jofrel Jan Quijano\LA\LaAcoustica Final\obj\Debug\LaAcoustica_Final.AddInventory.resources
+C:\Users\Jofrel Jan Quijano\LA\LaAcoustica Final\obj\Debug\LaAcoustica_Final.EditEmployee.resources
+C:\Users\Jofrel Jan Quijano\LA\LaAcoustica Final\obj\Debug\LaAcoustica_Final.EditInventory.resources

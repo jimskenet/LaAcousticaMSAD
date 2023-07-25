@@ -114,7 +114,7 @@
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.Firebrick;
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(20)))), ((int)(((byte)(18)))));
             this.panel3.Controls.Add(this.min);
             this.panel3.Controls.Add(this.exit);
             this.panel3.Controls.Add(this.pictureBox1);
@@ -425,19 +425,6 @@
             this.panel2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Menu_MouseDown);
             this.panel2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Menu_MouseMove);
             this.panel2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Menu_MouseUp);
-            // 
-            // roundPicture1
-            // 
-            this.roundPicture1.Location = new System.Drawing.Point(59, 37);
-            this.roundPicture1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.roundPicture1.Name = "roundPicture1";
-            this.roundPicture1.Size = new System.Drawing.Size(176, 169);
-            this.roundPicture1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.roundPicture1.TabIndex = 0;
-            this.roundPicture1.TabStop = false;
-            this.roundPicture1.Click += new System.EventHandler(this.profile_Click);
-            this.roundPicture1.MouseEnter += new System.EventHandler(this.enter);
-            this.roundPicture1.MouseLeave += new System.EventHandler(this.leave);
             // 
             // panelChildform
             // 

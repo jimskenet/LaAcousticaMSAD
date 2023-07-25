@@ -169,7 +169,6 @@ namespace LaAcoustica_Final
                     MessageBox.Show("Main Admin Account is Restricted!", "Deletion Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
                     MessageBox.Show("Logged In Account can't be Deleted", "Deletion Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                clear.PerformClick();
             }
         }
 
