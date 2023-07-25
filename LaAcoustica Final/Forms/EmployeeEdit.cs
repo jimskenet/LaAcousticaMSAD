@@ -22,6 +22,8 @@ namespace LaAcoustica_Final
         bool mouseDown;
         Point lastLocation;
         Menu menu = (Menu)Application.OpenForms["Menu"];
+        internal static int indexPass, acctype;
+        internal static string accnumber,lname,fname,mname,username, password, email;
         //Moving the Form around
         private void EmployeeEdit_MouseDown(object sender, MouseEventArgs e)
         {
@@ -58,7 +60,7 @@ namespace LaAcoustica_Final
             Worker_load();
         }
 
-        private void filter_table()
+        protected internal void filter_table()
         {
             if (filter_combo.SelectedIndex == 0)
                 Worker_load();
@@ -104,53 +106,11 @@ namespace LaAcoustica_Final
 
         private void add_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (accnum.Text == "" || ls.Text == "" || fs.Text == "" || mi.Text == "" || user.Text == "" || pass.Text == "" || at.Text == "" || em.Text == "")
-                {
-                    MessageBox.Show("Invalid Input!");
-                    clear_Click(sender, e);
-                }
-                else if(at.Text == "Customer")
-                {
-                    MessageBox.Show("Customers should sign up using their assigned registration form!");
-                    clear_Click(sender, e);
-                }
-                else
-                {
-                    string query = "INSERT INTO Accounts (ID, [Username], [Password], AccType) VALUES (@id,@u,@p,@accT)";
-                    cmd = new OleDbCommand(query, myConn);
-                    myConn.Open();
-                    cmd.Parameters.AddWithValue("@id", accnum.Text);
-                    cmd.Parameters.AddWithValue("@u", user.Text);
-                    cmd.Parameters.AddWithValue("@p", pass.Text);
-                    cmd.Parameters.AddWithValue("@accT", "Worker");
-                    cmd.ExecuteNonQuery();
-                    myConn.Close();
-
-                    query = "INSERT INTO Worker (ID, [LastName], [FirstName], MI, [Position], [Email]) VALUES (@id,@last,@first,@middle,@pos,@em)";
-                    cmd = new OleDbCommand(query, myConn);
-                    myConn.Open();
-                    cmd.Parameters.AddWithValue("@id", accnum.Text);
-                    cmd.Parameters.AddWithValue("@last", ls.Text);
-                    cmd.Parameters.AddWithValue("@first", fs.Text);
-                    cmd.Parameters.AddWithValue("@middle", mi.Text);
-                    cmd.Parameters.AddWithValue("@pos", at.Text);
-                    cmd.Parameters.AddWithValue("@em", em.Text);
-                    cmd.ExecuteNonQuery();
-                    myConn.Close();
-
-                    filter_table();
-                    MessageBox.Show("Employee Added!");
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Error due to Duplicate ");
-            }
+            AddEmployee add = new AddEmployee();
+            add.Show();
         }
 
-        private void clear_Click(object sender, EventArgs e)
+        protected internal void clear_Click(object sender, EventArgs e)
         {
             accnum.Text = "";
             ls.Text = "";
@@ -217,44 +177,18 @@ namespace LaAcoustica_Final
         {
             try
             {
-                myConn.Open();
-                OleDbCommand cmd = new OleDbCommand("UPDATE Accounts SET ID = @an, [Username] = @user, [Password] = @pass, AccType = @ac WHERE ID = @an", myConn);
-                cmd.Parameters.AddWithValue("@an", accnum.Text);
-                cmd.Parameters.AddWithValue("@user", user.Text);
-                cmd.Parameters.AddWithValue("@pass", pass.Text);
-                cmd.Parameters.AddWithValue("@ac", at.Text);
-                cmd.ExecuteNonQuery();
-                myConn.Close();
-
-                if (filter_combo.SelectedIndex == 0)
-                {
-                    myConn.Open();
-                    cmd = new OleDbCommand("UPDATE Worker SET ID = @an, [LastName] = @ls, [FirstName] = @fs, MI = @mi, [Position] = @pos, [Email] = @em  WHERE ID = @an", myConn);
-                    cmd.Parameters.AddWithValue("@an", accnum.Text);
-                    cmd.Parameters.AddWithValue("@ls", ls.Text);
-                    cmd.Parameters.AddWithValue("@fs", fs.Text);
-                    cmd.Parameters.AddWithValue("@mi", mi.Text);
-                    cmd.Parameters.AddWithValue("@pos", at.Text);
-                    cmd.Parameters.AddWithValue("@em", em.Text);
-                    cmd.ExecuteNonQuery();
-                    myConn.Close();
-                }
+                if(at.Text == "Main")
+                    MessageBox.Show("Main Admin Account is Restricted!", "Deletion Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else if (accnum.Text == "")
+                    MessageBox.Show("No account is selected", "Account Edit Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
                 {
-                    myConn.Open();
-                    cmd = new OleDbCommand("UPDATE Customer SET ID = @an, [LastName] = @ls, [FirstName] = @fs, MI = @mi, [Email] = @em  WHERE ID = @an", myConn);
-                    cmd.Parameters.AddWithValue("@an", accnum.Text);
-                    cmd.Parameters.AddWithValue("@ls", ls.Text);
-                    cmd.Parameters.AddWithValue("@fs", fs.Text);
-                    cmd.Parameters.AddWithValue("@mi", mi.Text);
-                    cmd.Parameters.AddWithValue("@em", em.Text);
-                    cmd.ExecuteNonQuery();
-                    myConn.Close();
+                    EditEmployee edit = new EditEmployee();
+                    edit.Show();
                 }
-
-                filter_table();
+                clear_Click(sender, e);
             }
-            catch { MessageBox.Show("An Error Occured!"); }
+            catch(Exception ex) { MessageBox.Show("An Error Occured! "+ex); }
         }
 
         private void SelectRow(object sender, DataGridViewCellEventArgs e)
@@ -266,13 +200,13 @@ namespace LaAcoustica_Final
                 DataGridViewRow row = employeeData.Rows[index];
                 if (e.RowIndex == -1) return;
 
-                accnum.Text = row.Cells[0].Value.ToString();
-                ls.Text = row.Cells["LastName"].Value.ToString();
-                fs.Text = row.Cells["FirstName"].Value.ToString();
-                mi.Text = row.Cells["MI"].Value.ToString();
-                user.Text = row.Cells["Accounts.Username"].Value.ToString();
-                pass.Text = row.Cells["Accounts.Password"].Value.ToString();
-                em.Text = row.Cells["Email"].Value.ToString();
+                accnumber= accnum.Text = row.Cells[0].Value.ToString();
+                lname= ls.Text = row.Cells["LastName"].Value.ToString();
+                fname= fs.Text = row.Cells["FirstName"].Value.ToString();
+                mname= mi.Text = row.Cells["MI"].Value.ToString();
+                username= user.Text = row.Cells["Accounts.Username"].Value.ToString();
+                password= pass.Text = row.Cells["Accounts.Password"].Value.ToString();
+                email = em.Text = row.Cells["Email"].Value.ToString();
                 if (accnum.Text == "A0")
                 {
                     accnum.Text = "";
@@ -287,15 +221,12 @@ namespace LaAcoustica_Final
 
                 if (Login.idNum == row.Cells[0].Value.ToString()) { deleteFlag = true; }
                 else { deleteFlag = false; }
-                if (filter_combo.SelectedIndex==0)
+                if (filter_combo.SelectedIndex == 0)
                 {
-                    at.SelectedIndex = at.Items.IndexOf(row.Cells["Worker.Position"].Value.ToString());
-                    if (at.SelectedIndex == 3)
-                        at.Enabled = true;
-                    else
-                        at.Enabled = false;
+                    acctype = at.SelectedIndex = at.Items.IndexOf(row.Cells["Worker.Position"].Value.ToString());
                 }
                 else { at.SelectedIndex = 1; at.Enabled = false; }
+                indexPass = filter_combo.SelectedIndex;
             }
             catch{}
         }

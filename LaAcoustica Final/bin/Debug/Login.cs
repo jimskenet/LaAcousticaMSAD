@@ -113,7 +113,7 @@ namespace LaAcoustica_Final
 
                 else
                 {
-                    MessageBox.Show("Invalid Account!");
+                    MessageBox.Show("Invalid Account", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     pass.Text = "";
                 }
             }

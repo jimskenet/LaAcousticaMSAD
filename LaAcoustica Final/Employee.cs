@@ -75,6 +75,7 @@ namespace LaAcoustica_Final
                 cashier.Location = new Point(100, 2);
                 add.Text = "Add to Cart"; delete.Text = "Remove from Cart"; printR.Text = "Purchase Item/s";
                 resetBill.Text = "Clear Cart";
+                edit.Text = "Update Order"; edit.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Regular);
             }
             else { Acc.Text = "Employee User"; }
         }
@@ -575,7 +576,6 @@ namespace LaAcoustica_Final
             e.Graphics.DrawString("----------------------------------------------------------------------------------------", font, brush, e.PageBounds.Width / 2, y + 30, format);
             e.Graphics.DrawString("THANK YOU FOR YOUR PURCHASE!", new System.Drawing.Font("Merchant Copy", 11, FontStyle.Bold), brush, e.PageBounds.Width / 2, y + 60, format);
         }
-
         private void storageData_SelectionChanged(object sender, EventArgs e)
         {
             if (storageData.SelectedRows.Count > 0)

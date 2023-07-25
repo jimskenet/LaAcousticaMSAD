@@ -1,4 +1,5 @@
-﻿using System;
+﻿using iTextSharp.text.io;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,6 +21,8 @@ namespace LaAcoustica_Final
         bool mouseDown;
         Point lastLocation;
         Menu menu = (Menu)Application.OpenForms["Menu"];
+        int rowIndex;
+        internal static string brnd, product, cat, subcat, quanti, cost;
         //Moving the Form around
         private void Inventory_MouseDown(object sender, MouseEventArgs e)
         {
@@ -45,7 +48,7 @@ namespace LaAcoustica_Final
             InitializeComponent();
             load();
         }
-        private void load()
+        internal void load()
         {
             OleDbDataAdapter da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity FROM Storage", myConn);
             DataSet ds = new DataSet();
@@ -66,6 +69,7 @@ namespace LaAcoustica_Final
                     myConn.Close();
                 }
             }
+            storageData.ClearSelection();
         }
         //ADDS NUMBERS BEFORE THE COLUMNS
         private void row(object sender, DataGridViewRowPostPaintEventArgs e)
@@ -77,7 +81,7 @@ namespace LaAcoustica_Final
             centerFormat.LineAlignment = StringAlignment.Center;
             e.Graphics.DrawString(rowNumber, this.Font, SystemBrushes.ControlText, rowBounds, centerFormat);
         }
-        private void clear_Click(object sender, EventArgs e)
+        internal void clear_Click(object sender, EventArgs e)
         {
             prod.Text = "";
             brand.Text = "";
@@ -92,32 +96,11 @@ namespace LaAcoustica_Final
         {
             try
             {
-                string query = "INSERT INTO Storage (ProductName, BrandName, Category, SubCategory, Price, Quantity) VALUES (@prod,@brand,@category,@subcategory,@price,@quantity)";
-                OleDbCommand cmd = new OleDbCommand(query, myConn);
-                if (prod.Text == "" || brand.Text == "" || categoryT.Text == "" || Scategory.Text == "" || price.Text == "" || quantity.Text == "")
-                {
-                    MessageBox.Show("Invalid Input!");
-                    clear_Click(sender, e);
-                }
-                else
-                {
-                    myConn.Open();
-                    cmd.Parameters.AddWithValue("@prod", prod.Text);
-                    cmd.Parameters.AddWithValue("@brand", brand.Text);
-                    cmd.Parameters.AddWithValue("@category", categoryT.Text);
-                    cmd.Parameters.AddWithValue("@subcategory", Scategory.Text);
-                    cmd.Parameters.AddWithValue("@price", price.Text.ToString());
-                    cmd.Parameters.AddWithValue("@quantity", Convert.ToInt32(quantity.Text));
-                    cmd.ExecuteNonQuery();
-                    myConn.Close();
-                    MessageBox.Show("Data inserted");
-                }
+                AddInventory add = new AddInventory();
+                add.Show();
             }
             catch
-            {
-                MessageBox.Show("Product Already Exists!");
-            }
-            finally { load(); }
+            { }
         }
         private void delete_Click(object sender, EventArgs e)
         {
@@ -146,30 +129,26 @@ namespace LaAcoustica_Final
         {
             int index;
             if (e.RowIndex == -1) return;
-            index = e.RowIndex;
+            rowIndex = index = e.RowIndex;
             DataGridViewRow row = storageData.Rows[index];
-            prod.Text = row.Cells[0].Value.ToString();
-            brand.Text = row.Cells[1].Value.ToString();
-            categoryT.Text = row.Cells[2].Value.ToString();
-            Scategory.Text = row.Cells[3].Value.ToString();
-            price.Text = row.Cells[4].Value.ToString();
-            quantity.Text = row.Cells[5].Value.ToString();
+            product = prod.Text = row.Cells[0].Value.ToString();
+            brnd = brand.Text = row.Cells[1].Value.ToString();
+            cat = categoryT.Text = row.Cells[2].Value.ToString();
+            subcat = Scategory.Text = row.Cells[3].Value.ToString();
+            cost = price.Text = string.Format("₱{0:N}", row.Cells[4].Value.ToString());
+            quanti = quantity.Text = row.Cells[5].Value.ToString();
         }
         private void edit_Click(object sender, EventArgs e)
         {
             try
             {
-                myConn.Open();
-                OleDbCommand cmd = new OleDbCommand("UPDATE Storage SET ProductName = @prod, BrandName = @brand, Category = @category, SubCategory = @subcategory, Price = @price, Quantity = @quantity  WHERE ProductName = @prod", myConn);
-                cmd.Parameters.AddWithValue("@prod", prod.Text);
-                cmd.Parameters.AddWithValue("@brand", brand.Text);
-                cmd.Parameters.AddWithValue("@category", categoryT.Text);
-                cmd.Parameters.AddWithValue("@subcategory", Scategory.Text);
-                cmd.Parameters.AddWithValue("@price", price.Text.ToString());
-                cmd.Parameters.AddWithValue("@quantity", Convert.ToInt32(quantity.Text));
-                cmd.ExecuteNonQuery();
-                myConn.Close();
-                load();
+                if (prod.Text == "")
+                    MessageBox.Show("No Product is Selected!", "Edit Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else
+                {
+                    EditInventory edit = new EditInventory();
+                    edit.Show();
+                }
             }
             catch { MessageBox.Show("An Error Occurred!"); }   
         }
@@ -210,6 +189,17 @@ namespace LaAcoustica_Final
             category.SelectedIndex = -1;
             subcategory.SelectedIndex = -1;
             load();
+        }
+        internal void editted()
+        {
+            if (rowIndex >= 0 && rowIndex < storageData.Rows.Count)
+            {
+                // Get the row from the DataGridViewRowCollection
+                DataGridViewRow row = storageData.Rows[rowIndex];
+
+                // Select the row
+                row.Selected = true;
+            }
         }
     }
 }
