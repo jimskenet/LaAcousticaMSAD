@@ -1,5 +1,6 @@
 ﻿using iTextSharp.text.io;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -89,6 +90,10 @@ namespace LaAcoustica_Final
             Scategory.Text = "";
             price.Text = "";
             quantity.Text = "";
+            brand_txt.Text = "";
+            cat_txt.Text = "";
+            subcat_txt.Text = "";
+            id_txt.Text = "";
             storageData.ClearSelection();
         }
 
@@ -125,19 +130,36 @@ namespace LaAcoustica_Final
             }
             catch { MessageBox.Show("An Error Occurred!"); } 
         }
+
+        private void cat_txt_TextChanged(object sender, EventArgs e)
+        {
+            FilterUnion();
+        }
+
+        private void subcat_txt_TextChanged(object sender, EventArgs e)
+        {
+           FilterUnion();
+        }
+
         private void SelectRow(object sender, DataGridViewCellEventArgs e)
         {
             int index;
             if (e.RowIndex == -1) return;
             rowIndex = index = e.RowIndex;
             DataGridViewRow row = storageData.Rows[index];
-            product = prod.Text = row.Cells[0].Value.ToString();
-            brnd = brand.Text = row.Cells[1].Value.ToString();
-            cat = categoryT.Text = row.Cells[2].Value.ToString();
-            subcat = Scategory.Text = row.Cells[3].Value.ToString();
-            cost = price.Text = string.Format("₱{0:N}", row.Cells[4].Value.ToString());
-            quanti = quantity.Text = row.Cells[5].Value.ToString();
+            product = prod.Text = row.Cells["ProductName"].Value.ToString();
+            brnd = brand.Text = row.Cells["BrandName"].Value.ToString();
+            cat = categoryT.Text = row.Cells["Category"].Value.ToString();
+            subcat = Scategory.Text = row.Cells["SubCategory"].Value.ToString();
+            cost = price.Text = string.Format("₱{0:N}", row.Cells["Price"].Value.ToString());
+            quanti = quantity.Text = row.Cells["Quantity"].Value.ToString();
         }
+
+        private void brand_txt_TextChanged(object sender, EventArgs e)
+        {
+            FilterUnion();
+        }
+
         private void edit_Click(object sender, EventArgs e)
         {
             try
@@ -152,44 +174,41 @@ namespace LaAcoustica_Final
             }
             catch { MessageBox.Show("An Error Occurred!"); }   
         }
-        private void Filter()
-        {
-            if (brandN.SelectedIndex != -1 && category.SelectedIndex == -1 && subcategory.SelectedIndex == -1) { da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity FROM Storage WHERE BrandName = '" + brandN.SelectedItem.ToString() + "'", myConn); }
-            else if (brandN.SelectedIndex == -1 && category.SelectedIndex != -1 && subcategory.SelectedIndex == -1) { da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity FROM Storage WHERE Category = '" + category.SelectedItem.ToString() + "'", myConn); }
-            else if (brandN.SelectedIndex == -1 && category.SelectedIndex == -1 && subcategory.SelectedIndex != -1) { da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity FROM Storage WHERE SubCategory = '" + subcategory.SelectedItem.ToString() + "'", myConn); }
-            else if (brandN.SelectedIndex != -1 && category.SelectedIndex != -1 && subcategory.SelectedIndex == -1)
-            {
-                da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity FROM Storage WHERE BrandName = '" + brandN.SelectedItem.ToString() + "' and Category = '" + category.SelectedItem.ToString() + "'", myConn);
-            }
-            else if (brandN.SelectedIndex != -1 && category.SelectedIndex == -1 && subcategory.SelectedIndex != -1)
-            {
-                da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity FROM Storage WHERE BrandName = '" + brandN.SelectedItem.ToString() + "' and SubCategory = '" + subcategory.SelectedItem.ToString() + "'", myConn);
-            }
-            else if (brandN.SelectedIndex == -1 && category.SelectedIndex != -1 && subcategory.SelectedIndex != -1)
-            {
-                da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity FROM Storage WHERE Category = '" + category.SelectedItem.ToString() + "' and SubCategory = '" + subcategory.SelectedItem.ToString() + "'", myConn);
-            }
-            else
-            {
-                da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity FROM Storage WHERE BrandName = '" + brandN.SelectedItem.ToString() + "' and Category = '" + category.SelectedItem.ToString() + "' and SubCategory = '" + subcategory.SelectedItem.ToString() + "'", myConn);
-            }
-            ds = new DataSet();
-            myConn.Open();
-            da.Fill(ds, "Storage");
-            storageData.DataSource = ds.Tables["Storage"];
-            storageData.Columns["Price"].DefaultCellStyle.Format = "C";
-            myConn.Close();
 
-            storageData.ClearSelection(); // Clear selection after data is loaded
-        }
-        private void FilterData(object sender, EventArgs e) { Filter(); }
         private void refresh_Click(object sender, EventArgs e)
         {
-            brandN.SelectedIndex = -1;
-            category.SelectedIndex = -1;
-            subcategory.SelectedIndex = -1;
+            brand_txt.Text = "";
+            cat_txt.Text = "";
+            subcat_txt.Text = "";
+            id_txt.Text = "";
             load();
         }
+
+        private void id_txt_TextChanged(object sender, EventArgs e)
+        {
+            brand_txt.Text = "";
+            cat_txt.Text = "";
+            subcat_txt.Text = "";
+            string query = "SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity FROM Storage WHERE ID = @in";
+            using (OleDbConnection connection = new OleDbConnection(StaticClass.connString))
+            {
+                connection.Open();
+
+                using (OleDbCommand cmd = new OleDbCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@in", id_txt.Text);
+
+                    using (da = new OleDbDataAdapter(cmd))
+                    {
+                        ds = new DataSet();
+                        da.Fill(ds, "Storage");
+                        storageData.DataSource = ds.Tables["Storage"]; ;
+                    }
+                }
+            }
+            storageData.ClearSelection();
+        }
+
         internal void editted()
         {
             if (rowIndex >= 0 && rowIndex < storageData.Rows.Count)
@@ -200,6 +219,170 @@ namespace LaAcoustica_Final
                 // Select the row
                 row.Selected = true;
             }
+        }
+
+        private void FilterBrand(string brand)
+        {
+            string query = "SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity FROM Storage WHERE BrandName LIKE '%' + @in + '%'";
+            using (OleDbConnection connection = new OleDbConnection(StaticClass.connString))
+            {
+                connection.Open();
+
+                using (OleDbCommand cmd = new OleDbCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@in", brand);
+
+                    using (da = new OleDbDataAdapter(cmd))
+                    {
+                        ds = new DataSet();
+                        da.Fill(ds, "Storage");
+                        storageData.DataSource = ds.Tables["Storage"]; ;
+                    }
+                }
+            }
+        }
+        private void FilterCategory(string category)
+        {
+            string query = "SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity FROM Storage WHERE Category LIKE '%' + @in + '%'";
+            using (OleDbConnection connection = new OleDbConnection(StaticClass.connString))
+            {
+                connection.Open();
+
+                using (OleDbCommand cmd = new OleDbCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@in", category);
+
+                    using (da = new OleDbDataAdapter(cmd))
+                    {
+                        ds = new DataSet();
+                        da.Fill(ds, "Storage");
+                        storageData.DataSource = ds.Tables["Storage"]; ;
+                    }
+                }
+            }
+        }
+
+        private void FilterSubCat(string subcat)
+        {
+            string query = "SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity FROM Storage WHERE SubCategory LIKE '%' + @in + '%'";
+            using (OleDbConnection connection = new OleDbConnection(StaticClass.connString))
+            {
+                connection.Open();
+
+                using (OleDbCommand cmd = new OleDbCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@in", subcat_txt.Text);
+
+                    using (da = new OleDbDataAdapter(cmd))
+                    {
+                        ds = new DataSet();
+                        da.Fill(ds, "Storage");
+                        storageData.DataSource = ds.Tables["Storage"]; ;
+                    }
+                }
+            }
+        }
+
+        private void FilterUnion()
+        {
+            string query;
+            id_txt.Text = "";
+            if (brand_txt.Text == "" && cat_txt.Text != "" && subcat_txt.Text != "")
+            {
+                query = "SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity FROM Storage WHERE SubCategory LIKE '%' + @sub + '%' AND Category LIKE '%' + @cat + '%'";
+                using (OleDbConnection connection = new OleDbConnection(StaticClass.connString))
+                {
+                    connection.Open();
+
+                    using (OleDbCommand cmd = new OleDbCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@sub", subcat_txt.Text);
+                        cmd.Parameters.AddWithValue("@cat", cat_txt.Text);
+
+                        using (da = new OleDbDataAdapter(cmd))
+                        {
+                            ds = new DataSet();
+                            da.Fill(ds, "Storage");
+                            storageData.DataSource = ds.Tables["Storage"]; ;
+                        }
+                    }
+                }
+            }
+
+            else if (brand_txt.Text != "" && cat_txt.Text != "" && subcat_txt.Text == "")
+            {
+                query = "SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity FROM Storage WHERE BrandName LIKE '%' + @sub + '%' AND Category LIKE '%' + @cat + '%'";
+                using (OleDbConnection connection = new OleDbConnection(StaticClass.connString))
+                {
+                    connection.Open();
+
+                    using (OleDbCommand cmd = new OleDbCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@sub", brand_txt.Text);
+                        cmd.Parameters.AddWithValue("@cat", cat_txt.Text);
+
+                        using (da = new OleDbDataAdapter(cmd))
+                        {
+                            ds = new DataSet();
+                            da.Fill(ds, "Storage");
+                            storageData.DataSource = ds.Tables["Storage"]; ;
+                        }
+                    }
+                }
+            }
+
+            else if (brand_txt.Text != "" && cat_txt.Text == "" && subcat_txt.Text != "")
+            {
+                query = "SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity FROM Storage WHERE BrandName LIKE '%' + @sub + '%' AND SubCategory LIKE '%' + @cat + '%'";
+                using (OleDbConnection connection = new OleDbConnection(StaticClass.connString))
+                {
+                    connection.Open();
+
+                    using (OleDbCommand cmd = new OleDbCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@sub", brand_txt.Text);
+                        cmd.Parameters.AddWithValue("@cat", subcat_txt.Text);
+
+                        using (da = new OleDbDataAdapter(cmd))
+                        {
+                            ds = new DataSet();
+                            da.Fill(ds, "Storage");
+                            storageData.DataSource = ds.Tables["Storage"]; ;
+                        }
+                    }
+                }
+            }
+            else if (brand_txt.Text != "" && cat_txt.Text != "" && subcat_txt.Text != "")
+            {
+                query = "SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity FROM Storage WHERE BrandName LIKE '%' + @sub + '%' AND SubCategory LIKE '%' + @cat + '%' AND Category LIKE '%' + @categ + '%'";
+                using (OleDbConnection connection = new OleDbConnection(StaticClass.connString))
+                {
+                    connection.Open();
+
+                    using (OleDbCommand cmd = new OleDbCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@sub", brand_txt.Text);
+                        cmd.Parameters.AddWithValue("@cat", subcat_txt.Text);
+                        cmd.Parameters.AddWithValue("@categ", cat_txt.Text);
+
+                        using (da = new OleDbDataAdapter(cmd))
+                        {
+                            ds = new DataSet();
+                            da.Fill(ds, "Storage");
+                            storageData.DataSource = ds.Tables["Storage"]; ;
+                        }
+                    }
+                }
+            }
+            else if (brand_txt.Text != "" && cat_txt.Text == "" && subcat_txt.Text == "")
+                FilterBrand(brand_txt.Text);
+            else if (brand_txt.Text == "" && cat_txt.Text != "" && subcat_txt.Text == "")
+                FilterCategory(cat_txt.Text);
+            else if (brand_txt.Text == "" && cat_txt.Text == "" && subcat_txt.Text != "")
+                FilterSubCat(subcat_txt.Text);
+            else if (brand_txt.Text == "" && cat_txt.Text == "" && subcat_txt.Text == "")
+                load();
+            storageData.ClearSelection();
         }
     }
 }

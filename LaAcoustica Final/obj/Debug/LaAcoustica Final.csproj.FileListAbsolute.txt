@@ -424,3 +424,8 @@ C:\Users\Jofrel Jan Quijano\LA\LaAcoustica Final\obj\Debug\LaAcoustica_Final.Add
 C:\Users\Jofrel Jan Quijano\LA\LaAcoustica Final\obj\Debug\LaAcoustica_Final.AddInventory.resources
 C:\Users\Jofrel Jan Quijano\LA\LaAcoustica Final\obj\Debug\LaAcoustica_Final.EditEmployee.resources
 C:\Users\Jofrel Jan Quijano\LA\LaAcoustica Final\obj\Debug\LaAcoustica_Final.EditInventory.resources
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\LaAcoustica Final\LaAcoustica Final\bin\Debug\LaAcoustica Final.exe.manifest
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\LaAcoustica Final\LaAcoustica Final\bin\Debug\LaAcoustica Final.application
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\LaAcoustica Final\LaAcoustica Final\obj\Debug\LaAcoustica Final.TrustInfo.xml
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\LaAcoustica Final\LaAcoustica Final\obj\Debug\LaAcoustica Final.exe.manifest
+C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\LaAcoustica Final\LaAcoustica Final\obj\Debug\LaAcoustica Final.application

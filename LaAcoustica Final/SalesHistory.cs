@@ -69,6 +69,7 @@ namespace LaAcoustica_Final
             DataTable dataTable = new DataTable();
             adapter.Fill(dataTable);
             dailySale.DataSource = dataTable;
+            dailySale.ClearSelection();
         }
 
         private void filter_Click(object sender, EventArgs e)
@@ -102,41 +103,11 @@ namespace LaAcoustica_Final
             loadDaily();
             reset();
         }
-        private void FilterInvoice()
-        {
-            string query = "SELECT * FROM Daily WHERE InvoiceNumber = @in";
-            string inVoice = invoice.Text.ToString();
-            myConn.Open();
-            cmd = new OleDbCommand(query, myConn);
-            cmd.Parameters.AddWithValue("@in", inVoice);
-            OleDbDataReader reader = cmd.ExecuteReader();
-            if (reader.Read())
-            {
-                panel1.Visible = true;
-                invoiceNum.Text = reader["InvoiceNumber"].ToString();
-                dateS.Text = reader["Date"].ToString();
-                saleS.Text = Convert.ToDecimal(reader["Sales"]).ToString("C");
-                MessageBox.Show("Invoice Number Found");
-            }
-            else { MessageBox.Show("Invoice Number not Found"); }
-            myConn.Close();
-        }
-
-
-        private void filterInv_Click(object sender, EventArgs e)
-        {
-            FilterInvoice();
-        }
-
-        private void ref2_Click(object sender, EventArgs e)
-        {
-            loadDaily();
-        }
 
         private void dailySale_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int indexRow = e.RowIndex;
-            if (e.RowIndex == -1) return;
+            if (e.RowIndex == -1 || e.RowIndex > dailySale.RowCount) return;
 
             DataGridViewRow row = dailySale.Rows[indexRow];
             invoiceNum.Text = row.Cells["InvoiceNumber"].Value.ToString();
@@ -147,6 +118,24 @@ namespace LaAcoustica_Final
 
         private void SalesHistory_Load(object sender, EventArgs e)
         {
+            dailySale.ClearSelection();
+        }
+
+        private void invoice_TextChanged(object sender, EventArgs e)
+        {
+            string query = "SELECT * FROM Daily WHERE InvoiceNumber LIKE '%' + @in + '%'";
+            myConn.Open();
+            cmd = new OleDbCommand(query, myConn);
+            cmd.Parameters.AddWithValue("@in", invoice.Text);
+            da = new OleDbDataAdapter(cmd);
+            ds = new DataSet();
+            da.Fill(ds, "Daily");
+            dailySale.DataSource = ds.Tables["Daily"];
+            dailySale.Columns["Sales"].DefaultCellStyle.Format = "C";
+
+            dailySale.Columns["month_id"].Visible = false;
+            dailySale.Columns["year_id"].Visible = false;
+            myConn.Close();
             dailySale.ClearSelection();
         }
     }

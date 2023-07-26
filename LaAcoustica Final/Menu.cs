@@ -60,7 +60,7 @@ namespace LaAcoustica_Final
         }
         private void logout_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            Close();
             Login lg = new Login();
             lg.Show();
         }

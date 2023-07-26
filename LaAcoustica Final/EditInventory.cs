@@ -33,23 +33,24 @@ namespace LaAcoustica_Final
         {
             try
             {
+                string numericString = price.Text.Replace("₱", "").Replace(",", "");
                 myConn.Open();
                 OleDbCommand cmd = new OleDbCommand("UPDATE Storage SET ProductName = @prod, BrandName = @brand, Category = @category, SubCategory = @subcategory, Price = @price, Quantity = @quantity  WHERE ProductName = @prod", myConn);
                 cmd.Parameters.AddWithValue("@prod", prod.Text);
                 cmd.Parameters.AddWithValue("@brand", brand.Text);
                 cmd.Parameters.AddWithValue("@category", categoryT.Text);
                 cmd.Parameters.AddWithValue("@subcategory", Scategory.Text);
-                cmd.Parameters.AddWithValue("@price", price.Text.ToString());
+                cmd.Parameters.AddWithValue("@price", numericString);
                 cmd.Parameters.AddWithValue("@quantity", Convert.ToInt32(quantity.Text));
                 cmd.ExecuteNonQuery();
                 myConn.Close();
                 storage.clear_Click(sender, e);
                 storage.load();
                 MessageBox.Show("Update is successful!");
-                storage.editted();
                 Close();
+                storage.editted();
             }
-            catch { MessageBox.Show("An Error Occurred!"); }
+            catch(Exception ex) { MessageBox.Show("An Error Occurred! "+ex); }
         }
 
         private void cButton1_Click(object sender, EventArgs e)

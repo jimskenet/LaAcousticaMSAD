@@ -156,7 +156,7 @@ namespace LaAcoustica_Final
                 filter_table();
                 clear_Click(sender, e);
 
-                if (at.SelectedItem.ToString() == "Employee")
+                if (at.Text == "Employee")
                     MessageBox.Show("Employee Removed!");
                 else
                     MessageBox.Show("Customer Removed!");

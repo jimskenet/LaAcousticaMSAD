@@ -1,23 +1,11 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
-using System.Diagnostics;
-using System.Diagnostics.Tracing;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Drawing.Text;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.ComponentModel.Com2Interop;
-using System.Windows.Media;
 
 
 namespace LaAcoustica_Final
@@ -92,7 +80,9 @@ namespace LaAcoustica_Final
         //logout
         private void logout_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            if (myConn.State != ConnectionState.Closed)
+                myConn.Close();
+            Close();
             Login lg = new Login();
             lg.Show();
             Reset();
@@ -351,12 +341,14 @@ namespace LaAcoustica_Final
                 catch { MessageBox.Show("Insufficient Stock!"); myConn.Close(); }
                 loadBill();
             }
-
+                
         }
         //FILTER METHODS
         private void Filter()
         {
-            if (brandN.SelectedIndex != -1 && category.SelectedIndex == -1 && subcategory.SelectedIndex == -1) { da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity,ImageUrl FROM Storage WHERE BrandName = '" + brandN.SelectedItem.ToString() + "'", myConn); }
+            BeginInvoke((Action)(() => //Makes the dgv load first then begins to execute ClearSelection()
+            {
+                if (brandN.SelectedIndex != -1 && category.SelectedIndex == -1 && subcategory.SelectedIndex == -1) { da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity,ImageUrl FROM Storage WHERE BrandName = '" + brandN.SelectedItem.ToString() + "'", myConn); }
             else if (brandN.SelectedIndex == -1 && category.SelectedIndex != -1 && subcategory.SelectedIndex == -1) { da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity,ImageUrl FROM Storage WHERE Category = '" + category.SelectedItem.ToString() + "'", myConn); }
             else if (brandN.SelectedIndex == -1 && category.SelectedIndex == -1 && subcategory.SelectedIndex != -1) { da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity,ImageUrl FROM Storage WHERE SubCategory = '" + subcategory.SelectedItem.ToString() + "'", myConn); }
             else if (brandN.SelectedIndex != -1 && category.SelectedIndex != -1 && subcategory.SelectedIndex == -1)
@@ -375,21 +367,53 @@ namespace LaAcoustica_Final
             {
                 da = new OleDbDataAdapter("SELECT ProductName, BrandName, Category, SubCategory, Price, Quantity,ImageUrl FROM Storage WHERE BrandName = '" + brandN.SelectedItem.ToString() + "' and Category = '" + category.SelectedItem.ToString() + "' and SubCategory = '" + subcategory.SelectedItem.ToString() + "'", myConn);
             }
+
             ds = new DataSet();
             myConn.Open();
             da.Fill(ds, "Storage");
             storageData.DataSource = ds.Tables["Storage"];
             storageData.Columns["Price"].DefaultCellStyle.Format = "C";
             myConn.Close();
+            }));
         }
-        private void FilterData(object sender, EventArgs e) { Filter(); }
+        
+        private void FilterData(object sender, EventArgs e) 
+        { 
+            Filter(); 
+        }
         private void refresh_Click(object sender, EventArgs e)
         {
-            brandN.SelectedIndex = -1;
-            category.SelectedIndex = -1;
-            subcategory.SelectedIndex = -1;
+            brandN.Text = "";
+            category.Text = "";
+            subcategory.Text = "";
             Q.Value = 1;
+
             loadInventory();
+            BeginInvoke((Action)(() => //Makes the dgv load first then begins to execute ClearSelection()
+            {
+            if (myConn.State == ConnectionState.Closed)
+                myConn.Open();
+            cmd = new OleDbCommand();
+            cmd.Connection = myConn;
+            string query = "SELECT DISTINCT BrandName, Category,SubCategory FROM Storage";
+            cmd.CommandText = query;
+
+            OleDbDataReader reader = cmd.ExecuteReader();
+            brandN.Items.Clear();
+            category.Items.Clear();
+            subcategory.Items.Clear();
+            while (reader.Read())
+            {
+                if (!category.Items.Contains(reader["Category"].ToString()))
+                    category.Items.Add(reader["Category"].ToString()); //Lists all of the related category
+                if (!subcategory.Items.Contains(reader["SubCategory"].ToString()))
+                    subcategory.Items.Add(reader["SubCategory"].ToString());
+                if (!brandN.Items.Contains(reader["BrandName"].ToString()))
+                    brandN.Items.Add(reader["BrandName"].ToString());
+            }
+            reader.Close();
+            myConn.Close();
+            }));
         }
 
         private void printR_Click(object sender, EventArgs e)
@@ -575,6 +599,145 @@ namespace LaAcoustica_Final
             e.Graphics.DrawString(totalPrice.ToString("C"), font, brush, 180, y + 15);
             e.Graphics.DrawString("----------------------------------------------------------------------------------------", font, brush, e.PageBounds.Width / 2, y + 30, format);
             e.Graphics.DrawString("THANK YOU FOR YOUR PURCHASE!", new System.Drawing.Font("Merchant Copy", 11, FontStyle.Bold), brush, e.PageBounds.Width / 2, y + 60, format);
+        }
+
+        private void brandN_SelectedValueChanged(object sender, EventArgs e)
+        {
+            FilterCombo();
+        }
+
+        private void category_SelectedValueChanged(object sender, EventArgs e)
+        {
+            FilterCombo();
+        }
+
+        private void subcategory_SelectedValueChanged(object sender, EventArgs e)
+        {
+            FilterCombo();
+        }
+
+        private void FilterCombo()
+        {
+            BeginInvoke((Action)(() =>
+            {
+                if (myConn.State == ConnectionState.Closed)
+                    myConn.Open();
+                if (brandN.SelectedIndex != -1 && category.SelectedIndex == -1 && subcategory.SelectedIndex == -1) 
+                {
+                    cmd = new OleDbCommand();
+                    cmd.Connection = myConn;
+                    string query = "SELECT DISTINCT Category,SubCategory FROM Storage WHERE BrandName = @brand";
+                    cmd.Parameters.AddWithValue("@brand", brandN.Text);
+                    cmd.CommandText = query;
+
+                    OleDbDataReader reader = cmd.ExecuteReader();
+                    category.Items.Clear();
+                    subcategory.Items.Clear();
+                    while (reader.Read())
+                    {
+                        if (!category.Items.Contains(reader["Category"].ToString()))
+                            category.Items.Add(reader["Category"].ToString()); //Lists all of the related category
+                        if (!subcategory.Items.Contains(reader["SubCategory"].ToString()))
+                            subcategory.Items.Add(reader["SubCategory"].ToString());
+                    }
+                    reader.Close();
+                }
+                else if (brandN.SelectedIndex == -1 && category.SelectedIndex != -1 && subcategory.SelectedIndex == -1) 
+                {
+                    cmd = new OleDbCommand();
+                    cmd.Connection = myConn;
+                    string query = "SELECT DISTINCT BrandName,SubCategory FROM Storage WHERE Category = @cat";
+                    cmd.Parameters.AddWithValue("@cat", category.Text);
+                    cmd.CommandText = query;
+
+                    OleDbDataReader reader = cmd.ExecuteReader();
+                    brandN.Items.Clear();
+                    subcategory.Items.Clear();
+                    while (reader.Read())
+                    {
+                        if (!brandN.Items.Contains(reader["BrandName"].ToString()))
+                            brandN.Items.Add(reader["BrandName"].ToString()); //Lists all of the related category
+                        if (!subcategory.Items.Contains(reader["SubCategory"].ToString()))
+                            subcategory.Items.Add(reader["SubCategory"].ToString());
+                    }
+                    reader.Close();
+                }
+                else if (brandN.SelectedIndex == -1 && category.SelectedIndex == -1 && subcategory.SelectedIndex != -1) 
+                {
+                    cmd = new OleDbCommand();
+                    cmd.Connection = myConn;
+                    string query = "SELECT DISTINCT BrandName,Category FROM Storage WHERE SubCategory = @subcat";
+                    cmd.Parameters.AddWithValue("@subcat", subcategory.Text);
+                    cmd.CommandText = query;
+
+                    OleDbDataReader reader = cmd.ExecuteReader();
+                    brandN.Items.Clear();
+                    category.Items.Clear();
+                    while (reader.Read())
+                    {
+                        if (!brandN.Items.Contains(reader["BrandName"].ToString()))
+                            brandN.Items.Add(reader["BrandName"].ToString()); //Lists all of the related category
+                        if (!category.Items.Contains(reader["Category"].ToString()))
+                            category.Items.Add(reader["Category"].ToString());
+                    }
+                    reader.Close();
+                }
+                else if (brandN.SelectedIndex != -1 && category.SelectedIndex != -1 && subcategory.SelectedIndex == -1)
+                {
+                    cmd = new OleDbCommand();
+                    cmd.Connection = myConn;
+                    string query = "SELECT DISTINCT SubCategory FROM Storage WHERE Category = @cat and BrandName = @brand";
+                    cmd.Parameters.AddWithValue("@cat", category.Text);
+                    cmd.Parameters.AddWithValue("@brand", brandN.Text);
+                    cmd.CommandText = query;
+
+                    OleDbDataReader reader = cmd.ExecuteReader();
+                    subcategory.Items.Clear();
+                    while (reader.Read())
+                    {
+                        if (!subcategory.Items.Contains(reader["SubCategory"].ToString()))
+                            subcategory.Items.Add(reader["SubCategory"].ToString());
+                    }
+                    reader.Close();
+                }
+                else if (brandN.SelectedIndex != -1 && category.SelectedIndex == -1 && subcategory.SelectedIndex != -1)
+                {
+                    cmd = new OleDbCommand();
+                    cmd.Connection = myConn;
+                    string query = "SELECT DISTINCT Category FROM Storage WHERE SubCategory = @subcat and BrandName = @brand";
+                    cmd.Parameters.AddWithValue("@subcat", subcategory.Text);
+                    cmd.Parameters.AddWithValue("@brand", brandN.Text);
+                    cmd.CommandText = query;
+
+                    OleDbDataReader reader = cmd.ExecuteReader();
+                    category.Items.Clear();
+                    while (reader.Read())
+                    {
+                        if (!category.Items.Contains(reader["Category"].ToString()))
+                            category.Items.Add(reader["Category"].ToString());
+                    }
+                    reader.Close();
+                }
+                else if (brandN.SelectedIndex == -1 && category.SelectedIndex != -1 && subcategory.SelectedIndex != -1)
+                {
+                    cmd = new OleDbCommand();
+                    cmd.Connection = myConn;
+                    string query = "SELECT DISTINCT BrandName FROM Storage WHERE SubCategory = @subcat and Category = @cat";
+                    cmd.Parameters.AddWithValue("@subcat", subcategory.Text);
+                    cmd.Parameters.AddWithValue("@cat", category.Text);
+                    cmd.CommandText = query;
+
+                    OleDbDataReader reader = cmd.ExecuteReader();
+                    brandN.Items.Clear();
+                    while (reader.Read())
+                    {
+                        if (!brandN.Items.Contains(reader["BrandName"].ToString()))
+                            brandN.Items.Add(reader["BrandName"].ToString());
+                    }
+                    reader.Close();
+                }
+                myConn.Close(); 
+            }));
         }
         private void storageData_SelectionChanged(object sender, EventArgs e)
         {
