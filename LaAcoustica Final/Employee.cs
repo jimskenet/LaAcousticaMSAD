@@ -139,9 +139,9 @@ namespace LaAcoustica_Final
                 quantity = Convert.ToInt32(row.Cells["Quantity"].Value);
                 Q.Visible = true;
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show("Error: " + ex);
+                MessageBox.Show("An Error Occurred");
             }
         }
         //SELECT ROW IN BILL
@@ -248,9 +248,9 @@ namespace LaAcoustica_Final
                     MessageBox.Show("No Products to be Deleted!", "Cart Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show("An error occurred: " + ex.Message);
+                MessageBox.Show("An error occurred");
                 myConn.Close();
             }
         }
@@ -303,9 +303,9 @@ namespace LaAcoustica_Final
                 Q.Value = 1;
 
             }
-            catch (Exception exe)
+            catch
             {
-                MessageBox.Show("Error" + exe); myConn.Close();
+                MessageBox.Show("An Error Occurred"); myConn.Close();
             }
         }
         //UPDATES QUANTITY IN INVENTORY
@@ -451,7 +451,7 @@ namespace LaAcoustica_Final
                 }
                 else { MessageBox.Show("Cart is empty!", "Purchasing Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             }
-            catch (Exception ex) { MessageBox.Show("An error has occured. You may contact your developer or try again. "+ex.Message, "Purchasing Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            catch { MessageBox.Show("An error has occured. You may contact your developer or try again. ", "Purchasing Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             finally { myConn.Close(); }
         }
         
@@ -751,9 +751,9 @@ namespace LaAcoustica_Final
                     {
                         ItemPic.Load(imageurl);
                     }
-                    catch (Exception ex)
+                    catch
                     {
-                        MessageBox.Show("Error loading Image: " + ex.Message);
+                        MessageBox.Show("Error loading Image");
                     }
                 }
             }

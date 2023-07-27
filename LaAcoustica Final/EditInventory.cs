@@ -50,7 +50,7 @@ namespace LaAcoustica_Final
                 Close();
                 storage.editted();
             }
-            catch(Exception ex) { MessageBox.Show("An Error Occurred! "+ex); }
+            catch { MessageBox.Show("An Error Occurred! "); }
         }
 
         private void cButton1_Click(object sender, EventArgs e)

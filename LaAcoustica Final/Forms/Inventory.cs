@@ -59,9 +59,9 @@ namespace LaAcoustica_Final
                 da.Fill(ds, "Storage");
                 storageData.DataSource = ds.Tables["Storage"];
             }
-            catch (Exception e)
+            catch
             {
-                MessageBox.Show("An Error Occurred! " + e.Message);
+                MessageBox.Show("An Error Occurred!");
             }
             finally
             {
