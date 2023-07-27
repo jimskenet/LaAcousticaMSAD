@@ -66,9 +66,9 @@ namespace LaAcoustica_Final
                     Update();
                 }
             }
-            catch(Exception E)
+            catch
             {
-                MessageBox.Show(E.Message);
+                MessageBox.Show("An Error Occurred");
             }
         }
     }

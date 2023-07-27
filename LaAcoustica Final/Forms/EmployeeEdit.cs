@@ -187,7 +187,7 @@ namespace LaAcoustica_Final
                 }
                 clear_Click(sender, e);
             }
-            catch(Exception ex) { MessageBox.Show("An Error Occured! "+ex); }
+            catch { MessageBox.Show("An Error Occured! "); }
         }
 
         private void SelectRow(object sender, DataGridViewCellEventArgs e)

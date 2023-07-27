@@ -70,9 +70,9 @@ namespace LaAcoustica_Final
                     Close();
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show("Error due to Duplicate "+ex);
+                MessageBox.Show("Error due to Duplicate ");
             }
         }
         private void EmployeeEdit_MouseDown(object sender, MouseEventArgs e)

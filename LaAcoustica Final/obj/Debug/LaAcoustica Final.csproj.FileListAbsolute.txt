@@ -429,3 +429,8 @@ C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\LaAcoustica Final\LaAcoustic
 C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\LaAcoustica Final\LaAcoustica Final\obj\Debug\LaAcoustica Final.TrustInfo.xml
 C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\LaAcoustica Final\LaAcoustica Final\obj\Debug\LaAcoustica Final.exe.manifest
 C:\Users\Nodz\Desktop\The dream\MSAD (La Acoustica)\LaAcoustica Final\LaAcoustica Final\obj\Debug\LaAcoustica Final.application
+C:\Users\Jofrel Jan Quijano\LA\LaAcoustica Final\bin\Debug\LaAcoustica Final.exe.manifest
+C:\Users\Jofrel Jan Quijano\LA\LaAcoustica Final\bin\Debug\LaAcoustica Final.application
+C:\Users\Jofrel Jan Quijano\LA\LaAcoustica Final\obj\Debug\LaAcoustica Final.TrustInfo.xml
+C:\Users\Jofrel Jan Quijano\LA\LaAcoustica Final\obj\Debug\LaAcoustica Final.exe.manifest
+C:\Users\Jofrel Jan Quijano\LA\LaAcoustica Final\obj\Debug\LaAcoustica Final.application
