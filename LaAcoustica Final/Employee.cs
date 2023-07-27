@@ -60,7 +60,7 @@ namespace LaAcoustica_Final
                 Acc.Text = "Customer";
                 label4.Text = "My Cart";
                 label10.Text = "Customer: ";
-                cashier.Location = new Point(100, 2);
+                cashier.Location = new Point(130, 2);
                 add.Text = "Add to Cart"; delete.Text = "Remove from Cart"; printR.Text = "Purchase Item/s";
                 resetBill.Text = "Clear Cart";
                 edit.Text = "Update Order"; edit.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Regular);
