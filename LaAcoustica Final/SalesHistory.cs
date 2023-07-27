@@ -55,9 +55,6 @@ namespace LaAcoustica_Final
             dailySale.DataSource = ds.Tables["Daily"];
             dailySale.Columns["Sales"].DefaultCellStyle.Format = "C";
             myConn.Close();
-
-            dailySale.Columns["month_id"].Visible = false;
-            dailySale.Columns["year_id"].Visible = false;
         }
         private void FilterDate()
         {
@@ -133,8 +130,6 @@ namespace LaAcoustica_Final
             dailySale.DataSource = ds.Tables["Daily"];
             dailySale.Columns["Sales"].DefaultCellStyle.Format = "C";
 
-            dailySale.Columns["month_id"].Visible = false;
-            dailySale.Columns["year_id"].Visible = false;
             myConn.Close();
             dailySale.ClearSelection();
         }

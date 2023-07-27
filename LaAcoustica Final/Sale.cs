@@ -120,10 +120,10 @@ namespace LaAcoustica_Final
         }
         private void ShowDailySales()
         {
-            string dateNow = DateTime.Now.ToShortDateString();
-            string sql = "SELECT SUM(Sales) FROM Daily WHERE Date = Date() ";
+            string sql = "SELECT SUM(Sales) FROM Daily WHERE Date = @dt ";
             myConn.Open();
             cmd = new OleDbCommand(sql, myConn);
+            cmd.Parameters.AddWithValue("@dt", DateTime.Now.ToShortDateString());
             object result = cmd.ExecuteScalar();
             myConn.Close();
             string totalSales;

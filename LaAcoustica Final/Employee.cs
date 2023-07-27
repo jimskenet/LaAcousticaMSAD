@@ -445,14 +445,24 @@ namespace LaAcoustica_Final
                     cmd.ExecuteNonQuery();
                     myConn.Close();
 
-                    query = "INSERT INTO Dates ([Date], month_id, year_id) VALUES (@dt, @mnth,@yr)";
-                    cmd = new OleDbCommand(query, myConn);
-                    cmd.Parameters.AddWithValue("@dt", dateTime);
-                    cmd.Parameters.AddWithValue("@mnth", DateTime.Now.Month);
-                    cmd.Parameters.AddWithValue("@yr", DateTime.Now.Year);
-                    myConn.Open();
-                    cmd.ExecuteNonQuery();
-                    myConn.Close();
+                    using (OleDbConnection myConn = new OleDbConnection(StaticClass.connString))
+                    {
+                        OleDbCommand command = new OleDbCommand();
+                        command.Connection = myConn;
+                        command.CommandText = "Select * FROM Dates where Date = @dt";
+                        cmd.Parameters.AddWithValue("@dt", dateTime);
+                        myConn.Open();
+                        OleDbDataReader read = command.ExecuteReader();
+                        if (!read.HasRows)
+                        {
+                            query = "INSERT INTO Dates ([Date], month_id, year_id) VALUES (@dt, @mnth,@yr)";
+                            cmd = new OleDbCommand(query, myConn);
+                            cmd.Parameters.AddWithValue("@dt", dateTime);
+                            cmd.Parameters.AddWithValue("@mnth", DateTime.Now.Month);
+                            cmd.Parameters.AddWithValue("@yr", DateTime.Now.Year);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
 
                     //For Bill Sums
                     string sql = "SELECT SUM(Price) FROM Bill";
@@ -469,7 +479,7 @@ namespace LaAcoustica_Final
                 }
                 else { MessageBox.Show("Cart is empty!", "Purchasing Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             }
-            catch { MessageBox.Show("An error has occured. You may contact your developer or try again. ", "Purchasing Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            catch(Exception ex) { MessageBox.Show("An error has occured. You may contact your developer or try again. "+ ex, "Purchasing Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             finally { myConn.Close(); }
         }
         
