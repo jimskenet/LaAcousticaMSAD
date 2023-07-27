@@ -449,8 +449,8 @@ namespace LaAcoustica_Final
                     {
                         OleDbCommand command = new OleDbCommand();
                         command.Connection = myConn;
-                        command.CommandText = "Select * FROM Dates where Date = @dt";
-                        cmd.Parameters.AddWithValue("@dt", dateTime);
+                        command.CommandText = "Select * FROM Dates where [Date] = @dt";
+                        command.Parameters.AddWithValue("@dt", DateTime.Now.Date);
                         myConn.Open();
                         OleDbDataReader read = command.ExecuteReader();
                         if (!read.HasRows)
