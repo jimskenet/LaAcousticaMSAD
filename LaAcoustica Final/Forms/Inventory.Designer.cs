@@ -30,6 +30,7 @@
         {
             this.storageData = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label12 = new System.Windows.Forms.Label();
             this.refresh = new LaAcoustica_Final.CButton();
             this.label10 = new System.Windows.Forms.Label();
             this.clear = new LaAcoustica_Final.CButton();
@@ -56,7 +57,6 @@
             this.subcat_txt = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.id_txt = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.storageData)).BeginInit();
             this.panel1.SuspendLayout();
@@ -69,7 +69,7 @@
             this.storageData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.storageData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.storageData.Location = new System.Drawing.Point(304, 106);
-            this.storageData.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.storageData.Margin = new System.Windows.Forms.Padding(2);
             this.storageData.Name = "storageData";
             this.storageData.ReadOnly = true;
             this.storageData.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
@@ -104,13 +104,25 @@
             this.panel1.Controls.Add(this.quantity);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(300, 638);
             this.panel1.TabIndex = 23;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseDown);
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseMove);
             this.panel1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.DarkRed;
+            this.label12.Location = new System.Drawing.Point(11, 72);
+            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(195, 21);
+            this.label12.TabIndex = 50;
+            this.label12.Text = "INFORMATION DISPLAY";
             // 
             // refresh
             // 
@@ -124,7 +136,7 @@
             this.refresh.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.refresh.ForeColor = System.Drawing.Color.Maroon;
             this.refresh.Location = new System.Drawing.Point(184, 544);
-            this.refresh.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.refresh.Margin = new System.Windows.Forms.Padding(2);
             this.refresh.Name = "refresh";
             this.refresh.Size = new System.Drawing.Size(85, 54);
             this.refresh.TabIndex = 40;
@@ -160,7 +172,7 @@
             this.clear.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clear.ForeColor = System.Drawing.Color.Maroon;
             this.clear.Location = new System.Drawing.Point(90, 544);
-            this.clear.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.clear.Margin = new System.Windows.Forms.Padding(2);
             this.clear.Name = "clear";
             this.clear.Size = new System.Drawing.Size(90, 54);
             this.clear.TabIndex = 38;
@@ -174,7 +186,7 @@
             this.Scategory.Enabled = false;
             this.Scategory.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Scategory.Location = new System.Drawing.Point(14, 311);
-            this.Scategory.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Scategory.Margin = new System.Windows.Forms.Padding(2);
             this.Scategory.Multiline = true;
             this.Scategory.Name = "Scategory";
             this.Scategory.Size = new System.Drawing.Size(256, 32);
@@ -185,7 +197,7 @@
             this.categoryT.Enabled = false;
             this.categoryT.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.categoryT.Location = new System.Drawing.Point(14, 250);
-            this.categoryT.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.categoryT.Margin = new System.Windows.Forms.Padding(2);
             this.categoryT.Multiline = true;
             this.categoryT.Name = "categoryT";
             this.categoryT.Size = new System.Drawing.Size(256, 32);
@@ -196,7 +208,7 @@
             this.brand.Enabled = false;
             this.brand.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.brand.Location = new System.Drawing.Point(14, 127);
-            this.brand.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.brand.Margin = new System.Windows.Forms.Padding(2);
             this.brand.Multiline = true;
             this.brand.Name = "brand";
             this.brand.Size = new System.Drawing.Size(256, 32);
@@ -231,7 +243,7 @@
             this.prod.Enabled = false;
             this.prod.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.prod.Location = new System.Drawing.Point(14, 188);
-            this.prod.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.prod.Margin = new System.Windows.Forms.Padding(2);
             this.prod.Multiline = true;
             this.prod.Name = "prod";
             this.prod.Size = new System.Drawing.Size(256, 39);
@@ -249,7 +261,7 @@
             this.delete.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.delete.ForeColor = System.Drawing.Color.Maroon;
             this.delete.Location = new System.Drawing.Point(184, 486);
-            this.delete.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.delete.Margin = new System.Windows.Forms.Padding(2);
             this.delete.Name = "delete";
             this.delete.Size = new System.Drawing.Size(85, 54);
             this.delete.TabIndex = 31;
@@ -270,7 +282,7 @@
             this.edit.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.edit.ForeColor = System.Drawing.Color.Maroon;
             this.edit.Location = new System.Drawing.Point(90, 486);
-            this.edit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.edit.Margin = new System.Windows.Forms.Padding(2);
             this.edit.Name = "edit";
             this.edit.Size = new System.Drawing.Size(90, 54);
             this.edit.TabIndex = 30;
@@ -291,7 +303,7 @@
             this.add.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.add.ForeColor = System.Drawing.Color.Maroon;
             this.add.Location = new System.Drawing.Point(10, 486);
-            this.add.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.add.Margin = new System.Windows.Forms.Padding(2);
             this.add.Name = "add";
             this.add.Size = new System.Drawing.Size(75, 54);
             this.add.TabIndex = 29;
@@ -341,7 +353,7 @@
             this.price.Enabled = false;
             this.price.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.price.Location = new System.Drawing.Point(14, 437);
-            this.price.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.price.Margin = new System.Windows.Forms.Padding(2);
             this.price.Multiline = true;
             this.price.Name = "price";
             this.price.Size = new System.Drawing.Size(256, 32);
@@ -364,7 +376,7 @@
             this.quantity.Enabled = false;
             this.quantity.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.quantity.Location = new System.Drawing.Point(14, 373);
-            this.quantity.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.quantity.Margin = new System.Windows.Forms.Padding(2);
             this.quantity.Multiline = true;
             this.quantity.Name = "quantity";
             this.quantity.Size = new System.Drawing.Size(256, 32);
@@ -409,7 +421,7 @@
             // brand_txt
             // 
             this.brand_txt.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.brand_txt.Location = new System.Drawing.Point(578, 72);
+            this.brand_txt.Location = new System.Drawing.Point(386, 72);
             this.brand_txt.Margin = new System.Windows.Forms.Padding(2);
             this.brand_txt.Multiline = true;
             this.brand_txt.Name = "brand_txt";
@@ -420,7 +432,7 @@
             // cat_txt
             // 
             this.cat_txt.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cat_txt.Location = new System.Drawing.Point(386, 72);
+            this.cat_txt.Location = new System.Drawing.Point(578, 72);
             this.cat_txt.Margin = new System.Windows.Forms.Padding(2);
             this.cat_txt.Multiline = true;
             this.cat_txt.Name = "cat_txt";
@@ -462,18 +474,6 @@
             this.id_txt.TabIndex = 49;
             this.id_txt.TextChanged += new System.EventHandler(this.id_txt_TextChanged);
             // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.Color.DarkRed;
-            this.label12.Location = new System.Drawing.Point(11, 72);
-            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(195, 21);
-            this.label12.TabIndex = 50;
-            this.label12.Text = "INFORMATION DISPLAY";
-            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -504,7 +504,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.storageData);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Inventory";
             this.Text = "Inventory";
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseDown);

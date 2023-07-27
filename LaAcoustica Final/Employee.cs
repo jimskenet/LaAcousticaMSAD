@@ -325,26 +325,32 @@ namespace LaAcoustica_Final
         //EDIT QUANTITY OF PRODUCTS
         private void edit_Click(object sender, EventArgs e)
         {
-            if (Q.Value == 0) { delete.PerformClick(); }
+            if (cart.Rows.Count == 0)
+            {
+                MessageBox.Show("Updating an Empty Cart!", "Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             else
             {
-                try
+                if (Q.Value == 0) { delete.PerformClick(); }
+                else
                 {
-                    int q = Convert.ToInt32(Q.Value);
-                    int quantity = Convert.ToInt32(cart.CurrentRow.Cells[2].Value);
-                    UpInventory(quantity - q, prodN.Text);
-                    myConn.Open();
-                    cmd = new OleDbCommand("UPDATE Bill SET Product = @pr, Price = @pc, [Quantity] = @qt  WHERE Product = @pr", myConn);
-                    cmd.Parameters.AddWithValue("@pr", prodN.Text);
-                    cmd.Parameters.AddWithValue("@pc", priceN.Text);
-                    cmd.Parameters.AddWithValue("@qt", Q);
-                    cmd.ExecuteNonQuery();
-                    myConn.Close();
+                    try
+                    {
+                        int q = Convert.ToInt32(Q.Value);
+                        int quantity = Convert.ToInt32(cart.CurrentRow.Cells["Quantity"].Value);
+                        UpInventory(quantity - q, prodN.Text);
+                        myConn.Open();
+                        cmd = new OleDbCommand("UPDATE Bill SET Product = @pr, Price = @pc, [Quantity] = @qt  WHERE Product = @pr", myConn);
+                        cmd.Parameters.AddWithValue("@pr", prodN.Text);
+                        cmd.Parameters.AddWithValue("@pc", priceN.Text);
+                        cmd.Parameters.AddWithValue("@qt", Q);
+                        cmd.ExecuteNonQuery();
+                        myConn.Close();
+                    }
+                    catch { MessageBox.Show("Insufficient Stock!"); myConn.Close(); }
+                    loadBill();
                 }
-                catch { MessageBox.Show("Insufficient Stock!"); myConn.Close(); }
-                loadBill();
             }
-                
         }
         //FILTER METHODS
         private void Filter()
