@@ -74,7 +74,7 @@ namespace LaAcoustica_Final
                     acc = false;
             }
 
-            if (fn.Text == "" || ln.Text == "" || mi.Text == "" || un.Text == "" || pw.Text == "")
+            if (fn.Text == "" || ln.Text == "" || un.Text == "" || pw.Text == "")
             {
                 MessageBox.Show("Fill each Requirement", "Registration Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -154,6 +154,18 @@ namespace LaAcoustica_Final
             if (e.KeyChar == (char)Keys.Enter)
             {
                 submit.PerformClick();
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                pw.PasswordChar = '\0'; // show the password
+            }
+            else
+            {
+                pw.PasswordChar = '*'; // hide the password
             }
         }
     }

@@ -127,7 +127,9 @@ namespace LaAcoustica_Final
         {
             try
             {
-                if (e.RowIndex == -1) return;
+                BeginInvoke((Action)(() => //Makes the dgv load first then begins to execute ClearSelection()
+                {
+                    if (e.RowIndex == -1) return;
 
                 int index = e.RowIndex;
                 row = storageData.Rows[index];
@@ -138,6 +140,7 @@ namespace LaAcoustica_Final
                 stockQ.Text = row.Cells["Quantity"].Value.ToString() + "  items left";
                 quantity = Convert.ToInt32(row.Cells["Quantity"].Value);
                 Q.Visible = true;
+                }));
             }
             catch
             {
@@ -387,6 +390,7 @@ namespace LaAcoustica_Final
             category.Text = "";
             subcategory.Text = "";
             Q.Value = 1;
+            ItemPic.Image = null;
 
             loadInventory();
             BeginInvoke((Action)(() => //Makes the dgv load first then begins to execute ClearSelection()
