@@ -436,16 +436,24 @@ namespace LaAcoustica_Final
                     string total = totalPrice.ToString("C");
                     invoiceNumber = Guid.NewGuid().ToString();
                     string dateTime = DateTime.Now.ToShortDateString();
-                    string query = "INSERT INTO Daily (InvoiceNumber, Sales, [Date],month_id,year_id) VALUES (@in,@sale,@dt,@mnth,@yr)";
+                    string query = "INSERT INTO Daily (InvoiceNumber, Sales, [Date]) VALUES (@in,@sale,@dt)";
                     cmd = new OleDbCommand(query, myConn);
                     cmd.Parameters.AddWithValue("@in", invoiceNumber);
                     cmd.Parameters.AddWithValue("@sale", total);
+                    cmd.Parameters.AddWithValue("@dt", dateTime);
+                    myConn.Open();
+                    cmd.ExecuteNonQuery();
+                    myConn.Close();
+
+                    query = "INSERT INTO Dates ([Date], month_id, year_id) VALUES (@dt, @mnth,@yr)";
+                    cmd = new OleDbCommand(query, myConn);
                     cmd.Parameters.AddWithValue("@dt", dateTime);
                     cmd.Parameters.AddWithValue("@mnth", DateTime.Now.Month);
                     cmd.Parameters.AddWithValue("@yr", DateTime.Now.Year);
                     myConn.Open();
                     cmd.ExecuteNonQuery();
                     myConn.Close();
+
                     //For Bill Sums
                     string sql = "SELECT SUM(Price) FROM Bill";
                     myConn.Open();
